@@ -11,3 +11,156 @@ format:
     code-tools: true
     theme: cosmo
 ---
+
+Creating your own blog is a great way to share your data projects. With **[Quarto](https://quarto.org)** and **[GitHub Pages](https://pages.github.com/)**, you can easily publish a professional-looking blog for free, using simple Markdown and code.
+
+This setup is ideal for:
+
+* Showcasing data science or programming projects
+* Writing technical tutorials (like this ;) )
+* Maintaining a lightweight, fast, and version-controlled website
+
+In this tutorial, I’ll walk you through how to create your blog step by step using Quarto and GitHub Pages.
+
+---
+
+## 🧰 What You’ll Need
+
+### Technical Requirements
+
+1. **Install [Quarto](https://quarto.org/docs/get-started/)**
+   Quarto is the publishing engine. You can write in Markdown, embed code, and produce beautiful web pages, a great thing about Quarto is that it supports various languages like R, Python, Julia, and Observable JavaScript. Download and install it from the official site.
+
+2. **Create a GitHub account** (if you don’t have one yet)
+   You'll use GitHub to host your website for free via GitHub Pages.
+
+3. **Install Git** (if not already installed)
+   Quarto uses Git to publish your site to GitHub. [Install Git](https://git-scm.com/downloads) and set it up locally.
+
+> _Optional but helpful_: A code editor like VS Code or PyCharm makes writing `.qmd` files easier, but it’s not required. I am personally using PyCharm Community Edition (the free version fo PyCharm) [Download PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows).
+
+---
+
+## 🚀 Step-by-Step: Create Your Blog
+
+We’ll now create and publish your blog in just a few steps.
+
+---
+
+### 1. Create a New Quarto Website
+
+Open your terminal and run the following command:
+
+```bash
+quarto create-project my-blog --type website
+cd my-blog
+```
+
+This creates a new folder called "my-blog" with the basic structure of a Quarto website. You can rename my-blog to whatever you want.
+
+### 2. Preview Your Website Locally
+
+To check if everything worked correctly, run the following command to see your site in your browser:
+
+```bash
+quarto preview
+```
+
+This launches a localhost preview.
+Any time you change a .qmd file and save it, the preview updates automatically.
+Remember, this is not your site yet, but just a local preview. Next I will guide you through creating a proper site using GitHub Pages.
+
+### 3. Configure the Site for GitHub Pages
+
+To publish your site using GitHub Pages, you need to configure Quarto to render your output into a folder named docs/.
+
+In the root of your project, open the _quarto.yml file and modify or add the following line:
+
+```yaml
+project:
+  type: website
+  output-dir: docs
+```
+Then render your site:
+
+```bash
+quarto render
+```
+Quarto will generate the site in a docs/ folder, which GitHub Pages can use for publishing.
+
+### 4. Push Your Site to GitHub
+
+Create a new repository on GitHub (e.g., "my-blog")
+
+Initialize Git and link your local project to your GitHub repo:
+
+```bash
+git init
+git remote add origin https://github.com/yourusername/my-blog.git
+git add .
+git commit -m "Initial commit"
+git push -u origin main
+```
+
+Don't forget to replace "yourusername" with your actual username and "my-blog" with your actual blog name ;).
+🔐 If you're using HTTPS, GitHub will ask you for a token instead of a password. You can generate one here.
+
+
+### 5. Enable GitHub Pages
+
+1. Go to your GitHub repository
+
+2. Click on Settings → Pages
+
+3. Under Source, select:
+
+* Branch: main
+
+* Folder: /docs
+
+Click Save. After a few seconds, your site will be live at:
+https://yourusername.github.io/data-blog/
+
+---
+
+## ✍🏿 Create Your First Blog Post
+
+If you do not have a folder for your posts already, create a new one. I keep my posts inside the folder "posts", within my own project folder DataBlog.
+Now you can create a new file, which will become your first post. For example:
+
+```bash
+posts/how-to-create-a-data-blog.qmd
+```
+
+You can start with this header and modify it accordingly with your needs:
+
+```yaml
+---
+title: "How to Create a Data Blog Using Quarto"
+date: 2025-05-11
+categories: [tutorial, quarto, github, blogging]
+format:
+  html:
+    toc: true
+    code-tools: true
+    theme: cosmo
+---
+```
+
+Then write your content below using Markdown and code blocks as needed.
+
+When ready, render the site again:
+
+```bash
+quarto render
+```
+
+Now push teh changes to GitHub:
+
+```bash
+git add .
+git commit -m "Add first blog post"
+git push
+```
+
+Visit your blog again — Congratulations, your new post is live! ✌🏿
