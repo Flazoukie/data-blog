@@ -267,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then render your site:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Quarto will generate the site in a docs/ folder, which GitHub Pages can use for publishing. This is the path I chose to publish my blog, however there are alternative ways to do it, which may better satisfy your requirements, have a look here: <a href="https://quarto.org/docs/publishing/github-pages.html#render-to-docs">GitHub Pages for Quarto</a>.</p>
+<p>Quarto will generate the site in a docs/ folder, which GitHub Pages can use for publishing.</p>
 </section>
 <section id="push-your-site-to-github" class="level3">
 <h3 class="anchored" data-anchor-id="push-your-site-to-github">4. Push Your Site to GitHub</h3>
@@ -292,6 +292,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Folder: /docs</p></li>
 </ul>
 <p>Click Save. After a few seconds, your site will be live at: https://yourusername.github.io/data-blog/</p>
+<blockquote class="blockquote">
+<p><em>Note:</em>:This is the path I chose to publish my blog, however there are alternative ways to do it, which may better satisfy your requirements, have a look here: <a href="https://quarto.org/docs/publishing/github-pages.html#render-to-docs">GitHub Pages for Quarto</a>.</p>
+</blockquote>
 <hr>
 </section>
 </section>
@@ -871,85 +874,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
 <span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>Quarto will generate the site in a docs/ folder, which GitHub Pages can use for publishing.</span>
-<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>This is the path I chose to publish my blog, however there are alternative ways to do it, which may better satisfy your requirements, have a look here:</span>
-<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">GitHub Pages for Quarto</span><span class="co">](https://quarto.org/docs/publishing/github-pages.html#render-to-docs)</span>.</span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. Push Your Site to GitHub</span></span>
 <span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. Push Your Site to GitHub</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>Create a new repository on GitHub (e.g., "my-blog")</span>
 <span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>Create a new repository on GitHub (e.g., "my-blog")</span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>Initialize Git and link your local project to your GitHub repo:</span>
 <span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>Initialize Git and link your local project to your GitHub repo:</span>
-<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/yourusername/my-blog.git</span>
-<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial commit"</span></span>
-<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span>
-<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a>Don't forget to replace "yourusername" with your actual username and "my-blog" with your actual blog name ;).</span>
-<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a>🔐 If you're using HTTPS, GitHub will ask you for a token instead of a password. You can generate one here.</span>
-<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/yourusername/my-blog.git</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial commit"</span></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a>Don't forget to replace "yourusername" with your actual username and "my-blog" with your actual blog name ;).</span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>🔐 If you're using HTTPS, GitHub will ask you for a token instead of a password. You can generate one here.</span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. Enable GitHub Pages</span></span>
 <span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. Enable GitHub Pages</span></span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Go to your GitHub repository</span>
 <span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Go to your GitHub repository</span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Click on Settings → Pages</span>
 <span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Click on Settings → Pages</span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Under Source, select:</span>
 <span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Under Source, select:</span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Branch: main</span>
 <span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Branch: main</span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Folder: /docs</span>
 <span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Folder: /docs</span>
-<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a>Click Save. After a few seconds, your site will be live at:</span>
-<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a>https://yourusername.github.io/data-blog/</span>
-<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a>Click Save. After a few seconds, your site will be live at:</span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a>https://yourusername.github.io/data-blog/</span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; _Note:_:This is the path I chose to publish my blog, however there are alternative ways to do it, which may better satisfy your requirements, have a look here:</span></span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">GitHub Pages for Quarto</span><span class="co">](https://quarto.org/docs/publishing/github-pages.html#render-to-docs)</span><span class="at">.</span></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✍🏿 Create Your First Blog Post</span></span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a>If you do not have a folder for your posts already, create a new one. I keep my posts inside the folder "posts", within my own project folder DataBlog.</span>
-<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a>Now you can create a new file, which will become your first post. For example:</span>
-<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a><span class="ex">posts/how-to-create-a-data-blog.qmd</span></span>
-<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a>You can start with this header and modify it accordingly with your needs:</span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="fu">## ✍🏿 Create Your First Blog Post</span></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>If you do not have a folder for your posts already, create a new one. I keep my posts inside the folder "posts", within my own project folder DataBlog.</span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a>Now you can create a new file, which will become your first post. For example:</span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="ex">posts/how-to-create-a-data-blog.qmd</span></span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a><span class="in">```yaml</span></span>
-<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"How to Create a Data Blog Using Quarto"</span></span>
-<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> 2025-05-11</span></span>
-<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">tutorial</span><span class="kw">,</span><span class="at"> quarto</span><span class="kw">,</span><span class="at"> github</span><span class="kw">,</span><span class="at"> blogging</span><span class="kw">]</span></span>
-<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-tools</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
-<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a>Then write your content below using Markdown and code blocks as needed.</span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a>You can start with this header and modify it accordingly with your needs:</span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="in">```yaml</span></span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"How to Create a Data Blog Using Quarto"</span></span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> 2025-05-11</span></span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">tutorial</span><span class="kw">,</span><span class="at"> quarto</span><span class="kw">,</span><span class="at"> github</span><span class="kw">,</span><span class="at"> blogging</span><span class="kw">]</span></span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-tools</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a>When ready, render the site again:</span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a>Then write your content below using Markdown and code blocks as needed.</span>
 <span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
-<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a>Now push the changes to GitHub:</span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a>When ready, render the site again:</span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add first blog post"</span></span>
-<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span>
-<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a>Visit your blog again — Congratulations, your new post is live! ✌🏿</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a>Now push the changes to GitHub:</span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add first blog post"</span></span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a>Visit your blog again — Congratulations, your new post is live! ✌🏿</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
