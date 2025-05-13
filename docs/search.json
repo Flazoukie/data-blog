@@ -18,28 +18,63 @@
     "href": "posts/how-to-create-a-blog.html#what-youll-need",
     "title": "How to Create a Blog Using Quarto",
     "section": "🧰 What You’ll Need",
-    "text": "🧰 What You’ll Need\n\nTechnical Requirements\n\nInstall Quarto Quarto is the publishing engine. You can write in Markdown, embed code, and produce beautiful web pages, a great thing about Quarto is that it supports various languages like R, Python, Julia, and Observable JavaScript. Download and install it from the official site.\nCreate a GitHub account (if you don’t have one yet) You’ll use GitHub to host your website for free via GitHub Pages.\nInstall Git (if not already installed) Quarto uses Git to publish your site to GitHub. Install Git and set it up locally.\n\n\nOptional but helpful: A code editor like VS Code or PyCharm makes writing .qmd files easier, but it’s not required. I am personally using PyCharm Community Edition (the free version fo PyCharm) Download PyCharm."
+    "text": "🧰 What You’ll Need\n\nTechnical Requirements\n\nInstall Quarto Quarto is the publishing engine. You can write in Markdown, embed code, and produce beautiful web pages, one great thing about Quarto is that it supports various languages like R, Python, Julia, and Observable JavaScript. Download and install it from the official site.\nCreate a GitHub account (if you don’t have one yet) You’ll use GitHub to host your website for free via GitHub Pages.\nInstall Git (if not already installed) Quarto uses Git to publish your site to GitHub. Install Git and set it up locally.\n\n\nOptional but helpful: A code editor like VS Code or PyCharm makes writing .qmd files easier, but it’s not required. I am personally using PyCharm Community Edition (the free version of PyCharm) Download PyCharm."
   },
   {
     "objectID": "posts/how-to-create-a-blog.html#step-by-step-create-your-blog",
     "href": "posts/how-to-create-a-blog.html#step-by-step-create-your-blog",
     "title": "How to Create a Blog Using Quarto",
     "section": "🚀 Step-by-Step: Create Your Blog",
-    "text": "🚀 Step-by-Step: Create Your Blog\nWe’ll now create and publish your blog in just a few steps.\n\n\n1. Create a New Quarto Website\nOpen your terminal and run the following command:\nquarto create-project my-blog --type website\ncd my-blog\nThis creates a new folder called “my-blog” with the basic structure of a Quarto website. You can rename my-blog to whatever you want.\n\n\n2. Preview Your Website Locally\nTo check if everything worked correctly, run the following command to see your site in your browser:\nquarto preview\nThis launches a localhost preview. Any time you change a .qmd file and save it, the preview updates automatically. Remember, this is not your site yet, but just a local preview. Next I will guide you through creating a proper site using GitHub Pages.\n\n\n3. Configure the Site for GitHub Pages\nTo publish your site using GitHub Pages, you need to configure Quarto to render your output into a folder named docs/.\nIn the root of your project, open the _quarto.yml file and modify or add the following line:\nproject:\n  type: website\n  output-dir: docs\nThen render your site:\nquarto render\nQuarto will generate the site in a docs/ folder, which GitHub Pages can use for publishing.\n\n\n4. Push Your Site to GitHub\nCreate a new repository on GitHub (e.g., “my-blog”)\nInitialize Git and link your local project to your GitHub repo:\ngit init\ngit remote add origin https://github.com/yourusername/my-blog.git\ngit add .\ngit commit -m \"Initial commit\"\ngit push -u origin main\nDon’t forget to replace “yourusername” with your actual username and “my-blog” with your actual blog name ;). 🔐 If you’re using HTTPS, GitHub will ask you for a token instead of a password. You can generate one here.\n\n\n5. Enable GitHub Pages\n\nGo to your GitHub repository\nClick on Settings → Pages\nUnder Source, select:\n\n\nBranch: main\nFolder: /docs\n\nClick Save. After a few seconds, your site will be live at: https://yourusername.github.io/data-blog/\n\nNote::This is the path I chose to publish my blog, however there are alternative ways to do it, which may better satisfy your requirements, have a look here: GitHub Pages for Quarto."
+    "text": "🚀 Step-by-Step: Create Your Blog\nWe’ll now create and publish your blog in just a few steps.\n\n\n1. Create a New Quarto Website\nOpen your terminal and run the following command:\nquarto create-project my-blog --type website\ncd my-blog\nThis creates a new folder called “my-blog” with the basic structure of a Quarto website. You can rename my-blog to whatever you want. You should now have gotten the following files:\n\nindex.qmd (your homepage)\nabout.qmd (your About page)\n_quarto.yml (the configuration file that defines your site layout and style)\nA posts/ folder to hold your blog posts\n\n\nIf you didn’t get a posts/ folder, create it manually. You will need it to hold all your blog posts!\n\n\n\n2. Preview Your Website Locally\nTo check if everything worked correctly, run the following command to see your site in your browser:\nquarto preview\nThis launches a localhost preview. Any time you change a .qmd file and save it, the preview updates automatically. Remember, this is not your site yet, but just a local preview. Next I will guide you through creating a proper site using GitHub Pages.\n\n\n3. Configure the Site for GitHub Pages\nTo publish your site using GitHub Pages, you need to configure Quarto to render your output into a folder named docs/.\nIn the root of your project, open the _quarto.yml file and modify or add the following line:\nproject:\n  type: website\n  output-dir: docs\nThen render your site:\nquarto render\nQuarto will generate the site in a docs/ folder, which GitHub Pages can use for publishing.\n\n\n4. Push Your Site to GitHub\nCreate a new repository on GitHub (e.g., “my-blog”)\nInitialize Git and link your local project to your GitHub repo:\ngit init\ngit remote add origin https://github.com/yourusername/my-blog.git\ngit add .\ngit commit -m \"Initial commit\"\ngit push -u origin main\nDon’t forget to replace “yourusername” with your actual username and “my-blog” with your actual blog name ;). 🔐 If you’re using HTTPS, GitHub will ask you for a token instead of a password. You can generate one here.\n\n\n5. Enable GitHub Pages\n\nGo to your GitHub repository\nClick on Settings → Pages\nUnder Source, select:\n\n\nBranch: main\nFolder: /docs\n\nClick Save. After a few seconds, your site will be live at: https://yourusername.github.io/data-blog/\n\nNote: This is the path I chose to publish my blog, however there are alternative ways to do it, which may better satisfy your requirements, have a look here: GitHub Pages for Quarto."
   },
   {
     "objectID": "posts/how-to-create-a-blog.html#create-your-first-blog-post",
     "href": "posts/how-to-create-a-blog.html#create-your-first-blog-post",
     "title": "How to Create a Blog Using Quarto",
     "section": "✍🏿 Create Your First Blog Post",
-    "text": "✍🏿 Create Your First Blog Post\nIf you do not have a folder for your posts already, create a new one. I keep my posts inside the folder “posts”, within my own project folder DataBlog. Now you can create a new file, which will become your first post. For example:\nposts/how-to-create-a-data-blog.qmd\nYou can start with this header and modify it accordingly with your needs:\n---\ntitle: \"How to Create a Data Blog Using Quarto\"\ndate: 2025-05-11\ncategories: [tutorial, quarto, github, blogging]\nformat:\n  html:\n    toc: true\n    code-tools: true\n    theme: cosmo\n---\nThen write your content below using Markdown and code blocks as needed.\nWhen ready, render the site again:\nquarto render\nNow push the changes to GitHub:\ngit add .\ngit commit -m \"Add first blog post\"\ngit push\nVisit your blog again — Congratulations, your new post is live! ✌🏿"
+    "text": "✍🏿 Create Your First Blog Post\nIf you do not have a folder for your posts already, create a new one. I keep my posts inside the folder “posts”, within my own project folder DataBlog. Now you can create a new file, which will become your first post. For example:\nposts/how-to-create-a-data-blog.qmd\nYou can start with this YAML header and modify it accordingly with your needs:\n---\ntitle: \"My first post title\"\ndate: 2025-05-11\ncategories: [tutorial, quarto, github, blogging]\nformat:\n  html:\n    toc: true\n    code-tools: true\n    theme: cosmo\n---\nThen write your content below using Markdown and code blocks as needed.\nWhen ready, render the site again:\nquarto render\nNow push the changes to GitHub:\ngit add .\ngit commit -m \"Add first blog post\"\ngit push\nVisit your blog again — Congratulations, your new post is live! ✌🏿"
+  },
+  {
+    "objectID": "posts/how-to-create-a-blog.html#remove-the-demo-post",
+    "href": "posts/how-to-create-a-blog.html#remove-the-demo-post",
+    "title": "How to Create a Blog Using Quarto",
+    "section": "🗑️ Remove the Demo Post",
+    "text": "🗑️ Remove the Demo Post\nWhen you create a new Quarto website project, it often comes with a demo blog post inside the posts/ folder. This is just a placeholder to show you how blog posts work. It usually has a name like:\nposts/welcome/index.qmd\n“You’ll probably want to remove the demo post to keep your site clean. I removed them manually from Pycharm, but you can removed them from your terminal using a command like:\nrm posts/welcome/index.qmd\nDon’t forget not to render and commit!\nquarto render\ngit add .\ngit commit -m \"Remove demo post\"\ngit push"
+  },
+  {
+    "objectID": "posts/how-to-create-a-blog.html#customize-the-site",
+    "href": "posts/how-to-create-a-blog.html#customize-the-site",
+    "title": "How to Create a Blog Using Quarto",
+    "section": "🎨 Customize the Site",
+    "text": "🎨 Customize the Site\nNow you may want to customize the site. To do this, you need to change the _quarto.yml file. Open it and change title, navigation bar, theme, and styling according to your wishes.\nFor example:\nproject:\n  type: website\n  output-dir: docs\n\nwebsite:\n  title: \"My Blog\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - about.qmd\n\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n🧩 Optional: Add an Image and About Info\nWrite a small biography in about.qmd. and add a personal image. Here you can also add your contacts.\nThis is how my about.qmd looks like:\n---\ntitle: \"About\"\nimage: flavia_cartoon.png\nabout:\n  template: jolla\n  links:\n    - icon: linkedin\n      text: LinkedIn\n      href: https://www.linkedin.com/in/flavia-felletti-phd-8066141b8/\n    - icon: github\n      text: Github\n      href: https://github.com/Flazoukie\n\n---\n\n## About This Blog\n\nWelcome to my blog! Here is where I share my journey in data science through hands-on projects, tutorials, and reflections.\nI hope you'll find something useful, inspiring, or entertaining for you here.\nFeel free to take inspiration!\nEnsure the image is copied into the docs/ folder so it shows up on GitHub Pages. Remember now to render to turn your Markdown files into a working website:\nquarto render\nThis generates a docs/ folder with all the HTML files that make up your website.\nDon’t forget to commit and push to GitHub to apply teh changes to your website!\ngit add .\ngit commit -m \"Customize the website\"\ngit push"
+  },
+  {
+    "objectID": "posts/how-to-create-a-blog.html#wrap-up",
+    "href": "posts/how-to-create-a-blog.html#wrap-up",
+    "title": "How to Create a Blog Using Quarto",
+    "section": "✅ Wrap-Up",
+    "text": "✅ Wrap-Up\nCongratulations! 🎉 You now have a working blog hosted for free, using Quarto and GitHub Pages.\nIf you found this guide helpful, or want to give me your feedback, feel free to connect on LinkedIn or explore more on this blog.\nHappy blogging!"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this blog"
+    "text": "Welcome to my blog! Here is where I share my journey in data science through hands-on projects, tutorials, and reflections. I hope you’ll find something useful, inspiring, or entertaining for you here."
+  },
+  {
+    "objectID": "about.html#about-this-blog",
+    "href": "about.html#about-this-blog",
+    "title": "About",
+    "section": "",
+    "text": "Welcome to my blog! Here is where I share my journey in data science through hands-on projects, tutorials, and reflections. I hope you’ll find something useful, inspiring, or entertaining for you here."
+  },
+  {
+    "objectID": "about.html#about-me",
+    "href": "about.html#about-me",
+    "title": "About",
+    "section": "About Me",
+    "text": "About Me\nMy name is Flavia and I am currently a data scientist based in Hamburg, Germany. I also have a PhD in philosophy and research experience in empirical psychology. Both taught me useful skills that now I like to apply outside academia. I’m also a Brazilian Zouk dance teacher and event organizer. If you are curious about my dance life, you can visit Share Zouk Hamburg.\nThis blog brings together my curiosity, creativity, and desire to share knowledge. Thanks for visiting!"
   },
   {
     "objectID": "index.html",

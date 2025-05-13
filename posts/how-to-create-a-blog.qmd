@@ -36,7 +36,7 @@ In this tutorial, I’ll walk you through how to create your blog step by step u
 ### Technical Requirements
 
 1. **Install [Quarto](https://quarto.org/docs/get-started/)**
-   Quarto is the publishing engine. You can write in Markdown, embed code, and produce beautiful web pages, a great thing about Quarto is that it supports various languages like R, Python, Julia, and Observable JavaScript. Download and install it from the official site.
+   Quarto is the publishing engine. You can write in Markdown, embed code, and produce beautiful web pages, one great thing about Quarto is that it supports various languages like R, Python, Julia, and Observable JavaScript. Download and install it from the official site.
 
 2. **Create a GitHub account** (if you don’t have one yet)
    You'll use GitHub to host your website for free via GitHub Pages.
@@ -44,7 +44,8 @@ In this tutorial, I’ll walk you through how to create your blog step by step u
 3. **Install Git** (if not already installed)
    Quarto uses Git to publish your site to GitHub. [Install Git](https://git-scm.com/downloads) and set it up locally.
 
-> _Optional but helpful_: A code editor like VS Code or PyCharm makes writing `.qmd` files easier, but it’s not required. I am personally using PyCharm Community Edition (the free version fo PyCharm) [Download PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows).
+> _Optional but helpful_: A code editor like VS Code or PyCharm makes writing `.qmd` files easier, but it’s not required.
+I am personally using PyCharm Community Edition (the free version of PyCharm) [Download PyCharm](https://www.jetbrains.com/pycharm/download/?section=windows).
 
 ---
 
@@ -64,6 +65,16 @@ cd my-blog
 ```
 
 This creates a new folder called "my-blog" with the basic structure of a Quarto website. You can rename my-blog to whatever you want.
+You should now have gotten the following files:
+
+* index.qmd (your homepage)
+* about.qmd (your About page)
+* _quarto.yml (the configuration file that defines your site layout and style)
+* A posts/ folder to hold your blog posts
+
+::: tip
+If you didn’t get a `posts/` folder, create it manually. You will need it to hold all your blog posts!
+:::
 
 ### 2. Preview Your Website Locally
 
@@ -128,7 +139,7 @@ Don't forget to replace "yourusername" with your actual username and "my-blog" w
 Click Save. After a few seconds, your site will be live at:
 https://yourusername.github.io/data-blog/
 
-> _Note:_:This is the path I chose to publish my blog, however there are alternative ways to do it, which may better satisfy your requirements, have a look here:
+> _Note:_ This is the path I chose to publish my blog, however there are alternative ways to do it, which may better satisfy your requirements, have a look here:
 [GitHub Pages for Quarto](https://quarto.org/docs/publishing/github-pages.html#render-to-docs).
 
 
@@ -143,11 +154,11 @@ Now you can create a new file, which will become your first post. For example:
 posts/how-to-create-a-data-blog.qmd
 ```
 
-You can start with this header and modify it accordingly with your needs:
+You can start with this YAML header and modify it accordingly with your needs:
 
 ```yaml
 ---
-title: "How to Create a Data Blog Using Quarto"
+title: "My first post title"
 date: 2025-05-11
 categories: [tutorial, quarto, github, blogging]
 format:
@@ -175,3 +186,111 @@ git push
 ```
 
 Visit your blog again — Congratulations, your new post is live! ✌🏿
+
+## 🗑️ Remove the Demo Post
+
+When you create a new Quarto website project,
+it often comes with a demo blog post inside the posts/ folder. This is just a placeholder to show you how blog posts work.
+It usually has a name like:
+
+```bash
+posts/welcome/index.qmd
+```
+
+“You’ll probably want to remove the demo post to keep your site clean.
+I removed them manually from Pycharm, but you can removed them from your terminal using a command like:
+
+```bash
+rm posts/welcome/index.qmd
+```
+Don't forget not to render and commit!
+
+```bash
+quarto render
+git add .
+git commit -m "Remove demo post"
+git push
+```
+
+
+## 🎨 Customize the Site
+
+Now you may want to customize the site. To do this, you need to change the _quarto.yml file.
+Open it and change title, navigation bar, theme, and styling according to your wishes.
+
+For example:
+
+```yaml
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "My Blog"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+
+```
+🧩 Optional: Add an Image and About Info
+
+Write a small biography in about.qmd. and add a personal image.
+Here you can also add your contacts.
+
+This is how my about.qmd looks like:
+
+```yaml
+---
+title: "About"
+image: flavia_cartoon.png
+about:
+  template: jolla
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/flavia-felletti-phd-8066141b8/
+    - icon: github
+      text: Github
+      href: https://github.com/Flazoukie
+
+---
+
+## About This Blog
+
+Welcome to my blog! Here is where I share my journey in data science through hands-on projects, tutorials, and reflections.
+I hope you'll find something useful, inspiring, or entertaining for you here.
+```
+Feel free to take inspiration!
+
+Ensure the image is copied into the docs/ folder so it shows up on GitHub Pages.
+Remember now to render to turn your Markdown files into a working website:
+
+```bash
+quarto render
+```
+
+This generates a docs/ folder with all the HTML files that make up your website.
+
+Don't forget to commit and push to GitHub to apply teh changes to your website!
+
+```bash
+git add .
+git commit -m "Customize the website"
+git push
+```
+
+## ✅ Wrap-Up
+
+Congratulations! 🎉 You now have a working blog hosted for free, using Quarto and GitHub Pages.
+
+If you found this guide helpful, or want to give me your feedback,
+feel free to connect on [LinkedIn](https://www.linkedin.com/in/flavia-felletti-phd-8066141b8/) or explore more on this blog.
+
+Happy blogging!
