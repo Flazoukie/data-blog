@@ -1,0 +1,90 @@
+---
+title: "How to Download Datasets from Kaggle Using kagglehub"
+description: "A step-by-step guide to downloading Kaggle datasets with the new kagglehub Python package."
+date: 2025-05-15
+categories: [Python, Data, Tools]
+image: "kagglehub.png"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-copy: true
+    code-overflow: wrap
+---
+
+kagglehub is a relatively new and more user-friendly package developed by Kaggle to simplify access to datasets, notebooks, and models.
+The `kagglehub` Python package offers a cleaner alternative.
+
+This guide, quickly created with teh help of ChatGPT,
+shows you how to download Kaggle datasets in just a few lines of code and save you some messages with the LLM, so you won't hit the limit
+too early while developing your project ;)
+
+## What is `kagglehub`?
+
+[`kagglehub`](https://pypi.org/project/kagglehub/) is a Python package developed by Kaggle that allows you to programmatically download datasets, notebooks, and models.
+
+## Step 1: Install `kagglehub`
+
+```bash
+pip install kagglehub
+```
+
+## Step 2: Authenticate with Kaggle
+To use kagglehub, you need a Kaggle API token.
+
+### Option A: Save the token file
+Go to your Kaggle account settings: https://www.kaggle.com/account
+
+Scroll to "API" and click "Create New API Token"
+
+Save the downloaded kaggle.json file to:
+
+Linux/macOS: ~/.kaggle/kaggle.json
+
+Windows: C:\Users\<YourUsername>\.kaggle\kaggle.json
+
+If the .kaggle folder doesn’t exist, create it manually.
+
+### Option B: Use environment variables
+
+```python
+import os
+
+os.environ["KAGGLE_USERNAME"] = "your_username"
+os.environ["KAGGLE_KEY"] = "your_key"
+```
+Replace "your_username" and "your_key" with your API credentials from kaggle.json.
+
+## Step 3: Download a Dataset
+
+Here’s how to download your dataset:
+
+```python
+import kagglehub
+
+path = kagglehub.dataset_download("yourdataset")
+
+print("Dataset downloaded to:", path)
+
+```
+The dataset is automatically downloaded and unzipped into a cache directory (usually ~/.cache/kagglehub/).
+
+## Step 4: Explore the Files
+
+```python
+import os
+
+for file in os.listdir(path):
+    print(file)
+
+```
+
+## Bonus: Reusability and Automation
+
+* kagglehub also works for notebooks and models.
+* Files are cached and won’t be redownloaded unless updated.
+* Great for use in automated workflows or reproducible projects.
+
+## Conclusion
+kagglehub is a simple, effective alternative to the Kaggle CLI, especially for Python users who prefer to keep everything in code.
+With just a few lines, you can grab datasets and start analyzing!

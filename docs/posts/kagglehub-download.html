@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-05-15">
+<meta name="description" content="A step-by-step guide to downloading Kaggle datasets with the new kagglehub Python package.">
 
-<title>Welcome to My Blog! – Flavia’s Data Blog</title>
+<title>How to Download Datasets from Kaggle Using kagglehub – Flavia’s Data Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +22,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c28543352b268ffe19ea899b699f2a9b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,77 +104,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Flavia’s Data Blog</span>
     </a>
   </div>
@@ -150,11 +127,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -165,137 +142,126 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Welcome to My Blog!</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="YmxvZ2dpbmc=">blogging <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YQ==">Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2l0aHVi">github <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cXVhcnRv">quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VG9vbHM=">Tools <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dHV0b3JpYWw=">tutorial <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#what-is-kagglehub" id="toc-what-is-kagglehub" class="nav-link active" data-scroll-target="#what-is-kagglehub">What is <code>kagglehub</code>?</a></li>
+  <li><a href="#step-1-install-kagglehub" id="toc-step-1-install-kagglehub" class="nav-link" data-scroll-target="#step-1-install-kagglehub">Step 1: Install <code>kagglehub</code></a></li>
+  <li><a href="#step-2-authenticate-with-kaggle" id="toc-step-2-authenticate-with-kaggle" class="nav-link" data-scroll-target="#step-2-authenticate-with-kaggle">Step 2: Authenticate with Kaggle</a></li>
+  <li><a href="#step-3-download-a-dataset" id="toc-step-3-download-a-dataset" class="nav-link" data-scroll-target="#step-3-download-a-dataset">Step 3: Download a Dataset</a></li>
+  <li><a href="#step-4-explore-the-files" id="toc-step-4-explore-the-files" class="nav-link" data-scroll-target="#step-4-explore-the-files">Step 4: Explore the Files</a></li>
+  <li><a href="#bonus-reusability-and-automation" id="toc-bonus-reusability-and-automation" class="nav-link" data-scroll-target="#bonus-reusability-and-automation">Bonus: Reusability and Automation</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How to Download Datasets from Kaggle Using kagglehub</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Data</div>
+    <div class="quarto-category">Tools</div>
+  </div>
+  </div>
 
-
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1747301690888">
-<div class="thumbnail"><a href="./posts/data_science_jobs.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/data_science_jobs.html" class="no-external"></a>
-</h3>
-<div class="delink listing-description"><a href="./posts/data_science_jobs.html" class="no-external">
-
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co"># load libraries</span></span>
-<span id="cb1-2"></span>
-<span id="cb1-3"><span class="co"># get data from Kaggle using kagglehub and Kaggle API token</span></span>
-<span id="cb1-4"><span class="im">import</span> kagglehub</span>
-<span id="cb1-5"><span class="im">import</span> os</span>
-<span id="cb1-6">os.environ[<span class="st">"KAGGLE_USERNAME"</span>] <span class="op">=</span> <span class="st">"flaphilde"</span></span>
-<span id="cb1-7">os.environ[<span class="st">"KAGGLE_KEY"</span>] <span class="op">…</span><span class="st"></span></span></code></pre></div>
-</a></div>
+<div>
+  <div class="description">
+    A step-by-step guide to downloading Kaggle datasets with the new kagglehub Python package.
+  </div>
 </div>
-<div class="metadata">
-<a href="./posts/data_science_jobs.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="UHl0aG9uJTJDRGF0YSUyQ1Rvb2xz" data-listing-date-sort="1747260000000" data-listing-file-modified-sort="1747304854013" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="260">
-<div class="thumbnail"><a href="./posts/kagglehub-download.html" class="no-external">
 
-<img loading="lazy" src="./posts/kagglehub.png" class="thumbnail-image">
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/kagglehub-download.html" class="no-external">How to Download Datasets from Kaggle Using kagglehub</a>
-</h3>
-<div class="listing-categories">
+<div class="quarto-title-meta">
 
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 15, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YQ=='); return false;">Data</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('VG9vbHM='); return false;">Tools</div>
+</header>
 
-</div>
-<div class="delink listing-description"><a href="./posts/kagglehub-download.html" class="no-external">
-<p>A step-by-step guide to downloading Kaggle datasets with the new kagglehub Python package.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/kagglehub-download.html" class="no-external">
-<div class="listing-date">
-May 15, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="dHV0b3JpYWwlMkNxdWFydG8lMkNnaXRodWIlMkNibG9nZ2luZw==" data-listing-date-sort="1746914400000" data-listing-file-modified-sort="1747128975065" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1106">
-<div class="thumbnail"><a href="./posts/how-to-create-a-blog.html" class="no-external">
 
-<img loading="lazy" src="./welcome.png" class="thumbnail-image">
+<p>kagglehub is a relatively new and more user-friendly package developed by Kaggle to simplify access to datasets, notebooks, and models. The <code>kagglehub</code> Python package offers a cleaner alternative.</p>
+<p>This guide, quickly created with teh help of ChatGPT, shows you how to download Kaggle datasets in just a few lines of code and save you some messages with the LLM, so you won’t hit the limit too early while developing your project ;)</p>
+<section id="what-is-kagglehub" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-kagglehub">What is <code>kagglehub</code>?</h2>
+<p><a href="https://pypi.org/project/kagglehub/"><code>kagglehub</code></a> is a Python package developed by Kaggle that allows you to programmatically download datasets, notebooks, and models.</p>
+</section>
+<section id="step-1-install-kagglehub" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-install-kagglehub">Step 1: Install <code>kagglehub</code></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install kagglehub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-2-authenticate-with-kaggle" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-authenticate-with-kaggle">Step 2: Authenticate with Kaggle</h2>
+<p>To use kagglehub, you need a Kaggle API token.</p>
+<section id="option-a-save-the-token-file" class="level3">
+<h3 class="anchored" data-anchor-id="option-a-save-the-token-file">Option A: Save the token file</h3>
+<p>Go to your Kaggle account settings: https://www.kaggle.com/account</p>
+<p>Scroll to “API” and click “Create New API Token”</p>
+<p>Save the downloaded kaggle.json file to:</p>
+<p>Linux/macOS: ~/.kaggle/kaggle.json</p>
+<p>Windows: C:&lt;YourUsername&gt;.kaggle.json</p>
+<p>If the .kaggle folder doesn’t exist, create it manually.</p>
+</section>
+<section id="option-b-use-environment-variables" class="level3">
+<h3 class="anchored" data-anchor-id="option-b-use-environment-variables">Option B: Use environment variables</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"KAGGLE_USERNAME"</span>] <span class="op">=</span> <span class="st">"your_username"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"KAGGLE_KEY"</span>] <span class="op">=</span> <span class="st">"your_key"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Replace “your_username” and “your_key” with your API credentials from kaggle.json.</p>
+</section>
+</section>
+<section id="step-3-download-a-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-download-a-dataset">Step 3: Download a Dataset</h2>
+<p>Here’s how to download your dataset:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> kagglehub</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> kagglehub.dataset_download(<span class="st">"yourdataset"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dataset downloaded to:"</span>, path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The dataset is automatically downloaded and unzipped into a cache directory (usually ~/.cache/kagglehub/).</p>
+</section>
+<section id="step-4-explore-the-files" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-explore-the-files">Step 4: Explore the Files</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> os.listdir(path):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">file</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bonus-reusability-and-automation" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-reusability-and-automation">Bonus: Reusability and Automation</h2>
+<ul>
+<li>kagglehub also works for notebooks and models.</li>
+<li>Files are cached and won’t be redownloaded unless updated.</li>
+<li>Great for use in automated workflows or reproducible projects.</li>
+</ul>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>kagglehub is a simple, effective alternative to the Kaggle CLI, especially for Python users who prefer to keep everything in code. With just a few lines, you can grab datasets and start analyzing!</p>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/how-to-create-a-blog.html" class="no-external">How to Create a Blog Using Quarto</a>
-</h3>
-<div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('dHV0b3JpYWw='); return false;">tutorial</div>
+</section>
 
-<div class="listing-category" onclick="window.quartoListingCategory('cXVhcnRv'); return false;">quarto</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2l0aHVi'); return false;">github</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YmxvZ2dpbmc='); return false;">blogging</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/how-to-create-a-blog.html" class="no-external">
-<p><span class="description">Learn how to set up your own stylish data blog using Quarto and GitHub Pages — no advanced web skills required.</span></p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/how-to-create-a-blog.html" class="no-external">
-<div class="listing-date">
-May 11, 2025
-</div>
-<div class="listing-author">
-Flavia Felletti
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

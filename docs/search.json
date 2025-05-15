@@ -1,5 +1,96 @@
 [
   {
+    "objectID": "posts/kagglehub-download.html",
+    "href": "posts/kagglehub-download.html",
+    "title": "How to Download Datasets from Kaggle Using kagglehub",
+    "section": "",
+    "text": "kagglehub is a relatively new and more user-friendly package developed by Kaggle to simplify access to datasets, notebooks, and models. The kagglehub Python package offers a cleaner alternative.\nThis guide, quickly created with teh help of ChatGPT, shows you how to download Kaggle datasets in just a few lines of code and save you some messages with the LLM, so you won’t hit the limit too early while developing your project ;)"
+  },
+  {
+    "objectID": "posts/kagglehub-download.html#what-is-kagglehub",
+    "href": "posts/kagglehub-download.html#what-is-kagglehub",
+    "title": "How to Download Datasets from Kaggle Using kagglehub",
+    "section": "What is kagglehub?",
+    "text": "What is kagglehub?\nkagglehub is a Python package developed by Kaggle that allows you to programmatically download datasets, notebooks, and models."
+  },
+  {
+    "objectID": "posts/kagglehub-download.html#step-1-install-kagglehub",
+    "href": "posts/kagglehub-download.html#step-1-install-kagglehub",
+    "title": "How to Download Datasets from Kaggle Using kagglehub",
+    "section": "Step 1: Install kagglehub",
+    "text": "Step 1: Install kagglehub\npip install kagglehub"
+  },
+  {
+    "objectID": "posts/kagglehub-download.html#step-2-authenticate-with-kaggle",
+    "href": "posts/kagglehub-download.html#step-2-authenticate-with-kaggle",
+    "title": "How to Download Datasets from Kaggle Using kagglehub",
+    "section": "Step 2: Authenticate with Kaggle",
+    "text": "Step 2: Authenticate with Kaggle\nTo use kagglehub, you need a Kaggle API token.\n\nOption A: Save the token file\nGo to your Kaggle account settings: https://www.kaggle.com/account\nScroll to “API” and click “Create New API Token”\nSave the downloaded kaggle.json file to:\nLinux/macOS: ~/.kaggle/kaggle.json\nWindows: C:&lt;YourUsername&gt;.kaggle.json\nIf the .kaggle folder doesn’t exist, create it manually.\n\n\nOption B: Use environment variables\nimport os\n\nos.environ[\"KAGGLE_USERNAME\"] = \"your_username\"\nos.environ[\"KAGGLE_KEY\"] = \"your_key\"\nReplace “your_username” and “your_key” with your API credentials from kaggle.json."
+  },
+  {
+    "objectID": "posts/kagglehub-download.html#step-3-download-a-dataset",
+    "href": "posts/kagglehub-download.html#step-3-download-a-dataset",
+    "title": "How to Download Datasets from Kaggle Using kagglehub",
+    "section": "Step 3: Download a Dataset",
+    "text": "Step 3: Download a Dataset\nHere’s how to download your dataset:\nimport kagglehub\n\npath = kagglehub.dataset_download(\"yourdataset\")\n\nprint(\"Dataset downloaded to:\", path)\nThe dataset is automatically downloaded and unzipped into a cache directory (usually ~/.cache/kagglehub/)."
+  },
+  {
+    "objectID": "posts/kagglehub-download.html#step-4-explore-the-files",
+    "href": "posts/kagglehub-download.html#step-4-explore-the-files",
+    "title": "How to Download Datasets from Kaggle Using kagglehub",
+    "section": "Step 4: Explore the Files",
+    "text": "Step 4: Explore the Files\nimport os\n\nfor file in os.listdir(path):\n    print(file)"
+  },
+  {
+    "objectID": "posts/kagglehub-download.html#bonus-reusability-and-automation",
+    "href": "posts/kagglehub-download.html#bonus-reusability-and-automation",
+    "title": "How to Download Datasets from Kaggle Using kagglehub",
+    "section": "Bonus: Reusability and Automation",
+    "text": "Bonus: Reusability and Automation\n\nkagglehub also works for notebooks and models.\nFiles are cached and won’t be redownloaded unless updated.\nGreat for use in automated workflows or reproducible projects."
+  },
+  {
+    "objectID": "posts/kagglehub-download.html#conclusion",
+    "href": "posts/kagglehub-download.html#conclusion",
+    "title": "How to Download Datasets from Kaggle Using kagglehub",
+    "section": "Conclusion",
+    "text": "Conclusion\nkagglehub is a simple, effective alternative to the Kaggle CLI, especially for Python users who prefer to keep everything in code. With just a few lines, you can grab datasets and start analyzing!"
+  },
+  {
+    "objectID": "posts/data_science_jobs.html",
+    "href": "posts/data_science_jobs.html",
+    "title": "Flavia's Data Blog",
+    "section": "",
+    "text": "# load libraries\n\n# get data from Kaggle using kagglehub and Kaggle API token\nimport kagglehub\nimport os\nos.environ[\"KAGGLE_USERNAME\"] = \"flaphilde\"\nos.environ[\"KAGGLE_KEY\"] = \"d1e20e1b44bdd448484ec144874c4f61\"\n\n\nimport kagglehub\n\n# Download the dataset\npath = kagglehub.dataset_download(\"asaniczka/data-science-job-postings-and-skills\")\n\nprint(\"Path to dataset files:\", path)\n\nDownloading from https://www.kaggle.com/api/v1/datasets/download/asaniczka/data-science-job-postings-and-skills?dataset_version_number=2...\n\n\n100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 19.4M/19.4M [00:02&lt;00:00, 9.70MB/s]\n\n\nExtracting files...\n\n\n\n\n\nPath to dataset files: C:\\Users\\flavi\\.cache\\kagglehub\\datasets\\asaniczka\\data-science-job-postings-and-skills\\versions\\2\n\n\n\nimport os\n\nfor file in os.listdir(path):\n    print(file)\n\njob_postings.csv\njob_skills.csv\njob_summary.csv"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Welcome to my blog! Here is where I share my journey in data science through hands-on projects, tutorials, and reflections. I hope you’ll find something useful, inspiring, or entertaining for you here."
+  },
+  {
+    "objectID": "about.html#about-this-blog",
+    "href": "about.html#about-this-blog",
+    "title": "About",
+    "section": "",
+    "text": "Welcome to my blog! Here is where I share my journey in data science through hands-on projects, tutorials, and reflections. I hope you’ll find something useful, inspiring, or entertaining for you here."
+  },
+  {
+    "objectID": "about.html#about-me",
+    "href": "about.html#about-me",
+    "title": "About",
+    "section": "About Me",
+    "text": "About Me\nMy name is Flavia and I am currently a data scientist based in Hamburg, Germany. I also have a PhD in philosophy and research experience in empirical psychology. Both taught me useful skills that now I like to apply outside academia. I’m also a Brazilian Zouk dance teacher and event organizer. If you are curious about my dance life, you can visit Share Zouk Hamburg.\nThis blog brings together my curiosity, creativity, and desire to share knowledge. Thanks for visiting!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to My Blog!",
+    "section": "",
+    "text": "How to Download Datasets from Kaggle Using kagglehub\n\n\n\nPython\n\nData\n\nTools\n\n\n\nA step-by-step guide to downloading Kaggle datasets with the new kagglehub Python package.\n\n\n\n\n\nMay 15, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHow to Create a Blog Using Quarto\n\n\n\ntutorial\n\nquarto\n\ngithub\n\nblogging\n\n\n\nLearn how to set up your own stylish data blog using Quarto and GitHub Pages — no advanced web skills required.\n\n\n\n\n\nMay 11, 2025\n\n\nFlavia Felletti\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "posts/how-to-create-a-blog.html",
     "href": "posts/how-to-create-a-blog.html",
     "title": "How to Create a Blog Using Quarto",
@@ -54,33 +145,5 @@
     "title": "How to Create a Blog Using Quarto",
     "section": "✅ Wrap-Up",
     "text": "✅ Wrap-Up\nCongratulations! 🎉 You now have a working blog hosted for free, using Quarto and GitHub Pages.\nIf you found this guide helpful, or want to give me your feedback, feel free to connect on LinkedIn or explore more on this blog.\nHappy blogging!"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Welcome to my blog! Here is where I share my journey in data science through hands-on projects, tutorials, and reflections. I hope you’ll find something useful, inspiring, or entertaining for you here."
-  },
-  {
-    "objectID": "about.html#about-this-blog",
-    "href": "about.html#about-this-blog",
-    "title": "About",
-    "section": "",
-    "text": "Welcome to my blog! Here is where I share my journey in data science through hands-on projects, tutorials, and reflections. I hope you’ll find something useful, inspiring, or entertaining for you here."
-  },
-  {
-    "objectID": "about.html#about-me",
-    "href": "about.html#about-me",
-    "title": "About",
-    "section": "About Me",
-    "text": "About Me\nMy name is Flavia and I am currently a data scientist based in Hamburg, Germany. I also have a PhD in philosophy and research experience in empirical psychology. Both taught me useful skills that now I like to apply outside academia. I’m also a Brazilian Zouk dance teacher and event organizer. If you are curious about my dance life, you can visit Share Zouk Hamburg.\nThis blog brings together my curiosity, creativity, and desire to share knowledge. Thanks for visiting!"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to My Blog!",
-    "section": "",
-    "text": "How to Create a Blog Using Quarto\n\n\n\ntutorial\n\nquarto\n\ngithub\n\nblogging\n\n\n\nLearn how to set up your own stylish data blog using Quarto and GitHub Pages — no advanced web skills required.\n\n\n\n\n\nMay 11, 2025\n\n\nFlavia Felletti\n\n\n\n\n\nNo matching items"
   }
 ]
