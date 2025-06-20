@@ -2,18 +2,18 @@ name: Deploy Quarto Blog
 
 on:
   push:
-    branches: [main]       # Runs when anything is pushed to main
-  workflow_dispatch:       # Allows manual site rebuilds if needed
+    branches: [main]       # Trigger on push to main
+  workflow_dispatch:       # Manual trigger
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write      # Required to push gh-pages pages
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Needed to push commits
 
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -21,9 +21,12 @@ jobs:
       - name: Render site
         run: quarto render
 
-      - name: Publish to GitHub Pages
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add docs/
+          git diff --cached --quiet || git commit -m "Update site with latest posts"
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
