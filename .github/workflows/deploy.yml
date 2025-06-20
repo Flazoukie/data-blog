@@ -16,11 +16,25 @@ jobs:
           fetch-depth: 0  # Needed to push commits
           token: ${{ secrets.BLOG_REPO_TOKEN }}  # Use PAT with push permissions
 
+      - name: Check if source files changed
+        id: changes
+        run: |
+          files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          echo "Changed files:"
+          echo "$files"
+          if echo "$files" | grep -v '^docs/' > /dev/null; then
+            echo "source_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "source_changed=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+        if: steps.changes.outputs.source_changed == 'true'
 
       - name: Render site
         run: quarto render
+        if: steps.changes.outputs.source_changed == 'true'
 
       - name: Commit and push changes
         run: |
@@ -31,4 +45,4 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.BLOG_REPO_TOKEN }}
-
+        if: steps.changes.outputs.source_changed == 'true'
