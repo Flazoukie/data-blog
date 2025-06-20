@@ -118,9 +118,17 @@ folders (e.g. results/2025-06-17/) and blog posts. This meant every part of the 
 
 - **Quarto deployment logic**
 Since I’m using Quarto to build and publish my blog, I had to decide where the site should live in my GitHub repository.
-GitHub Pages supports two main options: (1) publishing from a separate gh-pages branch, or (2) publishing directly from the docs/ folder on the main branch.
-I choose the second option, as it was set as I created the blog
-and it makes for me simpler to manage everything in one branch.
+GitHub Pages supports two main options:
+  - publishing from a separate gh-pages branch, or
+  - publishing directly from the docs/ folder on the main branch.
+
+  I choose the second option, as it was set as I created the blog
+  and it makes for me simpler to manage everything in one branch.
+  However, One tricky challenge was preventing the GitHub Actions workflow from triggering itself repeatedly.
+  our deploy workflow commits the generated site files back to the main branch, this could easily cause an infinite
+  loop of builds and commits. To avoid this, I implemented a check in the workflow to only commit and push changes when
+  there are actual content updates, not on every run. This careful handling ensured the automation runs smoothly without
+  getting stuck in a loop — a critical detail for any continuous deployment setup.
 
 - **Making it all fail-proof**
 From checking if files exist, to skipping commits if nothing has changed, I tried to make the workflow robust. And it
