@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-15">
-<meta name="description" content="A step-by-step guide to downloading Kaggle datasets with the new kagglehub Python package.">
+<meta name="dcterms.date" content="2025-06-21">
+<meta name="description" content="How I automated job scraping, analysis, cross-repo publishing, and Quarto blog deployment—fully hands-free, every week.">
 
-<title>How to Download Datasets from Kaggle Using kagglehub – Flavia’s Data Blog</title>
+<title>How I Automate My Data Blog to Publish Weekly with GitHub Actions – Flavia’s Data Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -151,13 +116,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#what-is-kagglehub" id="toc-what-is-kagglehub" class="nav-link active" data-scroll-target="#what-is-kagglehub">What is <code>kagglehub</code>?</a></li>
-  <li><a href="#step-1-install-kagglehub" id="toc-step-1-install-kagglehub" class="nav-link" data-scroll-target="#step-1-install-kagglehub">Step 1: Install <code>kagglehub</code></a></li>
-  <li><a href="#step-2-authenticate-with-kaggle" id="toc-step-2-authenticate-with-kaggle" class="nav-link" data-scroll-target="#step-2-authenticate-with-kaggle">Step 2: Authenticate with Kaggle</a></li>
-  <li><a href="#step-3-download-a-dataset" id="toc-step-3-download-a-dataset" class="nav-link" data-scroll-target="#step-3-download-a-dataset">Step 3: Download a Dataset</a></li>
-  <li><a href="#step-4-explore-the-files" id="toc-step-4-explore-the-files" class="nav-link" data-scroll-target="#step-4-explore-the-files">Step 4: Explore the Files</a></li>
-  <li><a href="#bonus-reusability-and-automation" id="toc-bonus-reusability-and-automation" class="nav-link" data-scroll-target="#bonus-reusability-and-automation">Bonus: Reusability and Automation</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#automating-everything-from-job-scraping-to-publishing-with-github-actions" id="toc-automating-everything-from-job-scraping-to-publishing-with-github-actions" class="nav-link active" data-scroll-target="#automating-everything-from-job-scraping-to-publishing-with-github-actions">🤖 Automating Everything: From Job Scraping to Publishing with GitHub Actions</a></li>
+  <li><a href="#why-did-i-put-myself-into-this" id="toc-why-did-i-put-myself-into-this" class="nav-link" data-scroll-target="#why-did-i-put-myself-into-this">💻 Why Did I Put Myself Into This?</a></li>
+  <li><a href="#what-does-the-pipeline-do-and-how" id="toc-what-does-the-pipeline-do-and-how" class="nav-link" data-scroll-target="#what-does-the-pipeline-do-and-how">🔧 What Does the Pipeline Do (and How)?</a></li>
+  <li><a href="#under-the-hood-key-technologies-setup" id="toc-under-the-hood-key-technologies-setup" class="nav-link" data-scroll-target="#under-the-hood-key-technologies-setup">🛠️ Under the Hood: Key Technologies &amp; Setup</a></li>
+  <li><a href="#key-challenges-and-what-i-learned" id="toc-key-challenges-and-what-i-learned" class="nav-link" data-scroll-target="#key-challenges-and-what-i-learned">⚔️ Key Challenges and What I Learned</a></li>
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up">👋 Wrapping Up</a></li>
   </ul>
 </nav>
     </div>
@@ -166,17 +130,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">How to Download Datasets from Kaggle Using kagglehub</h1>
+<h1 class="title">How I Automate My Data Blog to Publish Weekly with GitHub Actions</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Python</div>
-    <div class="quarto-category">Data</div>
-    <div class="quarto-category">Tools</div>
+    <div class="quarto-category">Automation</div>
+    <div class="quarto-category">GitHub Actions</div>
+    <div class="quarto-category">Data Blog</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p><span class="description">A step-by-step guide to downloading Kaggle datasets with the new kagglehub Python package.</span></p>
+    <p><span class="description">How I automated job scraping, analysis, cross-repo publishing, and Quarto blog deployment—fully hands-free, every week.</span></p>
   </div>
 </div>
 
@@ -187,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 15, 2025</p>
+      <p class="date">June 21, 2025</p>
     </div>
   </div>
   
@@ -199,65 +163,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>kagglehub is a relatively new and more user-friendly package developed by Kaggle to simplify access to datasets, notebooks, and models. The <code>kagglehub</code> Python package offers a cleaner alternative.</p>
-<p>This guide shows you how to download Kaggle datasets in just a few lines of code.</p>
-<section id="what-is-kagglehub" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-kagglehub">What is <code>kagglehub</code>?</h2>
-<p><a href="https://pypi.org/project/kagglehub/"><code>kagglehub</code></a> is a Python package developed by Kaggle that allows you to programmatically download datasets, notebooks, and models.</p>
-</section>
-<section id="step-1-install-kagglehub" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-install-kagglehub">Step 1: Install <code>kagglehub</code></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install kagglehub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="step-2-authenticate-with-kaggle" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-authenticate-with-kaggle">Step 2: Authenticate with Kaggle</h2>
-<p>To use kagglehub, you need a Kaggle API token.</p>
-<section id="option-a-save-the-token-file" class="level3">
-<h3 class="anchored" data-anchor-id="option-a-save-the-token-file">Option A: Save the token file</h3>
-<p>Go to your Kaggle account settings: https://www.kaggle.com/account</p>
-<p>Scroll to “API” and click “Create New API Token”</p>
-<p>Save the downloaded kaggle.json file to:</p>
-<p>Linux/macOS: ~/.kaggle/kaggle.json</p>
-<p>Windows: C:&lt;YourUsername&gt;.kaggle.json</p>
-<p>If the .kaggle folder doesn’t exist, create it manually.</p>
-</section>
-<section id="option-b-use-environment-variables" class="level3">
-<h3 class="anchored" data-anchor-id="option-b-use-environment-variables">Option B: Use environment variables</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"KAGGLE_USERNAME"</span>] <span class="op">=</span> <span class="st">"your_username"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"KAGGLE_KEY"</span>] <span class="op">=</span> <span class="st">"your_key"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Replace “your_username” and “your_key” with your API credentials from kaggle.json.</p>
-</section>
-</section>
-<section id="step-3-download-a-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-download-a-dataset">Step 3: Download a Dataset</h2>
-<p>Here’s how to download your dataset:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> kagglehub</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> kagglehub.dataset_download(<span class="st">"yourdataset"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dataset downloaded to:"</span>, path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The dataset is automatically downloaded and unzipped into a cache directory (usually ~/.cache/kagglehub/).</p>
-</section>
-<section id="step-4-explore-the-files" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-explore-the-files">Step 4: Explore the Files</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> os.listdir(path):</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">file</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="bonus-reusability-and-automation" class="level2">
-<h2 class="anchored" data-anchor-id="bonus-reusability-and-automation">Bonus: Reusability and Automation</h2>
+<section id="automating-everything-from-job-scraping-to-publishing-with-github-actions" class="level2">
+<h2 class="anchored" data-anchor-id="automating-everything-from-job-scraping-to-publishing-with-github-actions">🤖 Automating Everything: From Job Scraping to Publishing with GitHub Actions</h2>
+<p>I decided I wanted to provide a weekly update on the Data Science job market across Germany, and I figured out that it is possible to do it using <a href="https://github.com/features/actions">Github Actions</a>.</p>
+<p>In this post, I’ll walk you through how I automated my entire job market analysis pipeline using <strong>GitHub Actions</strong>. Every Monday morning, my scripts automatically:</p>
 <ul>
-<li>kagglehub also works for notebooks and models.</li>
-<li>Files are cached and won’t be redownloaded unless updated.</li>
-<li>Great for use in automated workflows or reproducible projects.</li>
+<li>Fetch the latest data science job postings in Germany from the <a href="https://developer.adzuna.com/">Adzuna API</a>,</li>
+<li>Clean and analyze the data using Python,</li>
+<li>Generate a fresh report with interactive charts and maps,</li>
+<li>Publish the results as a brand-new blog post on <a href="https://flazoukie.github.io/data-blog/">my Quarto blog</a>—without me lifting a finger.</li>
+</ul>
+<p>This project taught me a lot about CI/CD, cross-repo workflows, and the magic of Quarto + GitHub working together. If you’re curious how to turn your own data project into an auto-updating blog, read on.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> If you’re curious about how I analyze the job postings and create the interactive map and HTML job table, check out <a href="https://flazoukie.github.io/data-blog/posts/analyze_jobs.html">this post</a> where I explain the whole process in detail.</p>
+</blockquote>
+</section>
+<section id="why-did-i-put-myself-into-this" class="level2">
+<h2 class="anchored" data-anchor-id="why-did-i-put-myself-into-this">💻 Why Did I Put Myself Into This?</h2>
+<p>After doing one manual analysis of the job market, I quickly realized I didn’t want this to be a one-off project — I wanted to get fresh insights every week, without having to repeat the work manually. At the same time, I was curious to see if I could build a fully automated pipeline that would fetch, analyze, and publish the results for me. It was a fun technical challenge and a great opportunity to practice working with automation, scheduling, and cross-repository workflows in GitHub Actions.</p>
+</section>
+<section id="what-does-the-pipeline-do-and-how" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-the-pipeline-do-and-how">🔧 What Does the Pipeline Do (and How)?</h2>
+<p>This automated pipeline handles everything from data scraping to blog publishing — all without me lifting a finger after the initial setup.</p>
+<p>Here’s how it works step-by-step:</p>
+<ul>
+<li><p><strong>Data Scraping:</strong> Every Monday morning, a GitHub Action kicks off a Python script that fetches the latest data science job postings from the Adzuna API. The script saves the raw job data as CSV files for easy processing.</p></li>
+<li><p><strong>Data Analysis:</strong> Once scraping completes, another GitHub Action picks up the data and runs a Jupyter Notebook that cleans, explores, and visualizes the job market trends — including generating a chart, interactive map, and interactive table.</p></li>
+<li><p><strong>Publishing:</strong> The analysis results (images, HTML widgets, notebook used for the analysis) are then automatically copied to my data blog repository. A new blog post is generated dynamically with the latest insights embedded. Finally, the pipeline triggers the blog deployment workflow, so the updated post goes live on my site within minutes.</p></li>
+<li><p><strong>Cross-Repository Workflow:</strong> To keep things modular and maintainable, I split the scraping and analysis scripts from the blog code into separate GitHub repositories. The workflows use repository dispatch events and pull requests behind the scenes to share results seamlessly.</p></li>
+</ul>
+<p>You can find my GitHub repos here:</p>
+<ul>
+<li><a href="https://github.com/Flazoukie/adzuna-scraper-cleaned">Adzuna-Scraper Repo</a></li>
+<li><a href="https://github.com/Flazoukie/data-blog">Data-Blog Repo</a></li>
 </ul>
 </section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>kagglehub is a simple, effective alternative to the Kaggle CLI, especially for Python users who prefer to keep everything in code. With just a few lines, you can grab datasets and start analyzing!</p>
+<section id="under-the-hood-key-technologies-setup" class="level2">
+<h2 class="anchored" data-anchor-id="under-the-hood-key-technologies-setup">🛠️ Under the Hood: Key Technologies &amp; Setup</h2>
+<p>This project is powered by a fully automated pipeline built using GitHub Actions, Python, Jupyter Notebooks, and Quarto. Here’s a look at how everything fits together.</p>
+<p>🔄 <strong>1. Scheduled Scraping with GitHub Actions</strong></p>
+<p>Every Monday morning, a GitHub Actions workflow in my <a href="https://github.com/Flazoukie/adzuna-scraper-cleaned"><code>Adzuna-Scraper</code></a> repository triggers a script that:</p>
+<ul>
+<li>fetches fresh job postings using the <a href="https://developer.adzuna.com/">Adzuna API</a>,</li>
+<li>cleans and stores them in a CSV file,</li>
+<li>and saves them in a dated <code>results/YYYY-MM-DD/</code> folder.</li>
+</ul>
+<p>This allows the whole pipeline to track and analyze week-over-week changes over time.</p>
+<p>📊 <strong>2. Automated Analysis with Notebooks</strong></p>
+<p>Another workflow immediately kicks in after scraping. It:</p>
+<ul>
+<li>loads the freshly scraped data,</li>
+<li>performs analysis (e.g., job counts by city, clustering companies using DBSCAN, etc.),</li>
+<li>and generates three outputs:
+<ul>
+<li>a bar chart of top cities hiring data scientists,</li>
+<li>an interactive company map,</li>
+<li>and an HTML table listing all job offers.</li>
+</ul></li>
+</ul>
+<p>All outputs are saved in the same <code>results/YYYY-MM-DD/</code> folder for easy versioning.</p>
+<p>✍️ <strong>3. Publishing the Weekly Report</strong></p>
+<p>A third workflow generates a brand new .qmd blog post from a template using the correct date, and includes all visualizations via dynamic links to the results folder.</p>
+<p>This new post is committed and pushed to the <code>/post</code> folder of my <a href="https://github.com/Flazoukie/data-blog">data-blog repository</a> — no manual editing needed.</p>
+<p>🚀 <strong>4. Deployment to GitHub Pages</strong></p>
+<p>Finally, a fourth workflow (inside the <a href="https://github.com/Flazoukie/data-blog">data-blog repository</a>) renders the entire Quarto blog and deploys it via GitHub Pages — so the new post becomes visible within minutes at flazoukie.github.io/data-blog.</p>
+</section>
+<section id="key-challenges-and-what-i-learned" class="level2">
+<h2 class="anchored" data-anchor-id="key-challenges-and-what-i-learned">⚔️ Key Challenges and What I Learned</h2>
+<p>While setting everything up, I ran into a few tricky problems that turned into great learning opportunities:</p>
+<ul>
+<li><p><strong>Managing cross-repository workflows</strong> Since the scraper and blog live in separate repos, I had to figure out how to securely pass files and trigger actions between them. I ended up using a personal access token stored as a secret to allow one workflow to push content into the other repository.</p></li>
+<li><p><strong>Dynamic filenames and folders</strong> To keep everything organized and prevent overwriting previous results, I used the current date to name the output folders (e.g.&nbsp;results/2025-06-17/) and blog posts. This meant every part of the pipeline needed to handle dynamic paths correctly.</p></li>
+<li><p><strong>Quarto deployment logic</strong> Since I’m using Quarto to build and publish my blog, I had to decide where the site should live in my GitHub repository. GitHub Pages supports two main options: (1) publishing from a separate gh-pages branch, or (2) publishing directly from the docs/ folder on the main branch. I choose the second option, as it was set as I created the blog and it makes for me simpler to manage everything in one branch.</p></li>
+<li><p><strong>Making it all fail-proof</strong> From checking if files exist, to skipping commits if nothing has changed, I tried to make the workflow robust. And it really feels good when it runs without errors on Monday mornings!</p></li>
+</ul>
+</section>
+<section id="wrapping-up" class="level2">
+<h2 class="anchored" data-anchor-id="wrapping-up">👋 Wrapping Up</h2>
+<p>Automating the entire process—from scraping job data, through analysis, to publishing—has been both a rewarding challenge and a huge time-saver. It lets me share fresh insights every week without manual work, keeps my blog engaging, and helps me sharpen my skills in data engineering and automation.</p>
+<p>Moreover, this automation lays the groundwork for exciting future steps, like detecting trends 💡.</p>
+<p>I hope this post inspires you to experiment with automation in your own projects! Thanks for reading — feel free to reach out with any questions or feedback!</p>
 
 
 </section>

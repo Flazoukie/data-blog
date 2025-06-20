@@ -1,0 +1,138 @@
+---
+title: "How I Automate My Data Blog to Publish Weekly with GitHub Actions"
+description: >
+  <span class="description">How I automated job scraping, analysis, cross-repo publishing, and Quarto blog deployment—fully hands-free, every week.</span>
+date: 2025-06-21
+categories: [Automation, GitHub Actions, Data Blog]
+image: githubactions.png  # optional — add an image if you'd like!
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-copy: true
+    code-overflow: wrap
+    css: styles.css
+---
+
+## 🤖 Automating Everything: From Job Scraping to Publishing with GitHub Actions
+
+I decided I wanted to provide a weekly update on the Data Science job market across Germany, and
+I figured out that it is possible to do it using [Github Actions](https://github.com/features/actions).
+
+In this post, I’ll walk you through how I automated my entire job market analysis pipeline using **GitHub Actions**. Every Monday morning, my scripts automatically:
+
+- Fetch the latest data science job postings in Germany from the [Adzuna API](https://developer.adzuna.com/),
+- Clean and analyze the data using Python,
+- Generate a fresh report with interactive charts and maps,
+- Publish the results as a brand-new blog post on [my Quarto blog](https://flazoukie.github.io/data-blog/)—without me lifting a finger.
+
+This project taught me a lot about CI/CD, cross-repo workflows, and the magic of Quarto + GitHub working together. If you’re curious how to turn your own data project into an auto-updating blog, read on.
+
+> **Note:** If you're curious about how I analyze the job postings and create the interactive map and HTML job table, check out [this post](https://flazoukie.github.io/data-blog/posts/analyze_jobs.html) where I explain the whole process in detail.
+
+## 💻 Why Did I Put Myself Into This?
+
+After doing one manual analysis of the job market, I quickly realized I didn’t want this to be a one-off project — I wanted
+to get fresh insights every week, without having to repeat the work manually. At the same time, I was curious to see
+if I could build a fully automated pipeline that would fetch, analyze, and publish the results for me. It was a fun technical
+challenge and a great opportunity to practice working with automation, scheduling, and cross-repository workflows in GitHub Actions.
+
+## 🔧 What Does the Pipeline Do (and How)?
+
+This automated pipeline handles everything from data scraping to blog publishing — all without me lifting a finger after the initial setup.
+
+Here’s how it works step-by-step:
+
+- **Data Scraping:**
+Every Monday morning, a GitHub Action kicks off a Python script that fetches the latest data science job postings from the Adzuna API. The script saves the raw job data as CSV files for easy processing.
+
+- **Data Analysis:**
+Once scraping completes, another GitHub Action picks up the data and runs a Jupyter Notebook that cleans, explores, and visualizes the job market trends — including generating a chart, interactive map, and interactive table.
+
+- **Publishing:**
+The analysis results (images, HTML widgets, notebook used for the analysis) are then automatically copied to my data blog repository. A new blog post is generated dynamically with the latest insights embedded. Finally, the pipeline triggers the blog deployment workflow, so the updated post goes live on my site within minutes.
+
+- **Cross-Repository Workflow:**
+To keep things modular and maintainable, I split the scraping and analysis scripts from the blog code into separate GitHub repositories. The workflows use repository dispatch events and pull requests behind the scenes to share results seamlessly.
+
+You can find my GitHub repos here:
+
+* [Adzuna-Scraper Repo](https://github.com/Flazoukie/adzuna-scraper-cleaned)
+* [Data-Blog Repo](https://github.com/Flazoukie/data-blog)
+
+## 🛠️ Under the Hood: Key Technologies & Setup
+
+This project is powered by a fully automated pipeline built using GitHub Actions, Python, Jupyter Notebooks, and Quarto.
+Here's a look at how everything fits together.
+
+🔄 **1. Scheduled Scraping with GitHub Actions**
+
+Every Monday morning, a GitHub Actions workflow in my [`Adzuna-Scraper`](https://github.com/Flazoukie/adzuna-scraper-cleaned)
+repository triggers a script that:
+
+- fetches fresh job postings using the [Adzuna API](https://developer.adzuna.com/),
+- cleans and stores them in a CSV file,
+- and saves them in a dated `results/YYYY-MM-DD/` folder.
+
+This allows the whole pipeline to track and analyze week-over-week changes over time.
+
+📊 **2. Automated Analysis with Notebooks**
+
+Another workflow immediately kicks in after scraping. It:
+
+- loads the freshly scraped data,
+- performs analysis (e.g., job counts by city, clustering companies using DBSCAN, etc.),
+- and generates three outputs:
+  - a bar chart of top cities hiring data scientists,
+  - an interactive company map,
+  - and an HTML table listing all job offers.
+
+All outputs are saved in the same `results/YYYY-MM-DD/` folder for easy versioning.
+
+
+✍️ **3. Publishing the Weekly Report**
+
+A third workflow generates a brand new .qmd blog post from a template using the correct date,
+and includes all visualizations via dynamic links to the results folder.
+
+This new post is committed and pushed to the `/post` folder of my [data-blog repository](https://github.com/Flazoukie/data-blog) — no manual editing needed.
+
+
+🚀 **4. Deployment to GitHub Pages**
+
+Finally, a fourth workflow (inside the [data-blog repository](https://github.com/Flazoukie/data-blog)) renders the
+entire Quarto blog and deploys it via GitHub Pages — so the new post becomes visible within minutes at flazoukie.github.io/data-blog.
+
+
+## ⚔️ Key Challenges and What I Learned
+
+While setting everything up, I ran into a few tricky problems that turned into great learning opportunities:
+
+- **Managing cross-repository workflows**
+Since the scraper and blog live in separate repos, I had to figure out how to securely pass files and trigger actions
+between them. I ended up using a personal access token stored as a secret to allow one workflow to push content into the other repository.
+
+- **Dynamic filenames and folders**
+To keep everything organized and prevent overwriting previous results, I used the current date to name the output
+folders (e.g. results/2025-06-17/) and blog posts. This meant every part of the pipeline needed to handle dynamic paths correctly.
+
+- **Quarto deployment logic**
+Since I’m using Quarto to build and publish my blog, I had to decide where the site should live in my GitHub repository.
+GitHub Pages supports two main options: (1) publishing from a separate gh-pages branch, or (2) publishing directly from the docs/ folder on the main branch.
+I choose the second option, as it was set as I created the blog
+and it makes for me simpler to manage everything in one branch.
+
+- **Making it all fail-proof**
+From checking if files exist, to skipping commits if nothing has changed, I tried to make the workflow robust. And it
+really feels good when it runs without errors on Monday mornings!
+
+## 👋 Wrapping Up
+
+Automating the entire process—from scraping job data, through analysis, to publishing—has been both a rewarding challenge
+and a huge time-saver. It lets me share fresh insights every week without manual work, keeps my blog engaging, and helps
+me sharpen my skills in data engineering and automation.
+
+Moreover, this automation lays the groundwork for exciting future steps, like detecting trends 💡.
+
+I hope this post inspires you to experiment with automation in your own projects!
+Thanks for reading — feel free to reach out with any questions or feedback!
