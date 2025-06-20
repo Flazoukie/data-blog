@@ -1,0 +1,3413 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Flavia">
+<meta name="dcterms.date" content="2025-06-15">
+<meta name="description" content="We map the jobs across Germany and give the reader the chance to explore them through an interactive map and table">
+
+<title>Analysis of the Top Cities and Companies for Data Science Jobs Across Germany – Flavia’s Data Blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-905433ffa22618bb005779f2b23c5ce0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Flavia’s Data Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Analysis of the Top Cities and Companies for Data Science Jobs Across Germany</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">job analysis</div>
+    <div class="quarto-category">python</div>
+    <div class="quarto-category">geodata</div>
+    <div class="quarto-category">data visualization</div>
+    <div class="quarto-category">data science</div>
+    <div class="quarto-category">maps</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    We map the jobs across Germany and give the reader the chance to explore them through an interactive map and table
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Flavia </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 15, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Here we build an interactive map and html table of data science jobs across Germany. We are using one of the job posting datasets that we collect weekly by using the <a href="https://developer.adzuna.com/">Adzuna API</a> through <strong>GitHub Actions</strong>. The full script is available on my <a href="https://github.com/Flazoukie/adzuna-scraper-cleaned">GitHub Repository</a>. We collected data science-related job postings in Germany by filtering:</p>
+<ul>
+<li>Keyword = “data science”</li>
+<li>country or region (e.g., “de”)</li>
+<li>pages = 5</li>
+<li>results_per_page = 100</li>
+</ul>
+<section id="requirements" class="level2">
+<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
+<div id="4611932f-b25d-485b-b43c-d7f6917c7029" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:00:26.848413Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:00:26.847987Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:00:29.652099Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:00:29.651403Z&quot;}}" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 📦 Core Libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ast</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 🔢 Data Handling &amp; Math</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 📊 Data Visualization</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, HTML</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> IFrame</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 🗺️ Mapping, Geocoding &amp; Clustering</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geopy.geocoders <span class="im">import</span> Nominatim</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geopy.exc <span class="im">import</span> GeocoderTimedOut</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> DBSCAN</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> folium.plugins <span class="im">import</span> MarkerCluster</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> folium <span class="im">import</span> IFrame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="b6ae8d2a-40ac-4e96-acdd-d2feecc80ef9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:00:29.654522Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:00:29.654039Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:00:29.657349Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:00:29.656868Z&quot;}}" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create folder to save the file for today's analysis</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>today <span class="op">=</span> datetime.today().strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>output_dir <span class="op">=</span> <span class="ss">f"output/</span><span class="sc">{</span>today<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>os.makedirs(output_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="get-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="get-the-data">📁 Get the Data</h2>
+<p>We load the last data from Adzuna in the following steps:</p>
+<ul>
+<li>Search for all CSV files in the data/ folder whose filenames start with “jobs_”, e.g., “jobs_2024-06-01.csv”.</li>
+<li>Sort them in reverse (latest first).</li>
+<li>Load the most recent one</li>
+</ul>
+<div id="initial_id" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:00:29.659197Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:00:29.658860Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:00:29.671500Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:00:29.670907Z&quot;}}" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print("Current directory:", os.getcwd())</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#print("Files in data folder:", os.listdir("data"))</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>data_files <span class="op">=</span> <span class="bu">sorted</span>(glob(<span class="st">"data/jobs_*.csv"</span>), reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> data_files:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    latest_file <span class="op">=</span> data_files[<span class="dv">0</span>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Using latest file: </span><span class="sc">{</span>latest_file<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add defensive options</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> pd.read_csv(latest_file, encoding<span class="op">=</span><span class="st">'utf-8'</span>, engine<span class="op">=</span><span class="st">'python'</span>, on_bad_lines<span class="op">=</span><span class="st">'skip'</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Loaded DataFrame with </span><span class="sc">{</span>df<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> rows and </span><span class="sc">{</span>df<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns"</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Error reading CSV: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(latest_file, <span class="st">'r'</span>) <span class="im">as</span> f:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            lines <span class="op">=</span> f.readlines()</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"First 10 lines of file:"</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">''</span>.join(lines[:<span class="dv">10</span>]))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="st">"No CSV files found in the data/ directory."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Using latest file: data/jobs_2025-06-19.csv
+Loaded DataFrame with 250 rows and 17 columns</code></pre>
+</div>
+</div>
+</section>
+<section id="clean-data" class="level2">
+<h2 class="anchored" data-anchor-id="clean-data">🧹 Clean Data</h2>
+<div id="60f98963-2e67-4ebb-be60-a12f9fc44e1d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:00:29.673537Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:00:29.673181Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:00:29.693411Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:00:29.692946Z&quot;}}" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic cleaning</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract display name from the location (contains city and state)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safe_extract_display_name(val):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        parsed <span class="op">=</span> ast.literal_eval(val)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> parsed.get(<span class="st">"display_name"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> val  <span class="co"># If not a dict string, keep the raw string like "Dresden"</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"location"</span>] <span class="op">=</span> df[<span class="st">"location"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: safe_extract_display_name(x) <span class="cf">if</span> pd.notna(x) <span class="cf">else</span> <span class="va">None</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"company"</span>] <span class="op">=</span> df[<span class="st">"company"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: safe_extract_display_name(x) <span class="cf">if</span> pd.notna(x) <span class="cf">else</span> <span class="va">None</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"title"</span>] <span class="op">=</span> df[<span class="st">"title"</span>].fillna(<span class="st">"Unknown"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># drop duplicates based on job title, company, and location</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop_duplicates(subset<span class="op">=</span>[<span class="st">"title"</span>, <span class="st">"company"</span>, <span class="st">"location"</span>])</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only needed columns</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>cols_to_keep <span class="op">=</span> [</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"id"</span>, <span class="st">"title"</span>, <span class="st">"company"</span>, <span class="st">"location"</span>, <span class="st">"latitude"</span>, <span class="st">"longitude"</span>, </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"created"</span>, <span class="st">"redirect_url"</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[cols_to_keep].copy()</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign unique ID for merging later</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"job_id"</span>] <span class="op">=</span> df.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="get-city-names-by-using-the-coordinates" class="level2">
+<h2 class="anchored" data-anchor-id="get-city-names-by-using-the-coordinates">🌎 Get City Names by Using the Coordinates</h2>
+<p>Location descriptions can sometimes be imprecise or contain typos, or refer to smaller districts rather than the main city (for example, “Bilk” instead of “Düsseldorf”), which can cause errors in visualization. Instead of extracting all cities from the location description, we decided to use the coordinate provided in the dataset (when available) or calculate them.</p>
+<p>For entries with coordinates: * We perform <strong>reverse geocoding</strong> on the coordinates to find the corresponding city names. * To avoid redundant API calls and speed up future runs, we implement a <strong>local cache</strong> stored in a JSON file.</p>
+<p>For entries missing latitude or longitude: * We attempt to extract a city name from a string-based location field * We then geocode these city names to recover their latitude and longitude coordinates. * These recovered coordinates are merged back into the main DataFrame to fill missing values.</p>
+<div id="b1f1db78-11cc-41a6-9e34-b93b666ca51b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:00:29.695370Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:00:29.695026Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:02:47.306487Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:02:47.305932Z&quot;}}" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># geocode city name from longitude and latitude and build chache</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 🧭 Setup geolocator</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>geolocator <span class="op">=</span> Nominatim(user_agent<span class="op">=</span><span class="st">"adzuna-geocoder"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load cache file if exists, else create empty dict</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>CACHE_FILE <span class="op">=</span> <span class="st">"coord_to_city_cache.json"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(CACHE_FILE):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(CACHE_FILE, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        coord_to_city <span class="op">=</span> json.load(f)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    coord_to_city <span class="op">=</span> {}</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_city_from_coords(lat, lon, pause<span class="op">=</span><span class="fl">1.1</span>):</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    key <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>lat<span class="sc">}</span><span class="ss">,</span><span class="sc">{</span>lon<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> key <span class="kw">in</span> coord_to_city:</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> coord_to_city[key]</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        location <span class="op">=</span> geolocator.reverse((lat, lon), exactly_one<span class="op">=</span><span class="va">True</span>, language<span class="op">=</span><span class="st">"en"</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> location <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            city <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>            address <span class="op">=</span> location.raw.get(<span class="st">"address"</span>, {})</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>            city <span class="op">=</span> (</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>                address.get(<span class="st">"city"</span>) <span class="kw">or</span> </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                address.get(<span class="st">"town"</span>) <span class="kw">or</span> </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>                address.get(<span class="st">"village"</span>) <span class="kw">or</span> </span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>                address.get(<span class="st">"municipality"</span>) <span class="kw">or</span> </span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>                address.get(<span class="st">"county"</span>) <span class="kw">or</span> </span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>                address.get(<span class="st">"state"</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        coord_to_city[key] <span class="op">=</span> city</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        time.sleep(pause)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> city</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Error reverse geocoding </span><span class="sc">{</span>lat<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>lon<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare unique coordinates from df</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>df_coords <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"latitude"</span>, <span class="st">"longitude"</span>]).copy()</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>unique_coords <span class="op">=</span> df_coords[[<span class="st">"latitude"</span>, <span class="st">"longitude"</span>]].drop_duplicates()</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse geocode with caching</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> unique_coords.iterrows():</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    lat, lon <span class="op">=</span> row[<span class="st">"latitude"</span>], row[<span class="st">"longitude"</span>]</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    get_city_from_coords(lat, lon)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign city names back to df_coords using the cache</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>df_coords[<span class="st">"city"</span>] <span class="op">=</span> df_coords.<span class="bu">apply</span>(</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> r: coord_to_city.get(<span class="ss">f"</span><span class="sc">{</span>r[<span class="st">'latitude'</span>]<span class="sc">}</span><span class="ss">,</span><span class="sc">{</span>r[<span class="st">'longitude'</span>]<span class="sc">}</span><span class="ss">"</span>), axis<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Save cache to disk for next runs</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(CACHE_FILE, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    json.dump(coord_to_city, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="a396e585-6ece-429c-934a-8c7f5e076685" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:02:47.308872Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:02:47.308485Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:02:57.523695Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:02:57.523142Z&quot;}}" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 🧭 Geocode missing coordinates from location string</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_city_from_location(location):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(location):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(location, <span class="bu">str</span>):</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            location_dict <span class="op">=</span> ast.literal_eval(location)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            area <span class="op">=</span> location_dict.get(<span class="st">"area"</span>, [])</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">isinstance</span>(area, <span class="bu">list</span>) <span class="kw">and</span> area:</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> area[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span>:</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">pass</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    match <span class="op">=</span> re.search(<span class="vs">r"</span><span class="dv">\b</span><span class="kw">(</span><span class="pp">[A-ZÄÖÜ][a-zäöüßA-ZÄÖÜ-]</span><span class="op">+</span><span class="kw">)</span><span class="vs">"</span>, location)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> match:</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> match.group(<span class="dv">1</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>missing_coords <span class="op">=</span> df[df[<span class="st">"latitude"</span>].isna() <span class="op">|</span> df[<span class="st">"longitude"</span>].isna()].copy()</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>missing_coords[<span class="st">"recovered_city"</span>] <span class="op">=</span> missing_coords[<span class="st">"location"</span>].<span class="bu">apply</span>(extract_city_from_location)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out entries that are too broad</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>valid_city_mask <span class="op">=</span> missing_coords[<span class="st">"recovered_city"</span>].notna() <span class="op">&amp;</span> (missing_coords[<span class="st">"recovered_city"</span>].<span class="bu">str</span>.lower() <span class="op">!=</span> <span class="st">"deutschland"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>to_geocode <span class="op">=</span> missing_coords[valid_city_mask].copy()</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> geocode_city(city):</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pd.isna(city):</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> (<span class="va">None</span>, <span class="va">None</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>        location <span class="op">=</span> geolocator.geocode(<span class="ss">f"</span><span class="sc">{</span>city<span class="sc">}</span><span class="ss">, Germany"</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> location:</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> (location.latitude, location.longitude)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> GeocoderTimedOut:</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="dv">1</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> geocode_city(city)  <span class="co"># retry once</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span>:</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (<span class="va">None</span>, <span class="va">None</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="va">None</span>, <span class="va">None</span>)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>coords_df <span class="op">=</span> to_geocode[<span class="st">"recovered_city"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> city: pd.Series(geocode_city(city)))</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>coords_df.columns <span class="op">=</span> [<span class="st">"latitude_recovered"</span>, <span class="st">"longitude_recovered"</span>]</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>to_geocode <span class="op">=</span> to_geocode.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>to_geocode <span class="op">=</span> pd.concat([to_geocode, coords_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>to_geocode[<span class="st">"job_id"</span>] <span class="op">=</span> to_geocode.index</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop previously added columns if they exist (avoid merge errors)</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">"latitude_recovered"</span>, <span class="st">"longitude_recovered"</span>], errors<span class="op">=</span><span class="st">"ignore"</span>)</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge recovered coordinates back into the main DataFrame</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(to_geocode[[<span class="st">"job_id"</span>, <span class="st">"latitude_recovered"</span>, <span class="st">"longitude_recovered"</span>]], on<span class="op">=</span><span class="st">"job_id"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill missing lat/lon with recovered values</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"latitude"</span>] <span class="op">=</span> df[<span class="st">"latitude"</span>].fillna(df[<span class="st">"latitude_recovered"</span>])</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"longitude"</span>] <span class="op">=</span> df[<span class="st">"longitude"</span>].fillna(df[<span class="st">"longitude_recovered"</span>])</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Final cleanup</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">"latitude_recovered"</span>, <span class="st">"longitude_recovered"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="top-cities-for-job-offers" class="level2">
+<h2 class="anchored" data-anchor-id="top-cities-for-job-offers">🔝 Top Cities for Job Offers</h2>
+<div id="5c062841-527c-45cc-a103-d1af41515bf2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:02:57.525956Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:02:57.525573Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:02:58.021770Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:02:58.021259Z&quot;}}" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Top 20 Cities for Job Offers</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>top_cities <span class="op">=</span> df_coords[<span class="st">"city"</span>].value_counts().head(<span class="dv">20</span>).reset_index() <span class="co"># get top 20</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>top_cities.columns <span class="op">=</span> [<span class="st">"city"</span>, <span class="st">"count"</span>]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(data<span class="op">=</span>top_cities, x<span class="op">=</span><span class="st">"city"</span>, y<span class="op">=</span><span class="st">"count"</span>, palette<span class="op">=</span><span class="st">"Blues_d"</span>, hue<span class="op">=</span><span class="st">"city"</span>, legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add annotations</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> top_cities.iterrows():</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    ax.text(i, row[<span class="st">"count"</span>], <span class="bu">str</span>(row[<span class="st">"count"</span>]), ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'bottom'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Top Cities by Number of Data Science Job Offers"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"City"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of Job Offers"</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># ✅ Save BEFORE show</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="ss">f"</span><span class="sc">{</span>output_dir<span class="sc">}</span><span class="ss">/top_cities.png"</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># show</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="output_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mapping-job-clusters-and-top-hiring-companies-in-germany" class="level2">
+<h2 class="anchored" data-anchor-id="mapping-job-clusters-and-top-hiring-companies-in-germany">🗺️ Mapping Job Clusters and Top Hiring Companies in Germany</h2>
+<p>To visualize where data science jobs are concentrated across Germany, we used the geographical coordinates provided in the dataset (latitude and longitude) and applied the algorithm <strong>DBSCAN</strong> to create clusters. This allowed us to group nearby job postings within a 10 km radius into location-based clusters.</p>
+<p>For each cluster, we:</p>
+<ul>
+<li>Calculated the average coordinates to place a marker on the map.</li>
+<li>Counted the number of job postings and identified the top 10 hiring companies in each cluster.</li>
+</ul>
+<p>We then used the <strong>Folium library</strong> to create an interactive map. Each marker on the map displays:</p>
+<ul>
+<li>The name of the city (based on the reverse-geocoded coordinates)</li>
+<li>The top companies hiring in that location</li>
+<li>The number of job postings per company (e.g., “Company XYZ (3)”)</li>
+</ul>
+<p>This approach helps identify regional hiring trends and hotspots for data science roles in Germany.</p>
+<div id="e2ad3813-16fe-462d-a1cc-4f09dcb54152" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:02:58.023874Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:02:58.023478Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:02:58.175202Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:02:58.174679Z&quot;}}" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run DBSCAN clustering</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># since DBSCAN needs the eps in radians, not kilometers and Earth's radius is approximately 6371 km</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we divide 10 km by that value to convert it to radians.</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> df_coords[[<span class="st">'latitude'</span>, <span class="st">'longitude'</span>]].values</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>kms_per_radian <span class="op">=</span> <span class="fl">6371.0088</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> kms_per_radian  <span class="co"># 10 km radius</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize DBSCAN clustering algorithm:</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> DBSCAN(eps<span class="op">=</span>epsilon, min_samples<span class="op">=</span><span class="dv">1</span>, algorithm<span class="op">=</span><span class="st">'ball_tree'</span>, metric<span class="op">=</span><span class="st">'haversine'</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>df_coords[<span class="st">'cluster'</span>] <span class="op">=</span> db.fit_predict(np.radians(coords))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign representative city name to each cluster (city with most jobs)</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>cluster_names <span class="op">=</span> (</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    df_coords.groupby(<span class="st">'cluster'</span>)[<span class="st">'city'</span>]</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    .agg(<span class="kw">lambda</span> x: x.mode().iloc[<span class="dv">0</span>] <span class="cf">if</span> <span class="kw">not</span> x.mode().empty <span class="cf">else</span> x.iloc[<span class="dv">0</span>])</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>df_coords <span class="op">=</span> df_coords.merge(cluster_names, on<span class="op">=</span><span class="st">'cluster'</span>, suffixes<span class="op">=</span>(<span class="st">''</span>, <span class="st">'_clustered'</span>))</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>df_coords[<span class="st">'city'</span>] <span class="op">=</span> df_coords[<span class="st">'city_clustered'</span>]</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>df_coords.drop(columns<span class="op">=</span><span class="st">'city_clustered'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>df_coords <span class="op">=</span> df_coords.drop(columns<span class="op">=</span><span class="st">'cluster_city'</span>, errors<span class="op">=</span><span class="st">'ignore'</span>)  <span class="co"># if it existed</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize clusters with mean coordinates and job counts</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>cluster_summary <span class="op">=</span> (</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    df_coords.groupby([<span class="st">'cluster'</span>, <span class="st">'city'</span>])</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    .agg({</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">'latitude'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">'longitude'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">'title'</span>: <span class="st">'count'</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    .rename(columns<span class="op">=</span>{<span class="st">'title'</span>: <span class="st">'job_count'</span>})</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare top companies per cluster (will popup when clicking)</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>top_companies_per_cluster <span class="op">=</span> (</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    df_coords.groupby([<span class="st">'cluster'</span>, <span class="st">'company'</span>])</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    .size()</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    .reset_index(name<span class="op">=</span><span class="st">'job_count'</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    .sort_values([<span class="st">'cluster'</span>, <span class="st">'job_count'</span>], ascending<span class="op">=</span>[<span class="va">True</span>, <span class="va">False</span>])</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">'cluster'</span>, group_keys<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>popup_data <span class="op">=</span> top_companies_per_cluster.merge(</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    cluster_summary[[<span class="st">'cluster'</span>, <span class="st">'city'</span>, <span class="st">'latitude'</span>, <span class="st">'longitude'</span>]],</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">'cluster'</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Create map with company popups</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>map_center <span class="op">=</span> [<span class="fl">51.1657</span>, <span class="fl">10.4515</span>]  <span class="co"># Germany center</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>company_map <span class="op">=</span> folium.Map(location<span class="op">=</span>map_center, zoom_start<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>marker_cluster <span class="op">=</span> MarkerCluster().add_to(company_map)</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cluster_id, group <span class="kw">in</span> popup_data.groupby(<span class="st">'cluster'</span>):</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>    city <span class="op">=</span> group[<span class="st">'city'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> group[<span class="st">'latitude'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>    lon <span class="op">=</span> group[<span class="st">'longitude'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>    companies_html <span class="op">=</span> <span class="st">'&lt;br&gt;'</span>.join(</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>row[<span class="st">'company'</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>row[<span class="st">'job_count'</span>]<span class="sc">}</span><span class="ss">)"</span> <span class="cf">for</span> _, row <span class="kw">in</span> group.iterrows()</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>    html <span class="op">=</span> <span class="ss">f"""</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="ss">    &lt;h4&gt;</span><span class="sc">{</span>city<span class="sc">}</span><span class="ss">&lt;/h4&gt;</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="ss">    &lt;div style="font-family: Arial; font-size: 12px;"&gt;</span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span><span class="sc">{</span>companies_html<span class="sc">}</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="ss">    &lt;/div&gt;</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="ss">    """</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>    iframe <span class="op">=</span> IFrame(html<span class="op">=</span>html, width<span class="op">=</span><span class="dv">300</span>, height<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>    popup <span class="op">=</span> folium.Popup(iframe, max_width<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>    folium.Marker(</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>        location<span class="op">=</span>[lat, lon],</span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>        popup<span class="op">=</span>popup,</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>city</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>    ).add_to(marker_cluster)</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>display(company_map)</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Add map note for reader</span></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>display(HTML(<span class="st">"""</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;p style="font-family: Arial; font-size: 14px; margin-top: 10px;"&gt;</span></span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;b&gt;Note:&lt;/b&gt; The numbers on the map markers represent how many job locations are clustered together in that area.</span></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a><span class="st">Zoom in to explore individual job locations and click on them to view the top hiring companies in that region</span></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a><span class="st">and the number of jobs per each company. The city names are in English!</span></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/p&gt;</span></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_215509153c0a3bc8b79f302d34dd624a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css&quot;/>
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_215509153c0a3bc8b79f302d34dd624a&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_215509153c0a3bc8b79f302d34dd624a = L.map(
+                &quot;map_215509153c0a3bc8b79f302d34dd624a&quot;,
+                {
+                    center: [51.1657, 10.4515],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 6,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_db71ce4556dad9884d23b4254567d2ea = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_db71ce4556dad9884d23b4254567d2ea.addTo(map_215509153c0a3bc8b79f302d34dd624a);
+        
+    
+            var marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_030128f3101d81a63d3bf4ccc1ec6d1b = L.marker(
+                [51.052725, 13.756452],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_19c96427ee49820f0fd71c56a4587d49 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_46c997c469a738d24f48a56841284122 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5EcmVzZGVuPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBISUdIVk9MVCBQcsO8ZnRlY2huaWsgRHJlc2RlbiBHbWJIICgxKTxicj5Vbml2ZXJzaXTDpHRza2xpbmlrdW0gQ2FybCBHdXN0YXYgQ2FydXMgRHJlc2RlbiAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_19c96427ee49820f0fd71c56a4587d49.setContent(i_frame_46c997c469a738d24f48a56841284122);
+            
+        
+
+        marker_030128f3101d81a63d3bf4ccc1ec6d1b.bindPopup(popup_19c96427ee49820f0fd71c56a4587d49)
+        ;
+
+        
+    
+    
+            marker_030128f3101d81a63d3bf4ccc1ec6d1b.bindTooltip(
+                `<div>
+                     Dresden
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_d2e011e099dc9064224a7502484568f3 = L.marker(
+                [52.12693133333334, 10.354620666666667],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_27f543237fada57997c52ce294cf42a3 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_c4a51524a5a5a722b9d579db61fd8730 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5TYWx6Z2l0dGVyPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBCb3NjaCBHcnVwcGUgKDIpPGJyPlJvYmVydCBCb3NjaCBFbGVrdHJvbmlrIEdtYkggKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_27f543237fada57997c52ce294cf42a3.setContent(i_frame_c4a51524a5a5a722b9d579db61fd8730);
+            
+        
+
+        marker_d2e011e099dc9064224a7502484568f3.bindPopup(popup_27f543237fada57997c52ce294cf42a3)
+        ;
+
+        
+    
+    
+            marker_d2e011e099dc9064224a7502484568f3.bindTooltip(
+                `<div>
+                     Salzgitter
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_e23879487d169c130e7435bbe8b7ea64 = L.marker(
+                [48.78408, 10.10558],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_eb31102de109858b8021cb113f8829d3 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_3d85cc6b23735452ae5c8694480dfc81 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5PYmVya29jaGVuPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBaRUlTUyAoNSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_eb31102de109858b8021cb113f8829d3.setContent(i_frame_3d85cc6b23735452ae5c8694480dfc81);
+            
+        
+
+        marker_e23879487d169c130e7435bbe8b7ea64.bindPopup(popup_eb31102de109858b8021cb113f8829d3)
+        ;
+
+        
+    
+    
+            marker_e23879487d169c130e7435bbe8b7ea64.bindTooltip(
+                `<div>
+                     Oberkochen
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_697dd2ffd514ef00f36a2eef036c26ef = L.marker(
+                [49.155882142857145, 9.214896428571427],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_2906842c50b088c48db72381c4dae62e = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_7206f15ac4046836a49ebab2c8f9c733 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5IZWlsYnJvbm48L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIER1YWxlIEhvY2hzY2h1bGUgQmFkZW4tV8O8cnR0ZW1iZXJnIEhlaWxicm9ubiAoMSk8YnI+S2F1ZmxhbmQgKDEpPGJyPkxpZGwgU3RpZnR1bmcgKDEpPGJyPkxpZGwgU3RpZnR1bmcgJiBDby4gS0cgKDEpPGJyPlNjaHdhcnogQ29ycG9yYXRlIFNvbHV0aW9ucyAoMSk8YnI+U2Nod2FyeiBJVCAoMSk8YnI+VGVjaG5pc2NoZSBVbml2ZXJzaXTDpHQgTcO8bmNoZW4gKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_2906842c50b088c48db72381c4dae62e.setContent(i_frame_7206f15ac4046836a49ebab2c8f9c733);
+            
+        
+
+        marker_697dd2ffd514ef00f36a2eef036c26ef.bindPopup(popup_2906842c50b088c48db72381c4dae62e)
+        ;
+
+        
+    
+    
+            marker_697dd2ffd514ef00f36a2eef036c26ef.bindTooltip(
+                `<div>
+                     Heilbronn
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_1bf4b2addd38619c484f6a933fdf6191 = L.marker(
+                [48.776198, 9.187224],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_cf4452d5b7ebe0de5e7f67f1ce033d59 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_3d8f0dc9f4c17cfb127f9e3cd5f92777 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5TdHV0dGdhcnQ8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIE1lcmNlZGVzLUJlbnogQUcgKDMpPGJyPk1lcmNlZGVzLUJlbnogR3JvdXAgQUcgKDEpPGJyPk1lcmNlZGVzLUJlbnogVGVjaCBJbm5vdmF0aW9uICgxKTxicj5OVkJXIC0gTmFodmVya2VocnNnZXNlbGxzY2hhZnQgQmFkZW4tV8O8cnR0ZW1iZXJnIG1iSCAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_cf4452d5b7ebe0de5e7f67f1ce033d59.setContent(i_frame_3d8f0dc9f4c17cfb127f9e3cd5f92777);
+            
+        
+
+        marker_1bf4b2addd38619c484f6a933fdf6191.bindPopup(popup_cf4452d5b7ebe0de5e7f67f1ce033d59)
+        ;
+
+        
+    
+    
+            marker_1bf4b2addd38619c484f6a933fdf6191.bindTooltip(
+                `<div>
+                     Stuttgart
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_a6f03c4669cf841a9dcb584ec7e46c89 = L.marker(
+                [51.22411939999999, 6.8079678999999995],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_cded76231bc8010ccabde2928e596ca0 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_91ad4ae675f5f1ec2cdb7d091dd1e518 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5EdXNzZWxkb3JmPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBTdGVwc3RvbmUgR21iSCAoMyk8YnI+dHJpdmFnbyAoMik8YnI+Q29kaW5nIEdpYW50cyAoMSk8YnI+R1dRIFNlcnZpY2VQbHVzIEFHICgxKTxicj5PTUcgSW52ZXN0bWVudCArIEFjdGl2YXRpb24gKDEpPGJyPlB1YmxpY2lzIE1lZGlhIEdtYkggKDEpPGJyPnRyaXZhZ28gTi5WLiAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_cded76231bc8010ccabde2928e596ca0.setContent(i_frame_91ad4ae675f5f1ec2cdb7d091dd1e518);
+            
+        
+
+        marker_a6f03c4669cf841a9dcb584ec7e46c89.bindPopup(popup_cded76231bc8010ccabde2928e596ca0)
+        ;
+
+        
+    
+    
+            marker_a6f03c4669cf841a9dcb584ec7e46c89.bindTooltip(
+                `<div>
+                     Dusseldorf
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_35439c0d3b001e10569385ddff7d6b64 = L.marker(
+                [51.4481004, 7.005052399999999],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_f3fb13f6220a762bb6f232f7689649d7 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_4ab8d891b847584547f3071b2fdec377 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5Fc3NlbjwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgRGVpY2htYW5uIFNFICgyKTxicj5BTERJIE5vcmQgKDEpPGJyPkVNU0NIRVJHRU5PU1NFTlNDSEFGVCB1bmQgTElQUEVWRVJCQU5EICgxKTxicj5mdXNla2kgR21iSCAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_f3fb13f6220a762bb6f232f7689649d7.setContent(i_frame_4ab8d891b847584547f3071b2fdec377);
+            
+        
+
+        marker_35439c0d3b001e10569385ddff7d6b64.bindPopup(popup_f3fb13f6220a762bb6f232f7689649d7)
+        ;
+
+        
+    
+    
+            marker_35439c0d3b001e10569385ddff7d6b64.bindTooltip(
+                `<div>
+                     Essen
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_7fc53e0e56f16b0c726c805d0f144230 = L.marker(
+                [48.36948775, 9.87585625],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_c5ead17072253bbf50a120691d465f28 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_a49d5b9c9ca7bc2e824328dc23a945e5 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5CbGF1c3RlaW48L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIE1lcmNlZGVzLUJlbnogVGVjaCBJbm5vdmF0aW9uICgyKTxicj5EZXV0c2NoZXMgUmVnaXN0ZXIgZsO8ciBow6RtYXRvcG9ldGlzY2hlIFN0YW1temVsbHRyYW5zcGxhbnRhdGlvbiB1bmQgWmVsbHRoZXJhcGllIGUuVi4gKDEpPGJyPldpZWxhbmQtR3J1cHBlICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_c5ead17072253bbf50a120691d465f28.setContent(i_frame_a49d5b9c9ca7bc2e824328dc23a945e5);
+            
+        
+
+        marker_7fc53e0e56f16b0c726c805d0f144230.bindPopup(popup_c5ead17072253bbf50a120691d465f28)
+        ;
+
+        
+    
+    
+            marker_7fc53e0e56f16b0c726c805d0f144230.bindTooltip(
+                `<div>
+                     Blaustein
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_3678ee7bbb5a1bef4b4ea6e8eae4f764 = L.marker(
+                [48.745846, 9.315933],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_17ee70fd287a4dc9b225c27ebaed8f18 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_bd37f1e598d1d875d9007e3f97bb6a7c = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5Fc3NsaW5nZW4gYW0gTmVja2FyPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBNZXJjZWRlcy1CZW56IEdyb3VwIEFHICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_17ee70fd287a4dc9b225c27ebaed8f18.setContent(i_frame_bd37f1e598d1d875d9007e3f97bb6a7c);
+            
+        
+
+        marker_3678ee7bbb5a1bef4b4ea6e8eae4f764.bindPopup(popup_17ee70fd287a4dc9b225c27ebaed8f18)
+        ;
+
+        
+    
+    
+            marker_3678ee7bbb5a1bef4b4ea6e8eae4f764.bindTooltip(
+                `<div>
+                     Esslingen am Neckar
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_02b19cab6380cbe8decec00e6b87c4d3 = L.marker(
+                [48.735601333333335, 8.202592666666668],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_f18eb82dab7e1cc94dad8a06cc47706f = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_daf7ae8a786f5b9420af52a3a2838ee0 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5CYWRlbi1CYWRlbjwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgQmlvbG9naXNjaGUgSGVpbG1pdHRlbCBIZWVsIEdtYkggKDEpPGJyPk1lcmNlZGVzLUJlbnogVGVjaCBJbm5vdmF0aW9uICgxKTxicj5Sb2JlcnQgQm9zY2ggR21iSCAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_f18eb82dab7e1cc94dad8a06cc47706f.setContent(i_frame_daf7ae8a786f5b9420af52a3a2838ee0);
+            
+        
+
+        marker_02b19cab6380cbe8decec00e6b87c4d3.bindPopup(popup_f18eb82dab7e1cc94dad8a06cc47706f)
+        ;
+
+        
+    
+    
+            marker_02b19cab6380cbe8decec00e6b87c4d3.bindTooltip(
+                `<div>
+                     Baden-Baden
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_1df2ec3cfc46675de5cd4c4a691880e3 = L.marker(
+                [49.290195, 9.669685000000001],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_7824988504fc5f5d780fb68d7d511aac = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_803d49dcb24517d2841aabdde438ccea = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5JbmdlbGZpbmdlbjwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgQWRvbGYgV8O8cnRoIEdtYkggJiBDby4gS0cgKDIpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_7824988504fc5f5d780fb68d7d511aac.setContent(i_frame_803d49dcb24517d2841aabdde438ccea);
+            
+        
+
+        marker_1df2ec3cfc46675de5cd4c4a691880e3.bindPopup(popup_7824988504fc5f5d780fb68d7d511aac)
+        ;
+
+        
+    
+    
+            marker_1df2ec3cfc46675de5cd4c4a691880e3.bindTooltip(
+                `<div>
+                     Ingelfingen
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_479fc92ea0876cfd733d05df2538edb0 = L.marker(
+                [48.8846868, 8.6914824],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_e0395936eb0f708ead81f9f0850d9a28 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_4c5d47f44e89c41521769ca8cb46d806 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5QZm9yemhlaW08L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIEJSVU5PIEJBREVSIEdtYkggKyBDby4gS0cgKDMpPGJyPml0bVggR21iSCAoMikKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_e0395936eb0f708ead81f9f0850d9a28.setContent(i_frame_4c5d47f44e89c41521769ca8cb46d806);
+            
+        
+
+        marker_479fc92ea0876cfd733d05df2538edb0.bindPopup(popup_e0395936eb0f708ead81f9f0850d9a28)
+        ;
+
+        
+    
+    
+            marker_479fc92ea0876cfd733d05df2538edb0.bindTooltip(
+                `<div>
+                     Pforzheim
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_bce428a1c55e35f3134cad75241767e3 = L.marker(
+                [52.37603240000001, 9.7486468],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_bd8b9066961129f947245e48937a0474 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_88351d8f25af1725d2e534e4c0b079c1 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5IYW5vdmVyPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBDb250aW5lbnRhbCAoMSk8YnI+Q29udGluZW50YWwgQUcgKDEpPGJyPkhhbm5vdmVyIFLDvGNrIFNFICgxKTxicj5JVC1QIEdtYkggKDEpPGJyPlRlY2huaXNjaGUgSW5mb3JtYXRpb25zYmlibGlvdGhlayAgKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_bd8b9066961129f947245e48937a0474.setContent(i_frame_88351d8f25af1725d2e534e4c0b079c1);
+            
+        
+
+        marker_bce428a1c55e35f3134cad75241767e3.bindPopup(popup_bd8b9066961129f947245e48937a0474)
+        ;
+
+        
+    
+    
+            marker_bce428a1c55e35f3134cad75241767e3.bindTooltip(
+                `<div>
+                     Hanover
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_ca90a92c39d9424f3d7818f4fd472cf8 = L.marker(
+                [52.507706000000006, 13.420806],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_43617bbb9ddfb1be1eab5fc4bb2d50dd = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_bb0c886c58d35e013a8616e70b75895f = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5CZXJsaW48L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIEdyYW50IFRob3JudG9uIEFHIFdpcnRzY2hhZnRzcHLDvGZ1bmdzZ2VzZWxsc2NoYWZ0ICgyKTxicj5TcGFya2Fzc2VuIFJhdGluZyB1bmQgUmlzaWtvc3lzdGVtZSBHbWJIICgyKTxicj5EZWxpdmVyeSBIZXJvICgxKTxicj5Ib3J2w6F0aCAoMSk8YnI+SW5kZXggRXhjaGFuZ2UgKDEpPGJyPk1hcHAgRGlnaXRhbCBVcyBMbGMgKDEpPGJyPlJlcGx5ICgxKTxicj5kLWZpbmUgR21iSCAoMSk8YnI+anVuYS5haSAoMSk8YnI+eWQueW91cmRlbGl2ZXJ5ICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_43617bbb9ddfb1be1eab5fc4bb2d50dd.setContent(i_frame_bb0c886c58d35e013a8616e70b75895f);
+            
+        
+
+        marker_ca90a92c39d9424f3d7818f4fd472cf8.bindPopup(popup_43617bbb9ddfb1be1eab5fc4bb2d50dd)
+        ;
+
+        
+    
+    
+            marker_ca90a92c39d9424f3d7818f4fd472cf8.bindTooltip(
+                `<div>
+                     Berlin
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_d16dda79b13ac015c6b1bb5a721c59f4 = L.marker(
+                [53.245305, 10.4045275],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_25e4eee04dcec9aeb92f55bc344d68c5 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_0c498f3ed0612b526f70b905e2cf0d52 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5Mw7xuZWJ1cmc8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIFdvbGxtaWxjaHNhdSBHbWJIICg4KQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_25e4eee04dcec9aeb92f55bc344d68c5.setContent(i_frame_0c498f3ed0612b526f70b905e2cf0d52);
+            
+        
+
+        marker_d16dda79b13ac015c6b1bb5a721c59f4.bindPopup(popup_25e4eee04dcec9aeb92f55bc344d68c5)
+        ;
+
+        
+    
+    
+            marker_d16dda79b13ac015c6b1bb5a721c59f4.bindTooltip(
+                `<div>
+                     Lüneburg
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_0acf97c901b9a22ea052ed8da776dce8 = L.marker(
+                [53.55507492857142, 9.982071214285714],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_c3d129e7737a1e5508ae0f825376f3ee = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_7d5c47623e5d6a5ed2baff9eafbee2df = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5IYW1idXJnPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBXb2xsbWlsY2hzYXUgR21iSCAoNCk8YnI+Q0hFQ0syNCAoMSk8YnI+REVWbmV0ICgxKTxicj5HZWJyLiBIZWluZW1hbm4gU0UgJiBDby4gS0cgKDEpPGJyPkhhbWJ1cmdlciBIb2NoYmFobiBBRyAoMSk8YnI+SGlnaGJlcmcgKDEpPGJyPkhpZ2hiZXJnIERBQ0ggKDEpPGJyPk9NRyBJbnZlc3RtZW50ICsgQWN0aXZhdGlvbiAoMSk8YnI+dGVzYSBTRSAoMSk8YnI+d29ya2lkZW50aXR5ICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_c3d129e7737a1e5508ae0f825376f3ee.setContent(i_frame_7d5c47623e5d6a5ed2baff9eafbee2df);
+            
+        
+
+        marker_0acf97c901b9a22ea052ed8da776dce8.bindPopup(popup_c3d129e7737a1e5508ae0f825376f3ee)
+        ;
+
+        
+    
+    
+            marker_0acf97c901b9a22ea052ed8da776dce8.bindTooltip(
+                `<div>
+                     Hamburg
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_4fbf148e9b19ffbdedbf62a9a89b1b5f = L.marker(
+                [48.36044444444444, 10.892852222222222],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_555fe46e3991f975e955cfee5f12d199 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_68d97d4b0be75e14b8740d929ee8b695 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5BdWdzYnVyZzwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgV29sbG1pbGNoc2F1IEdtYkggKDgpPGJyPlN0dWR5ZmxpeCBHbWJIICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_555fe46e3991f975e955cfee5f12d199.setContent(i_frame_68d97d4b0be75e14b8740d929ee8b695);
+            
+        
+
+        marker_4fbf148e9b19ffbdedbf62a9a89b1b5f.bindPopup(popup_555fe46e3991f975e955cfee5f12d199)
+        ;
+
+        
+    
+    
+            marker_4fbf148e9b19ffbdedbf62a9a89b1b5f.bindTooltip(
+                `<div>
+                     Augsburg
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_3805eb27669a8e3441fa764dd9cfa39d = L.marker(
+                [48.137337360000004, 11.55259964],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_d1b7ce3146c6205dcc95b1578b9b499e = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_4a6226b327d5da8512b1c44a547abbac = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5NdW5pY2g8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIFdvbGxtaWxjaHNhdSBHbWJIICg4KTxicj5GbGV4YSAoMik8YnI+TVRVIEFlcm8gRW5naW5lcyBBRyAoMik8YnI+VGVjaG5pc2NoZSBVbml2ZXJzaXTDpHQgTcO8bmNoZW4gICgyKTxicj5aRUlTUyAoMik8YnI+QVJBRyBLcmFua2VudmVyc2ljaGVydW5ncy1BRyAoMSk8YnI+QWxsRGVudCBaYWhuemVudHJ1bSBHbWJIICgxKTxicj5CTVcgR3JvdXAgKDEpPGJyPkJheWVyaXNjaGUgTGFuZGVzYmFuayAoMSk8YnI+S2xpbmlrdW0gZGVyIFVuaXZlcnNpdMOkdCBNw7xuY2hlbiBHcm/Dn2hhZGVybiAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_d1b7ce3146c6205dcc95b1578b9b499e.setContent(i_frame_4a6226b327d5da8512b1c44a547abbac);
+            
+        
+
+        marker_3805eb27669a8e3441fa764dd9cfa39d.bindPopup(popup_d1b7ce3146c6205dcc95b1578b9b499e)
+        ;
+
+        
+    
+    
+            marker_3805eb27669a8e3441fa764dd9cfa39d.bindTooltip(
+                `<div>
+                     Munich
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_4f15e88b7a375b2a3a17601488702132 = L.marker(
+                [54.32055222222222, 10.139710000000001],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_a0424fec08d6a47f1481d49645deacef = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_bde5f5ffd45977dc5b9bab181364d32e = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5LaWVsPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBXb2xsbWlsY2hzYXUgR21iSCAoOCk8YnI+RHVhbGUgSG9jaHNjaHVsZSBTY2hsZXN3aWctSG9sc3RlaW4gICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_a0424fec08d6a47f1481d49645deacef.setContent(i_frame_bde5f5ffd45977dc5b9bab181364d32e);
+            
+        
+
+        marker_4f15e88b7a375b2a3a17601488702132.bindPopup(popup_a0424fec08d6a47f1481d49645deacef)
+        ;
+
+        
+    
+    
+            marker_4f15e88b7a375b2a3a17601488702132.bindTooltip(
+                `<div>
+                     Kiel
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_52d6e1571dfb7c389ce3efd63df9a349 = L.marker(
+                [50.1445734, 8.6712974],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_38b293365e149f9811fc1c2dd39d7f28 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_88f45969f95b2df44721a62c46eb13b6 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5GcmFua2Z1cnQ8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIEV1cm9wZWFuIENlbnRyYWwgQmFuayAoMik8YnI+SVFWSUEgQ29tbWVyY2lhbCBHbWJIICYgQ28uIE9IRyAoMik8YnI+Q0VWQSBMb2dpc3RpY3MgR21iSCAoMSk8YnI+SGVsdmV0aWEgU2Nod2VpemVyaXNjaGUgVmVyc2ljaGVydW5nc2dlc2VsbHNjaGFmdCBBRyAoMSk8YnI+S8O2bmlnICsgTmV1cmF0aCBBRyAoMSk8YnI+TmVzdGxlICgxKTxicj5SU00gRWJuZXIgU3RvbHogKDEpPGJyPlNUQURBIEFyem5laW1pdHRlbCBBRyAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_38b293365e149f9811fc1c2dd39d7f28.setContent(i_frame_88f45969f95b2df44721a62c46eb13b6);
+            
+        
+
+        marker_52d6e1571dfb7c389ce3efd63df9a349.bindPopup(popup_38b293365e149f9811fc1c2dd39d7f28)
+        ;
+
+        
+    
+    
+            marker_52d6e1571dfb7c389ce3efd63df9a349.bindTooltip(
+                `<div>
+                     Frankfurt
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_bd3c8c7e23475ff351cee2503625dc96 = L.marker(
+                [49.4945175, 8.475887499999999],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_b8faf766152af46e564584be9111703b = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_7882942002e75b034fecf0ed10d9804c = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5NYW5uaGVpbTwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgR0JHIFVudGVybmVobWVuc2dydXBwZSBHbWJIICgxKTxicj5Tb2x1dmlhIElULVNlcnZpY2VzIEdtYkggKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_b8faf766152af46e564584be9111703b.setContent(i_frame_7882942002e75b034fecf0ed10d9804c);
+            
+        
+
+        marker_bd3c8c7e23475ff351cee2503625dc96.bindPopup(popup_b8faf766152af46e564584be9111703b)
+        ;
+
+        
+    
+    
+            marker_bd3c8c7e23475ff351cee2503625dc96.bindTooltip(
+                `<div>
+                     Mannheim
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_fb86f324f9c0bf47f32281ea28687c8d = L.marker(
+                [49.21886, 8.36958],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_12e67e13b992434801c3809fd8dc2455 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_65518cdb2c4edebe0ca84ebebab7b0f8 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5HZXJtZXJzaGVpbTwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgTWVyY2VkZXMtQmVueiBBRyAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_12e67e13b992434801c3809fd8dc2455.setContent(i_frame_65518cdb2c4edebe0ca84ebebab7b0f8);
+            
+        
+
+        marker_fb86f324f9c0bf47f32281ea28687c8d.bindPopup(popup_12e67e13b992434801c3809fd8dc2455)
+        ;
+
+        
+    
+    
+            marker_fb86f324f9c0bf47f32281ea28687c8d.bindTooltip(
+                `<div>
+                     Germersheim
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_38384df9d47ff9f0e8f88f8425bc71f5 = L.marker(
+                [48.62848, 12.49782],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_c362fe414b3cf38c95fb82de2f0fedbf = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_44cc9e5d67ea6c51b297fd5a7d6ec8fa = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5EaW5nb2xmaW5nPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBCTVcgR3JvdXAgKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_c362fe414b3cf38c95fb82de2f0fedbf.setContent(i_frame_44cc9e5d67ea6c51b297fd5a7d6ec8fa);
+            
+        
+
+        marker_38384df9d47ff9f0e8f88f8425bc71f5.bindPopup(popup_c362fe414b3cf38c95fb82de2f0fedbf)
+        ;
+
+        
+    
+    
+            marker_38384df9d47ff9f0e8f88f8425bc71f5.bindTooltip(
+                `<div>
+                     Dingolfing
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_57cb3675e6d9f5c2a410a3d50482e526 = L.marker(
+                [48.42392, 7.94837],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_27d5d25f554d7a94bfe27818f2a0d9c9 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_6f1b5fa13a4bba2a07017c55463a1b21 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5PZmZlbmJ1cmc8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIE1hcmthbnQgR3J1cHBlICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_27d5d25f554d7a94bfe27818f2a0d9c9.setContent(i_frame_6f1b5fa13a4bba2a07017c55463a1b21);
+            
+        
+
+        marker_57cb3675e6d9f5c2a410a3d50482e526.bindPopup(popup_27d5d25f554d7a94bfe27818f2a0d9c9)
+        ;
+
+        
+    
+    
+            marker_57cb3675e6d9f5c2a410a3d50482e526.bindTooltip(
+                `<div>
+                     Offenburg
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_92333d5433035aedee6ad387e19fc5a1 = L.marker(
+                [50.9105795, 6.92628475],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_4c6e30aab436aa4727791f2bb4ff6eb2 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_8ac1cc5d7041acfe4b53c52ccbe15b7b = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5Db2xvZ25lPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBNZXllcnRob2xlIFNpZW1zIEtvaGxydXNzIEdlcy4gZsO8ciBha3R1YXJpZWxsZSBCZXJhdHVuZyBtYkggKDIpPGJyPlJFV0UgR3JvdXAgKDEpPGJyPlNLT1BPUyBFTEVNRU5UUyAoMSk8YnI+U2tvcG9zIEdyb3VwICgxKTxicj5aQiBNRUQgLSBJbmZvcm1hdGlvbnN6ZW50cnVtIExlYmVuc3dpc3NlbnNjaGFmdGVuICgxKTxicj5uZXJvdSBHbWJIICgxKTxicj5uaW9sb2dpYyAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_4c6e30aab436aa4727791f2bb4ff6eb2.setContent(i_frame_8ac1cc5d7041acfe4b53c52ccbe15b7b);
+            
+        
+
+        marker_92333d5433035aedee6ad387e19fc5a1.bindPopup(popup_4c6e30aab436aa4727791f2bb4ff6eb2)
+        ;
+
+        
+    
+    
+            marker_92333d5433035aedee6ad387e19fc5a1.bindTooltip(
+                `<div>
+                     Cologne
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_853c35ecb53f0898d4a790ce3b9121a6 = L.marker(
+                [50.71942, 7.112412],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_908f3baff9db06b064ef7a28e5554894 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_5cc5a67d6ea9bcbcdc41535278c0a7da = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5Cb25uPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBCdW5kZXNpbnN0aXR1dCBmw7xyIEJhdS0sIFN0YWR0LSB1bmQgUmF1bWZvcnNjaHVuZyAgKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_908f3baff9db06b064ef7a28e5554894.setContent(i_frame_5cc5a67d6ea9bcbcdc41535278c0a7da);
+            
+        
+
+        marker_853c35ecb53f0898d4a790ce3b9121a6.bindPopup(popup_908f3baff9db06b064ef7a28e5554894)
+        ;
+
+        
+    
+    
+            marker_853c35ecb53f0898d4a790ce3b9121a6.bindTooltip(
+                `<div>
+                     Bonn
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_eba383c157968f687b17499f27ea6595 = L.marker(
+                [48.82434, 9.06857],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_803714b502ac4687252b85af0be64519 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_017bd97e21864d5043154e78635e5adf = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5EaXR6aW5nZW48L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIFRSVU1QRiBTRSArIENvLiBLRyAoMikKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_803714b502ac4687252b85af0be64519.setContent(i_frame_017bd97e21864d5043154e78635e5adf);
+            
+        
+
+        marker_eba383c157968f687b17499f27ea6595.bindPopup(popup_803714b502ac4687252b85af0be64519)
+        ;
+
+        
+    
+    
+            marker_eba383c157968f687b17499f27ea6595.bindTooltip(
+                `<div>
+                     Ditzingen
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_0d0ee74bbf1d2307f82a1adb8f86c892 = L.marker(
+                [53.147169, 8.218802],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_278d669e5f47d2f3959086c8c7633048 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_c4539808dd8384d5567ff8efd6fda141 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5PbGRlbmJ1cmc8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIEphZGUgSG9jaHNjaHVsZSBXaWxoZWxtc2hhdmVuL09sZGVuYnVyZy9FbHNmbGV0aCAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_278d669e5f47d2f3959086c8c7633048.setContent(i_frame_c4539808dd8384d5567ff8efd6fda141);
+            
+        
+
+        marker_0d0ee74bbf1d2307f82a1adb8f86c892.bindPopup(popup_278d669e5f47d2f3959086c8c7633048)
+        ;
+
+        
+    
+    
+            marker_0d0ee74bbf1d2307f82a1adb8f86c892.bindTooltip(
+                `<div>
+                     Oldenburg
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_e11a7daa86aef609d94a67dddd46bd7d = L.marker(
+                [47.73273, 10.307105],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_2ea628e9df3e87aad4d58f500a508cb3 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_a4d245a5f8d40e847c0a68683c8462d9 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5LZW1wdGVuIChBbGxnw6R1KTwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgREFDSFNFUiBTRSAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_2ea628e9df3e87aad4d58f500a508cb3.setContent(i_frame_a4d245a5f8d40e847c0a68683c8462d9);
+            
+        
+
+        marker_e11a7daa86aef609d94a67dddd46bd7d.bindPopup(popup_2ea628e9df3e87aad4d58f500a508cb3)
+        ;
+
+        
+    
+    
+            marker_e11a7daa86aef609d94a67dddd46bd7d.bindTooltip(
+                `<div>
+                     Kempten (Allgäu)
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_53e2f3ea94534eea28623663ad4d028a = L.marker(
+                [48.71319079999999, 9.024034799999999],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_a402e0ea193668204cb9c04d73ddf9f7 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_7dfbbf28a3417d11fdef8f957a1a6b27 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5TaW5kZWxmaW5nZW4gKFN0YWR0KTwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgTWVyY2VkZXMtQmVueiBBRyAoNCk8YnI+QVAgU2Vuc2luZyAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_a402e0ea193668204cb9c04d73ddf9f7.setContent(i_frame_7dfbbf28a3417d11fdef8f957a1a6b27);
+            
+        
+
+        marker_53e2f3ea94534eea28623663ad4d028a.bindPopup(popup_a402e0ea193668204cb9c04d73ddf9f7)
+        ;
+
+        
+    
+    
+            marker_53e2f3ea94534eea28623663ad4d028a.bindTooltip(
+                `<div>
+                     Sindelfingen (Stadt)
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_5490bf58bff3a2ac155c9722a3d6ca36 = L.marker(
+                [49.49349, 12.17958],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_254758ff246828687d5e3763920388eb = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_c32aa6fa135f62a1f34f5d2f4535416f = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5QZnJlaW1kPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBHZXJyZXNoZWltZXIgQUcgKDIpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_254758ff246828687d5e3763920388eb.setContent(i_frame_c32aa6fa135f62a1f34f5d2f4535416f);
+            
+        
+
+        marker_5490bf58bff3a2ac155c9722a3d6ca36.bindPopup(popup_254758ff246828687d5e3763920388eb)
+        ;
+
+        
+    
+    
+            marker_5490bf58bff3a2ac155c9722a3d6ca36.bindTooltip(
+                `<div>
+                     Pfreimd
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_05b1e11965b8ae04e1126e452cb0b445 = L.marker(
+                [47.92595, 9.25397],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_2c7f775020c4f310c9e5fad12fea1aa4 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_baa8cdfbcf8be6ff0ecb0b43d553201e = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5QZnVsbGVuZG9yZjwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgR2ViZXJpdCAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_2c7f775020c4f310c9e5fad12fea1aa4.setContent(i_frame_baa8cdfbcf8be6ff0ecb0b43d553201e);
+            
+        
+
+        marker_05b1e11965b8ae04e1126e452cb0b445.bindPopup(popup_2c7f775020c4f310c9e5fad12fea1aa4)
+        ;
+
+        
+    
+    
+            marker_05b1e11965b8ae04e1126e452cb0b445.bindTooltip(
+                `<div>
+                     Pfullendorf
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_783e96d16363b1da7ab40ee10704bbde = L.marker(
+                [48.17109, 11.71669],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_50dc87ae10a8f5175c2cf05e9841c70e = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_4af997b689d5426cc86ca8e77e24e0b5 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5Bc2NoaGVpbTwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgQXRydXZpYSBBRyAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_50dc87ae10a8f5175c2cf05e9841c70e.setContent(i_frame_4af997b689d5426cc86ca8e77e24e0b5);
+            
+        
+
+        marker_783e96d16363b1da7ab40ee10704bbde.bindPopup(popup_50dc87ae10a8f5175c2cf05e9841c70e)
+        ;
+
+        
+    
+    
+            marker_783e96d16363b1da7ab40ee10704bbde.bindTooltip(
+                `<div>
+                     Aschheim
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_f1529a59ed1aa938c5cadb6661c25cd8 = L.marker(
+                [49.97586, 8.06555],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_34188761e19851693f5e3060570e347a = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_e7e194a0376d02cab37a82734bdcf9a1 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5JbmdlbGhlaW0gYW0gUmhlaW48L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIEJvZWhyaW5nZXIgSW5nZWxoZWltICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_34188761e19851693f5e3060570e347a.setContent(i_frame_e7e194a0376d02cab37a82734bdcf9a1);
+            
+        
+
+        marker_f1529a59ed1aa938c5cadb6661c25cd8.bindPopup(popup_34188761e19851693f5e3060570e347a)
+        ;
+
+        
+    
+    
+            marker_f1529a59ed1aa938c5cadb6661c25cd8.bindTooltip(
+                `<div>
+                     Ingelheim am Rhein
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_70526788dc786b240e9b5e561000b01c = L.marker(
+                [49.460544, 11.049869333333334],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_ff3d74444b208855055e434e6cd96fa4 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_548fa5869ea30aff55afeb6c8e03f5b0 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5OdXJlbWJlcmc8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIERhdGV2IGVHICgxKTxicj5FVkFHTyBEaWdpdGFsIEdtYkggKDEpPGJyPk4tRVJHSUUgQWt0aWVuZ2VzZWxsc2NoYWZ0ICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_ff3d74444b208855055e434e6cd96fa4.setContent(i_frame_548fa5869ea30aff55afeb6c8e03f5b0);
+            
+        
+
+        marker_70526788dc786b240e9b5e561000b01c.bindPopup(popup_ff3d74444b208855055e434e6cd96fa4)
+        ;
+
+        
+    
+    
+            marker_70526788dc786b240e9b5e561000b01c.bindTooltip(
+                `<div>
+                     Nuremberg
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_4def22492065d3941e8d7e687ca22aaf = L.marker(
+                [48.98198816666667, 8.426339666666665],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_dd6ccde7d68e6ca3d4cceef5dc50cfb2 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_24b0d05ca19480e6f04cc045ad9cdfd4 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5FdHRsaW5nZW48L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIFZJVkFWSVMgQUcgKDIpPGJyPktudWRkZWxzIEdtYkggJiBDby4gS0cgKDEpPGJyPmVzZW50cmkgQUcgKDEpPGJyPnByZW5vZGUgKDEpPGJyPnByZW5vZGUgR21iSCAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_dd6ccde7d68e6ca3d4cceef5dc50cfb2.setContent(i_frame_24b0d05ca19480e6f04cc045ad9cdfd4);
+            
+        
+
+        marker_4def22492065d3941e8d7e687ca22aaf.bindPopup(popup_dd6ccde7d68e6ca3d4cceef5dc50cfb2)
+        ;
+
+        
+    
+    
+            marker_4def22492065d3941e8d7e687ca22aaf.bindTooltip(
+                `<div>
+                     Ettlingen
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_d23777a13545c66882e453c6f8507f90 = L.marker(
+                [53.10403, 8.786477],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_0110fa41deecaf2e68154e39b7ea7a19 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_fd0baba9cdeae420aceadf41d1d623ab = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5CcmVtZW48L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIEFUTEFTIEVMRUtUUk9OSUsgR21iSCAoNCk8YnI+TWVyY2VkZXMtQmVueiBBRyAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_0110fa41deecaf2e68154e39b7ea7a19.setContent(i_frame_fd0baba9cdeae420aceadf41d1d623ab);
+            
+        
+
+        marker_d23777a13545c66882e453c6f8507f90.bindPopup(popup_0110fa41deecaf2e68154e39b7ea7a19)
+        ;
+
+        
+    
+    
+            marker_d23777a13545c66882e453c6f8507f90.bindTooltip(
+                `<div>
+                     Bremen
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_4f04160a722f5ca89aebad1782e93507 = L.marker(
+                [51.509186, 7.2094735],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_c2ed3ccfaeeccccddb29ed768084ac3f = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_3668d154be023d1d5c1a015c3e0384a5 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5Cb2NodW08L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIEtlbHZpb24gSG9sZGluZyBHbWJIICgxKTxicj5SdWhyLVVuaXZlcnNpdMOkdCBCb2NodW0gKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_c2ed3ccfaeeccccddb29ed768084ac3f.setContent(i_frame_3668d154be023d1d5c1a015c3e0384a5);
+            
+        
+
+        marker_4f04160a722f5ca89aebad1782e93507.bindPopup(popup_c2ed3ccfaeeccccddb29ed768084ac3f)
+        ;
+
+        
+    
+    
+            marker_4f04160a722f5ca89aebad1782e93507.bindTooltip(
+                `<div>
+                     Bochum
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_7986e00e12241b67126446f77f7b6b8f = L.marker(
+                [50.25777, 10.966029999999998],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_d5aa0b173b02cdcf728245424f608b4a = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_c9f544e4ea62f46b3dd6ee06b63c0f35 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5Db2J1cmc8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIEhVSy1DT0JVUkcgVmVyc2ljaGVydW5nc2dydXBwZSAoMykKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_d5aa0b173b02cdcf728245424f608b4a.setContent(i_frame_c9f544e4ea62f46b3dd6ee06b63c0f35);
+            
+        
+
+        marker_7986e00e12241b67126446f77f7b6b8f.bindPopup(popup_d5aa0b173b02cdcf728245424f608b4a)
+        ;
+
+        
+    
+    
+            marker_7986e00e12241b67126446f77f7b6b8f.bindTooltip(
+                `<div>
+                     Coburg
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_cad00dce78d9c2ec3e6803d4c8568e7f = L.marker(
+                [51.336847, 12.393149],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_1693eb95892e26be135dae805cae06be = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_2a4d2976277d9d535d477e1c08cbbadf = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5MZWlwemlnPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBIZWxtaG9sdHotWmVudHJ1bSBmw7xyIFVtd2VsdGZvcnNjaHVuZyBHbWJIIOKAkyBVRlogKDEpPGJyPklRVklBIENvbW1lcmNpYWwgR21iSCAmIENvLiBPSEcgKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_1693eb95892e26be135dae805cae06be.setContent(i_frame_2a4d2976277d9d535d477e1c08cbbadf);
+            
+        
+
+        marker_cad00dce78d9c2ec3e6803d4c8568e7f.bindPopup(popup_1693eb95892e26be135dae805cae06be)
+        ;
+
+        
+    
+    
+            marker_cad00dce78d9c2ec3e6803d4c8568e7f.bindTooltip(
+                `<div>
+                     Leipzig
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_a251c96c8551733c4073e2c32d1bd56c = L.marker(
+                [51.83828, 10.79078],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_318a414e643785b07f85365ae29d502b = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_7663a56279a899644d015a54f37bd362 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5XZXJuaWdlcm9kZTwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgSGFyenNwYXJrYXNzZSAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_318a414e643785b07f85365ae29d502b.setContent(i_frame_7663a56279a899644d015a54f37bd362);
+            
+        
+
+        marker_a251c96c8551733c4073e2c32d1bd56c.bindPopup(popup_318a414e643785b07f85365ae29d502b)
+        ;
+
+        
+    
+    
+            marker_a251c96c8551733c4073e2c32d1bd56c.bindTooltip(
+                `<div>
+                     Wernigerode
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_4862ebc4f09e3a074b3636302cbec2d5 = L.marker(
+                [50.88299, 7.96497],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_e97146a0cc4e9502a034ca9774aafdd6 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_cf18a66281ed14caf4d75a35f3298965 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5TaWVnZW48L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIExFSUZIRUlUIEFHICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_e97146a0cc4e9502a034ca9774aafdd6.setContent(i_frame_cf18a66281ed14caf4d75a35f3298965);
+            
+        
+
+        marker_4862ebc4f09e3a074b3636302cbec2d5.bindPopup(popup_e97146a0cc4e9502a034ca9774aafdd6)
+        ;
+
+        
+    
+    
+            marker_4862ebc4f09e3a074b3636302cbec2d5.bindTooltip(
+                `<div>
+                     Siegen
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_09d6651943d6d0b34f4d6ba961f7756e = L.marker(
+                [53.70663, 10.002853],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_727c526b204f319fb825a1f6c1c3a326 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_f32607f041b3be239904ae8639e441dc = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5Ob3JkZXJzdGVkdDwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgU3RhZHQgTm9yZGVyc3RlZHQgKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_727c526b204f319fb825a1f6c1c3a326.setContent(i_frame_f32607f041b3be239904ae8639e441dc);
+            
+        
+
+        marker_09d6651943d6d0b34f4d6ba961f7756e.bindPopup(popup_727c526b204f319fb825a1f6c1c3a326)
+        ;
+
+        
+    
+    
+            marker_09d6651943d6d0b34f4d6ba961f7756e.bindTooltip(
+                `<div>
+                     Norderstedt
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_7ec5688a97bec90b63c02bf8a2bafb91 = L.marker(
+                [49.403755, 8.696891],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_45d87aa2f41cfe334dff1ecc804e0dc6 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_ba0594bae015ad1d001c20dfbb2cb72a = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5IZWlkZWxiZXJnPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBIZWlkZWxiZXJnIE1hdGVyaWFscyBBRyAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_45d87aa2f41cfe334dff1ecc804e0dc6.setContent(i_frame_ba0594bae015ad1d001c20dfbb2cb72a);
+            
+        
+
+        marker_7ec5688a97bec90b63c02bf8a2bafb91.bindPopup(popup_45d87aa2f41cfe334dff1ecc804e0dc6)
+        ;
+
+        
+    
+    
+            marker_7ec5688a97bec90b63c02bf8a2bafb91.bindTooltip(
+                `<div>
+                     Heidelberg
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_845ee4a217383e9db51ee08bb874d4d3 = L.marker(
+                [50.06929, 8.48668],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_517317b83732f528a34012e92ea8b142 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_881d28179ac7fdae3c3fcaa1b928511a = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5IYXR0ZXJzaGVpbTwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgS3VyYXJheSBFdXJvcGUgR21iSCAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_517317b83732f528a34012e92ea8b142.setContent(i_frame_881d28179ac7fdae3c3fcaa1b928511a);
+            
+        
+
+        marker_845ee4a217383e9db51ee08bb874d4d3.bindPopup(popup_517317b83732f528a34012e92ea8b142)
+        ;
+
+        
+    
+    
+            marker_845ee4a217383e9db51ee08bb874d4d3.bindTooltip(
+                `<div>
+                     Hattersheim
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_36d41ac88b24794c4a551028d7560286 = L.marker(
+                [52.021203, 8.543293],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_6de527e19df781cd93ae57bcfc3c714a = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_372687e1b7ae5fb5237076179432e87c = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5CaWVsZWZlbGQ8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIGhhY2htZWlzdGVyICsgcGFydG5lciBHbWJIICYgQ28uIEtHICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_6de527e19df781cd93ae57bcfc3c714a.setContent(i_frame_372687e1b7ae5fb5237076179432e87c);
+            
+        
+
+        marker_36d41ac88b24794c4a551028d7560286.bindPopup(popup_6de527e19df781cd93ae57bcfc3c714a)
+        ;
+
+        
+    
+    
+            marker_36d41ac88b24794c4a551028d7560286.bindTooltip(
+                `<div>
+                     Bielefeld
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_0e22708c8a238e354ac51d19d1eb162b = L.marker(
+                [52.263026, 10.517347],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_9f882c626a7c99ad9c36a748f2678ea6 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_d6fc598dcf73c31091761b9d843e4619 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5CcnVuc3dpY2s8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIE5FVyBZT1JLRVIgKDEpPGJyPsOWZmZlbnRsaWNoZSBTYWNodmVyc2ljaGVydW5nIEJyYXVuc2Nod2VpZyAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_9f882c626a7c99ad9c36a748f2678ea6.setContent(i_frame_d6fc598dcf73c31091761b9d843e4619);
+            
+        
+
+        marker_0e22708c8a238e354ac51d19d1eb162b.bindPopup(popup_9f882c626a7c99ad9c36a748f2678ea6)
+        ;
+
+        
+    
+    
+            marker_0e22708c8a238e354ac51d19d1eb162b.bindTooltip(
+                `<div>
+                     Brunswick
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_de9a365b10b26dfd7ef43d9d2e6b1e0a = L.marker(
+                [53.86956, 10.68758],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_6235289b157cddb941c3b3bef1b9abf9 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_4f297d500ed781144de0c1f78053d331 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5Mw7xiZWNrPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBTdGFkdHdlcmtlIEzDvGJlY2sgR3J1cHBlICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_6235289b157cddb941c3b3bef1b9abf9.setContent(i_frame_4f297d500ed781144de0c1f78053d331);
+            
+        
+
+        marker_de9a365b10b26dfd7ef43d9d2e6b1e0a.bindPopup(popup_6235289b157cddb941c3b3bef1b9abf9)
+        ;
+
+        
+    
+    
+            marker_de9a365b10b26dfd7ef43d9d2e6b1e0a.bindTooltip(
+                `<div>
+                     Lübeck
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_07809044400aa499be894f959e44cdf5 = L.marker(
+                [51.01496, 7.50752],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_1adabe993c505b550bbb4b0eba95029f = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_0a6cb1c74e4348fa93c9512d0f260a72 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5FbmdlbHNraXJjaGVuPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBGRVJDSEFVIOKAkyBDb25uZWN0aW5nIFBlb3BsZSBhbmQgVGVjaG5vbG9naWVzICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_1adabe993c505b550bbb4b0eba95029f.setContent(i_frame_0a6cb1c74e4348fa93c9512d0f260a72);
+            
+        
+
+        marker_07809044400aa499be894f959e44cdf5.bindPopup(popup_1adabe993c505b550bbb4b0eba95029f)
+        ;
+
+        
+    
+    
+            marker_07809044400aa499be894f959e44cdf5.bindTooltip(
+                `<div>
+                     Engelskirchen
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_84415021b734677a401be425473b9fc3 = L.marker(
+                [51.737096, 8.753842],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_1bf9c9fb29e8066ed9988e1987805188 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_438b17314bdc7dfd3aa9fe2765aeecff = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5QYWRlcmJvcm48L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIExJUkEgc2VydmljZSBHbWJIICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_1bf9c9fb29e8066ed9988e1987805188.setContent(i_frame_438b17314bdc7dfd3aa9fe2765aeecff);
+            
+        
+
+        marker_84415021b734677a401be425473b9fc3.bindPopup(popup_1bf9c9fb29e8066ed9988e1987805188)
+        ;
+
+        
+    
+    
+            marker_84415021b734677a401be425473b9fc3.bindTooltip(
+                `<div>
+                     Paderborn
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_6a72b0561e27a8421b6e802d9bd7728d = L.marker(
+                [50.923007, 11.589469],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_b4bd0d61200947e1b19707cfd21af6f4 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_0f5f6d6d18f3f2ad3972d294c0728b15 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5KZW5hPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBNYW5wb3dlciAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_b4bd0d61200947e1b19707cfd21af6f4.setContent(i_frame_0f5f6d6d18f3f2ad3972d294c0728b15);
+            
+        
+
+        marker_6a72b0561e27a8421b6e802d9bd7728d.bindPopup(popup_b4bd0d61200947e1b19707cfd21af6f4)
+        ;
+
+        
+    
+    
+            marker_6a72b0561e27a8421b6e802d9bd7728d.bindTooltip(
+                `<div>
+                     Jena
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_69b0c076a9a92681c5ed5f94785ebb6a = L.marker(
+                [49.50522, 11.7386],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_1cbcc07ede988e6bf365888137395539 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_f9a07284ce7d730110ff9d19dd6b9615 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5TdWx6YmFjaC1Sb3NlbmJlcmc8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIERhbnBvd2VyIEdydXBwZSAoMSkKICAgIDwvZGl2PgogICAg&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_1cbcc07ede988e6bf365888137395539.setContent(i_frame_f9a07284ce7d730110ff9d19dd6b9615);
+            
+        
+
+        marker_69b0c076a9a92681c5ed5f94785ebb6a.bindPopup(popup_1cbcc07ede988e6bf365888137395539)
+        ;
+
+        
+    
+    
+            marker_69b0c076a9a92681c5ed5f94785ebb6a.bindTooltip(
+                `<div>
+                     Sulzbach-Rosenberg
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_bca9586382b2e4b81462ea6893e3fb5d = L.marker(
+                [49.877672, 8.656595],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_5ffa241f4d5940a4ae33e5da1a1bf14e = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_b27495d247351d33baa49ca76e5f6751 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5EYXJtc3RhZHQ8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIEFsbmF0dXJhIFByb2R1a3Rpb25zLSB1bmQgSGFuZGVscyBHbWJIICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_5ffa241f4d5940a4ae33e5da1a1bf14e.setContent(i_frame_b27495d247351d33baa49ca76e5f6751);
+            
+        
+
+        marker_bca9586382b2e4b81462ea6893e3fb5d.bindPopup(popup_5ffa241f4d5940a4ae33e5da1a1bf14e)
+        ;
+
+        
+    
+    
+            marker_bca9586382b2e4b81462ea6893e3fb5d.bindTooltip(
+                `<div>
+                     Darmstadt
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_5d8a1a004392148e0517fd01a8b46697 = L.marker(
+                [51.81648, 9.86732],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_9f1cf29ced6a1fdda0cf3dc72777e2d3 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_9cf3938bc617430d97c58a52dcdb99f3 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5FaW5iZWNrPC9oND4KICAgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxMnB4OyI+CiAgICBLV1MgR3JvdXAgKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_9f1cf29ced6a1fdda0cf3dc72777e2d3.setContent(i_frame_9cf3938bc617430d97c58a52dcdb99f3);
+            
+        
+
+        marker_5d8a1a004392148e0517fd01a8b46697.bindPopup(popup_9f1cf29ced6a1fdda0cf3dc72777e2d3)
+        ;
+
+        
+    
+    
+            marker_5d8a1a004392148e0517fd01a8b46697.bindTooltip(
+                `<div>
+                     Einbeck
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_5653e942d5c4fc0f827872ee46c51d6e = L.marker(
+                [52.40101, 13.26532],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_3e19e10bd550e0184f27e2db9e828cdb = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_78033a825f6ec409bdf356080bfe2bde = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5UZWx0b3c8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIEVzZm9yaW4gU2UgKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_3e19e10bd550e0184f27e2db9e828cdb.setContent(i_frame_78033a825f6ec409bdf356080bfe2bde);
+            
+        
+
+        marker_5653e942d5c4fc0f827872ee46c51d6e.bindPopup(popup_3e19e10bd550e0184f27e2db9e828cdb)
+        ;
+
+        
+    
+    
+            marker_5653e942d5c4fc0f827872ee46c51d6e.bindTooltip(
+                `<div>
+                     Teltow
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_41d28b4159b5a7f982f734d8dd5eb3bb = L.marker(
+                [50.91404, 13.33722],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_4a8eb69439146acce5d7599ad65da546 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_cfd118eec95aa8ba72e7840468cef048 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5GcmVpYmVyZzwvaDQ+CiAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTJweDsiPgogICAgU2lsdHJvbmljIEFHLCBXZXJrIEZyZWliZXJnICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_4a8eb69439146acce5d7599ad65da546.setContent(i_frame_cfd118eec95aa8ba72e7840468cef048);
+            
+        
+
+        marker_41d28b4159b5a7f982f734d8dd5eb3bb.bindPopup(popup_4a8eb69439146acce5d7599ad65da546)
+        ;
+
+        
+    
+    
+            marker_41d28b4159b5a7f982f734d8dd5eb3bb.bindTooltip(
+                `<div>
+                     Freiberg
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_c88b6d39cd26c0072f4f7a87f72c3aa7 = L.marker(
+                [51.26869, 6.61876],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_4d0e70d2aebad585ed8b0a246deb9c77 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_34a183c706b86564dbf58be24b93c67a = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5NZWVyYnVzY2g8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIE9SQVlMSVMgKDEpCiAgICA8L2Rpdj4KICAgIA==&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_4d0e70d2aebad585ed8b0a246deb9c77.setContent(i_frame_34a183c706b86564dbf58be24b93c67a);
+            
+        
+
+        marker_c88b6d39cd26c0072f4f7a87f72c3aa7.bindPopup(popup_4d0e70d2aebad585ed8b0a246deb9c77)
+        ;
+
+        
+    
+    
+            marker_c88b6d39cd26c0072f4f7a87f72c3aa7.bindTooltip(
+                `<div>
+                     Meerbusch
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_ba800147aff1e1756cb3b6ee19483c7e = L.marker(
+                [50.08407, 8.23838],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_34da14d50e62b2facb6a8c23023f77a2 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_522e7cd3d5e13ab54a634f476398c8c2 = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5XaWVzYmFkZW48L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIFNPS0EtQkFVIFVybGF1YnMtIHVuZCBMb2huYXVzZ2xlaWNoc2thc3NlIGRlciBCYXV3aXJ0c2NoYWZ0ICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_34da14d50e62b2facb6a8c23023f77a2.setContent(i_frame_522e7cd3d5e13ab54a634f476398c8c2);
+            
+        
+
+        marker_ba800147aff1e1756cb3b6ee19483c7e.bindPopup(popup_34da14d50e62b2facb6a8c23023f77a2)
+        ;
+
+        
+    
+    
+            marker_ba800147aff1e1756cb3b6ee19483c7e.bindTooltip(
+                `<div>
+                     Wiesbaden
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_4db8a7f229f44aaf9d6ab9c2aac95aaa = L.marker(
+                [47.6881, 9.1484],
+                {
+}
+            ).addTo(marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30);
+        
+    
+        var popup_2c8c5e5f9e08ac66f586b5198f04da54 = L.popup({
+  &quot;maxWidth&quot;: 300,
+});
+
+        
+            
+                var i_frame_0a761b4c283931cc0848bc7ffcc9fe2b = $(`<iframe src=&quot;data:text/html;charset=utf-8;base64,CiAgICAKICAgIDxoND5Db25zdGFuY2U8L2g0PgogICAgPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7Ij4KICAgIFPDnERLVVJJRVIgLCBNZWRpZW5oYXVzICgxKQogICAgPC9kaXY+CiAgICA=&quot; width=&quot;300&quot; style=&quot;border:none !important;&quot; height=&quot;150&quot;></iframe>`)[0];
+                popup_2c8c5e5f9e08ac66f586b5198f04da54.setContent(i_frame_0a761b4c283931cc0848bc7ffcc9fe2b);
+            
+        
+
+        marker_4db8a7f229f44aaf9d6ab9c2aac95aaa.bindPopup(popup_2c8c5e5f9e08ac66f586b5198f04da54)
+        ;
+
+        
+    
+    
+            marker_4db8a7f229f44aaf9d6ab9c2aac95aaa.bindTooltip(
+                `<div>
+                     Constance
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            marker_cluster_3d9f5f52f5827b4bf0e71f5c9e705b30.addTo(map_215509153c0a3bc8b79f302d34dd624a);
+        
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+<div class="cell-output cell-output-display">
+
+<p style="font-family: Arial; font-size: 14px; margin-top: 10px;">
+<b>Note:</b> The numbers on the map markers represent how many job locations are clustered together in that area.
+Zoom in to explore individual job locations and click on them to view the top hiring companies in that region
+and the number of jobs per each company. The city names are in English!
+</p>
+</div>
+</div>
+<div id="14b06fbb-facf-4ac0-a8a8-a61b1c1cb980" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:02:58.177291Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:02:58.176933Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:02:58.252889Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:02:58.252236Z&quot;}}" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Save map</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>company_map.save(<span class="ss">f"</span><span class="sc">{</span>output_dir<span class="sc">}</span><span class="ss">/company_map.html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="interactive-company-job-title-chart-per-city" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-company-job-title-chart-per-city">📊 Interactive Company &amp; Job Title Chart per City</h2>
+<div id="346228d7-7e2d-48ff-b85b-8d6755cc110a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:02:58.255294Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:02:58.254849Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:02:58.451443Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:02:58.450872Z&quot;}}" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate job data</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>table_data <span class="op">=</span> (</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    df_coords</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    .groupby([<span class="st">'city'</span>, <span class="st">'company'</span>])  </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        job_titles<span class="op">=</span>(<span class="st">'title'</span>, <span class="bu">list</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        job_links<span class="op">=</span>(<span class="st">'redirect_url'</span>, <span class="bu">list</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        job_dates<span class="op">=</span>(<span class="st">'created'</span>, <span class="bu">list</span>),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        latest_date<span class="op">=</span>(<span class="st">'created'</span>, <span class="kw">lambda</span> dates: <span class="bu">max</span>(pd.to_datetime(dates)))  <span class="co"># For sorting</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Format job titles + links + dates into HTML and sort by published date</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_job_entry(title, link, date):</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    raw_date <span class="op">=</span> pd.to_datetime(date)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    display_date <span class="op">=</span> raw_date.strftime(<span class="st">'</span><span class="sc">%d</span><span class="st">-%m-%Y'</span>)  <span class="co"># EU format</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>title<span class="sc">}</span><span class="ss">&lt;br&gt;"</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"&lt;a href='</span><span class="sc">{</span>link<span class="sc">}</span><span class="ss">' target='_blank'&gt;🔗 Link&lt;/a&gt;&lt;br&gt;"</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"&lt;em&gt;date: </span><span class="sc">{</span>display_date<span class="sc">}</span><span class="ss">&lt;/em&gt;"</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>table_data[<span class="st">'jobs'</span>] <span class="op">=</span> table_data.<span class="bu">apply</span>(</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> row: <span class="st">'&lt;br&gt;&lt;br&gt;'</span>.join(</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>        format_job_entry(t, l, d)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t, l, d <span class="kw">in</span> <span class="bu">zip</span>(row[<span class="st">'job_titles'</span>], row[<span class="st">'job_links'</span>], row[<span class="st">'job_dates'</span>])</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Final table with renamed columns (include SortDate as hidden column)</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>table_data_display <span class="op">=</span> table_data[[<span class="st">'city'</span>, <span class="st">'company'</span>, <span class="st">'jobs'</span>, <span class="st">'latest_date'</span>]].rename(columns<span class="op">=</span>{</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">'city'</span>: <span class="st">'City'</span>,</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">'company'</span>: <span class="st">'Company'</span>,</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">'jobs'</span>: <span class="st">'Job Offers'</span>,</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">'latest_date'</span>: <span class="st">'SortDate'</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix date format for sorting</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>table_data[<span class="st">'latest_date'</span>] <span class="op">=</span> pd.to_datetime(table_data[<span class="st">'latest_date'</span>]).dt.strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Final table with sorting column</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>table_data_display <span class="op">=</span> table_data[[<span class="st">'city'</span>, <span class="st">'company'</span>, <span class="st">'jobs'</span>, <span class="st">'latest_date'</span>]].rename(columns<span class="op">=</span>{</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">'city'</span>: <span class="st">'City'</span>,</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">'company'</span>: <span class="st">'Company'</span>,</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    <span class="st">'jobs'</span>: <span class="st">'Job Offers'</span>,</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>    <span class="st">'latest_date'</span>: <span class="st">'SortDate'</span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="co"># HTML table</span></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>html_table <span class="op">=</span> table_data_display.to_html(</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>    escape<span class="op">=</span><span class="va">False</span>, index<span class="op">=</span><span class="va">False</span>, classes<span class="op">=</span><span class="st">'display'</span>, table_id<span class="op">=</span><span class="st">'jobTable'</span></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="co"># HTML Template</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>html_template <span class="op">=</span> <span class="ss">f"""</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;html&gt;</span></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;head&gt;</span></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;meta charset="utf-8"&gt;</span></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;title&gt;Job Offers Interactive Table&lt;/title&gt;</span></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css"&gt;</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;script src="https://code.jquery.com/jquery-3.7.0.js"&gt;&lt;/script&gt;</span></span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"&gt;&lt;/script&gt;</span></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;style&gt;</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a><span class="ss">  body </span><span class="ch">{{</span></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a><span class="ss">    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;</span></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a><span class="ss">    background-color: #fafafa;</span></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a><span class="ss">    padding: 20px;</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="ch">}}</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a><span class="ss">  h2 </span><span class="ch">{{</span></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a><span class="ss">    color: #333;</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="ch">}}</span></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a><span class="ss">  p </span><span class="ch">{{</span></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a><span class="ss">    margin-bottom: 10px;</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a><span class="ss">    font-size: 0.95em;</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a><span class="ss">    color: #555;</span></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="ch">}}</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="ss">  #cityFilter </span><span class="ch">{{</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="ss">    margin-bottom: 20px;</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a><span class="ss">    font-size: 1em;</span></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="ch">}}</span></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a><span class="ss">  table.dataTable </span><span class="ch">{{</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a><span class="ss">    border-collapse: collapse !important;</span></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a><span class="ss">    width: 100%;</span></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a><span class="ss">    background-color: white;</span></span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a><span class="ss">    overflow: hidden;</span></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a><span class="ss">    box-shadow: 0 2px 10px rgba(0,0,0,0.05);</span></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="ch">}}</span></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a><span class="ss">  table.dataTable thead </span><span class="ch">{{</span></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a><span class="ss">    background-color: #333;</span></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a><span class="ss">    color: white;</span></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="ch">}}</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a><span class="ss">  table.dataTable th,</span></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a><span class="ss">  table.dataTable td </span><span class="ch">{{</span></span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a><span class="ss">    padding: 10px;</span></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a><span class="ss">    text-align: left;</span></span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a><span class="ss">    vertical-align: top;</span></span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a><span class="ss">    white-space: normal;</span></span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="ch">}}</span></span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a><span class="ss">  table.dataTable tbody tr:nth-child(odd) </span><span class="ch">{{</span></span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a><span class="ss">    background-color: #f9f9f9;</span></span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="ch">}}</span></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a><span class="ss">  table.dataTable tbody tr:hover </span><span class="ch">{{</span></span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a><span class="ss">    background-color: #eef2f7;</span></span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a><span class="ss">    transition: background-color 0.2s ease;</span></span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="ch">}}</span></span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a><span class="ss">  a </span><span class="ch">{{</span></span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a><span class="ss">    color: #1a73e8;</span></span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a><span class="ss">    text-decoration: none;</span></span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="ch">}}</span></span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a><span class="ss">  a:hover </span><span class="ch">{{</span></span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a><span class="ss">    text-decoration: underline;</span></span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a><span class="ss">  </span><span class="ch">}}</span></span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/style&gt;</span></span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/head&gt;</span></span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;body&gt;</span></span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;h2&gt;Data Science Job Offers by City and Company&lt;/h2&gt;</span></span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;p&gt;Use the dropdown to filter by city or the search box to filter by keywords. Click the 🔗 link to view or apply for a job.&lt;/p&gt;</span></span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;label for="cityFilter"&gt;&lt;strong&gt;Filter by City:&lt;/strong&gt;&lt;/label&gt;</span></span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;select id="cityFilter"&gt;</span></span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a><span class="ss">  &lt;option value=""&gt;All Cities&lt;/option&gt;</span></span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/select&gt;</span></span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>html_table<span class="sc">}</span></span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;script&gt;</span></span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a><span class="ss">$(document).ready(function() </span><span class="ch">{{</span></span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a><span class="ss">    var table = $('#jobTable').DataTable(</span><span class="ch">{{</span></span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a><span class="ss">        "pageLength": 10,</span></span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a><span class="ss">        "lengthMenu": [5, 10, 20, 50],</span></span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a><span class="ss">        "order": [[3, 'desc']],</span></span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a><span class="ss">        "columnDefs": [</span></span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a><span class="ss">            </span><span class="ch">{{</span></span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a><span class="ss">                "targets": 3,</span></span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a><span class="ss">                "visible": false,</span></span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a><span class="ss">                "searchable": false</span></span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a><span class="ss">            </span><span class="ch">}}</span></span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a><span class="ss">        ]</span></span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span><span class="ch">}}</span><span class="ss">);</span></span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a><span class="ss">    // Populate City filter dropdown</span></span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a><span class="ss">    var uniqueCities = table.column(0).data().unique().sort();</span></span>
+<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a><span class="ss">    uniqueCities.toArray().forEach(function(city) </span><span class="ch">{{</span></span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a><span class="ss">        $('#cityFilter').append(`&lt;option value="$</span><span class="ch">{{</span><span class="ss">city</span><span class="ch">}}</span><span class="ss">"&gt;$</span><span class="ch">{{</span><span class="ss">city</span><span class="ch">}}</span><span class="ss">&lt;/option&gt;`);</span></span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span><span class="ch">}}</span><span class="ss">);</span></span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a><span class="ss">    // Filter table by selected city</span></span>
+<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a><span class="ss">    $('#cityFilter').on('change', function() </span><span class="ch">{{</span></span>
+<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a><span class="ss">        var selected = $(this).val();</span></span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a><span class="ss">        if (selected) </span><span class="ch">{{</span></span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a><span class="ss">            table.column(0).search('^' + selected + '$', true, false).draw();</span></span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a><span class="ss">        </span><span class="ch">}}</span><span class="ss"> else </span><span class="ch">{{</span></span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a><span class="ss">            table.column(0).search('').draw();</span></span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a><span class="ss">        </span><span class="ch">}}</span></span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span><span class="ch">}}</span><span class="ss">);</span></span>
+<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a><span class="ch">}}</span><span class="ss">);</span></span>
+<span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/script&gt;</span></span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/body&gt;</span></span>
+<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a><span class="ss">&lt;/html&gt;</span></span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="a6219850-a7bd-48d3-9237-703c7b659537" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:02:58.453782Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:02:58.453399Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:02:58.456818Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:02:58.456379Z&quot;}}" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save interactive table for allowing display on my quarto blog</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"</span><span class="sc">{</span>output_dir<span class="sc">}</span><span class="ss">/interactive_job_table.html"</span>, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    f.write(html_template)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="e9b0de6c-d61b-4a2f-b44e-863509f7616a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-06-19T08:02:58.458619Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-06-19T08:02:58.458450Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-06-19T08:02:58.462558Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-06-19T08:02:58.461960Z&quot;}}" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> IFrame</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># display</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>IFrame(<span class="ss">f"</span><span class="sc">{</span>output_dir<span class="sc">}</span><span class="ss">/interactive_job_table.html"</span>, width<span class="op">=</span><span class="st">'90%'</span>, height<span class="op">=</span><span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="12">
+
+        <iframe width="90%" height="600" src="output/2025-06-19/interactive_job_table.html" frameborder="0" allowfullscreen=""></iframe>
+        
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

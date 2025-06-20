@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-15">
-<meta name="description" content="A step-by-step guide to downloading Kaggle datasets with the new kagglehub Python package.">
+<meta name="author" content="Flavia Felletti">
+<meta name="dcterms.date" content="2025-06-20">
 
-<title>How to Download Datasets from Kaggle Using kagglehub – Flavia’s Data Blog</title>
+<title>Weekly Job Market Analysis - 2025-06-20 – Flavia’s Data Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -76,7 +41,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-764e4e07199886b3f3a0487f91cec000.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-905433ffa22618bb005779f2b23c5ce0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,10 +72,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../styles.css">
-<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -146,48 +110,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul class="collapse">
-  <li><a href="#what-is-kagglehub" id="toc-what-is-kagglehub" class="nav-link active" data-scroll-target="#what-is-kagglehub">What is <code>kagglehub</code>?</a></li>
-  <li><a href="#step-1-install-kagglehub" id="toc-step-1-install-kagglehub" class="nav-link" data-scroll-target="#step-1-install-kagglehub">Step 1: Install <code>kagglehub</code></a></li>
-  <li><a href="#step-2-authenticate-with-kaggle" id="toc-step-2-authenticate-with-kaggle" class="nav-link" data-scroll-target="#step-2-authenticate-with-kaggle">Step 2: Authenticate with Kaggle</a></li>
-  <li><a href="#step-3-download-a-dataset" id="toc-step-3-download-a-dataset" class="nav-link" data-scroll-target="#step-3-download-a-dataset">Step 3: Download a Dataset</a></li>
-  <li><a href="#step-4-explore-the-files" id="toc-step-4-explore-the-files" class="nav-link" data-scroll-target="#step-4-explore-the-files">Step 4: Explore the Files</a></li>
-  <li><a href="#bonus-reusability-and-automation" id="toc-bonus-reusability-and-automation" class="nav-link" data-scroll-target="#bonus-reusability-and-automation">Bonus: Reusability and Automation</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">How to Download Datasets from Kaggle Using kagglehub</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Python</div>
-    <div class="quarto-category">Data</div>
-    <div class="quarto-category">Tools</div>
-  </div>
-  </div>
-
-<div>
-  <div class="description">
-    <p><span class="description">A step-by-step guide to downloading Kaggle datasets with the new kagglehub Python package.</span></p>
-  </div>
+<h1 class="title">Weekly Job Market Analysis - 2025-06-20</h1>
 </div>
+
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Flavia Felletti </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 15, 2025</p>
+      <p class="date">June 20, 2025</p>
     </div>
   </div>
   
@@ -199,67 +145,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>kagglehub is a relatively new and more user-friendly package developed by Kaggle to simplify access to datasets, notebooks, and models. The <code>kagglehub</code> Python package offers a cleaner alternative.</p>
-<p>This guide shows you how to download Kaggle datasets in just a few lines of code.</p>
-<section id="what-is-kagglehub" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-kagglehub">What is <code>kagglehub</code>?</h2>
-<p><a href="https://pypi.org/project/kagglehub/"><code>kagglehub</code></a> is a Python package developed by Kaggle that allows you to programmatically download datasets, notebooks, and models.</p>
-</section>
-<section id="step-1-install-kagglehub" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-install-kagglehub">Step 1: Install <code>kagglehub</code></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install kagglehub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="step-2-authenticate-with-kaggle" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-authenticate-with-kaggle">Step 2: Authenticate with Kaggle</h2>
-<p>To use kagglehub, you need a Kaggle API token.</p>
-<section id="option-a-save-the-token-file" class="level3">
-<h3 class="anchored" data-anchor-id="option-a-save-the-token-file">Option A: Save the token file</h3>
-<p>Go to your Kaggle account settings: https://www.kaggle.com/account</p>
-<p>Scroll to “API” and click “Create New API Token”</p>
-<p>Save the downloaded kaggle.json file to:</p>
-<p>Linux/macOS: ~/.kaggle/kaggle.json</p>
-<p>Windows: C:&lt;YourUsername&gt;.kaggle.json</p>
-<p>If the .kaggle folder doesn’t exist, create it manually.</p>
-</section>
-<section id="option-b-use-environment-variables" class="level3">
-<h3 class="anchored" data-anchor-id="option-b-use-environment-variables">Option B: Use environment variables</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"KAGGLE_USERNAME"</span>] <span class="op">=</span> <span class="st">"your_username"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"KAGGLE_KEY"</span>] <span class="op">=</span> <span class="st">"your_key"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Replace “your_username” and “your_key” with your API credentials from kaggle.json.</p>
-</section>
-</section>
-<section id="step-3-download-a-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-download-a-dataset">Step 3: Download a Dataset</h2>
-<p>Here’s how to download your dataset:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> kagglehub</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> kagglehub.dataset_download(<span class="st">"yourdataset"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dataset downloaded to:"</span>, path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The dataset is automatically downloaded and unzipped into a cache directory (usually ~/.cache/kagglehub/).</p>
-</section>
-<section id="step-4-explore-the-files" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-explore-the-files">Step 4: Explore the Files</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> os.listdir(path):</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">file</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="bonus-reusability-and-automation" class="level2">
-<h2 class="anchored" data-anchor-id="bonus-reusability-and-automation">Bonus: Reusability and Automation</h2>
+<p>Welcome to the weekly update of the data science job market in Germany!</p>
+<p>This analysis is based on the latest job postings collected via the <a href="https://developer.adzuna.com/">Adzuna API</a>, a comprehensive job search API that aggregates job offers from multiple sources.</p>
+<p>All the data fetching, cleaning, and analysis code is publicly available on GitHub in my <a href="https://github.com/Flazoukie/adzuna-scraper-cleaned"><code>adzuna-scraper-cleaned</code></a> repository. This project runs automatically every week to provide fresh insights.</p>
+<p>If you are interested in more details, you can check this <a href="https://flazoukie.github.io/data-blog/posts/analyze_jobs.html">post</a> where I published the whole first analysis with detailed explanations.</p>
+<section id="what-youll-find-in-this-post" class="level2">
+<h2 class="anchored" data-anchor-id="what-youll-find-in-this-post">What you’ll find in this post</h2>
 <ul>
-<li>kagglehub also works for notebooks and models.</li>
-<li>Files are cached and won’t be redownloaded unless updated.</li>
-<li>Great for use in automated workflows or reproducible projects.</li>
+<li>A bar plot highlighting the <strong>top cities</strong> with the most data science job offers.</li>
+<li>An <strong>interactive company map</strong> showing where employers are located.</li>
+<li>An <strong>interactive job table</strong> that allows you to explore individual job postings.</li>
 </ul>
 </section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>kagglehub is a simple, effective alternative to the Kaggle CLI, especially for Python users who prefer to keep everything in code. With just a few lines, you can grab datasets and start analyzing!</p>
+<section id="publishing-cadence" class="level2">
+<h2 class="anchored" data-anchor-id="publishing-cadence">Publishing cadence</h2>
+<p>I publish this job market analysis on my blog every <strong>Monday</strong>, so you can stay up to date with the latest trends and opportunities.</p>
+</section>
+<section id="visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="visualizations">Visualizations</h2>
+<section id="top-cities-for-job-offers" class="level3">
+<h3 class="anchored" data-anchor-id="top-cities-for-job-offers">Top Cities for Job Offers</h3>
+<p><img src="../results/2025-06-20/top_cities.png" class="img-fluid" style="width:70.0%"></p>
+</section>
+<section id="interactive-company-map" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-company-map">Interactive Company Map</h3>
+<iframe src="../results/2025-06-20/company_map.html" width="100%" height="600px">
+</iframe>
+</section>
+<section id="interactive-job-table" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-job-table">Interactive Job Table</h3>
+<iframe src="../results/2025-06-20/interactive_job_table.html" width="100%" height="600px">
+</iframe>
+<p>You can also <a href="../results/2025-06-20/output.html">download the full analysis notebook here</a> to explore the details yourself.</p>
+<hr>
+<p>Thank you for reading! If you want to contribute or ask questions, feel free to reach out.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
