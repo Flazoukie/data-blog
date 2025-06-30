@@ -1,0 +1,156 @@
+---
+title: "Work in Progress: An Automated Workflow to Summarize and Simplify AI Research with Free Tools"
+date: 2025-06-28
+categories: [AI, Automation, NLP, LLMs, Open Science]
+description: >
+  <span class="description">My attempt to build a fully automated pipeline to fetch, simplify, and publish weekly summaries of open-access AI research using OpenAlex, Hugging Face, and GitHub Actions — entirely with free tools.</span>
+image: /images/AI_reading.jpg
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-copy: true
+    code-overflow: wrap
+    css: styles.css
+---
+
+## 🧠 Why I Built This
+
+We may be curious about the latest discoveries in AI research, but reading papers may be time consuming,
+ and also a little boring — even for someone having an extensive research background. I wanted to:
+
+* ✅ Make new research easier to understand
+* 🧪 Test the capabilities of free LLMs for science communication
+* 🤖 Automate end-to-end publishing using GitHub Actions
+
+So I built a workflow that fetches one open-access AI paper per week, among the most recent publications, and rewrites its abstract in plain English for curious general readers.
+
+---
+
+## 🔧 Tools I Used
+
+This project only uses free resources:
+
+* **[OpenAlex](https://openalex.org)** – to fetch recent open-access AI papers
+* **Hugging Face Inference API** – to generate human-friendly explanations (using models like `zephyr-7b-beta` and `mistral-7b-instruct`)
+* **GitHub Actions** – to automate everything weekly
+* **Quarto Blog** – to publish the summaries as `.qmd` posts here
+* **ChatGPT** - to ease the coding and consult about the project
+
+---
+
+## ⚙️ The Pipeline
+
+### 1. **Fetch a Paper**
+
+Using the OpenAlex API, I query for recent papers in artificial intelligence, limited to those with open-access full text and indexed abstracts. I:
+
+* Decode the `abstract_inverted_index`
+* Filter out papers already posted (based on DOI or title)
+* Randomly select one paper with a valid abstract
+
+### 2. **Simplify the Abstract**
+
+The chosen abstract is either:
+
+* Used as-is (if short)
+* Or summarized first (if >1500 characters) to prevent exceeding token limits and also to provide a shorter input to the
+LLM which simplifies it, as longer abstracts tended to confuse the model.
+
+Summarization prompt:
+
+> "Summarize the following academic abstract in a concise way, capturing the main points clearly"
+
+
+Then, a second prompt was used to rewrite it entirely in simple, more engaging engaging language.
+I tried several prompts, including some suggested by ChatGPT. For instance:
+
+> “You are an expert science communicator. Your task is to rewrite the following academic abstract.
+> Rephrase the text in a clear, engaging, and simple way, while staying fully faithful to the original content.
+> Use your own words, avoid jargon, and do not add information that is not explicitly present in the original.
+> Write one paragraph of 5 to 8 sentences, in third person, without using the words 'abstract', 'original', or meta-commentary.
+> Use a neutral, friendly tone and explain the ideas as if to a curious teenager.
+> Conclude with a sentence explaining why this research matters to society."
+
+And:
+
+> "You are an expert AI communicator. Your goal is to rewrite a complex academic abstract
+> for a tech-savvy but non-expert audience, like a curious student or a journalist.
+> Follow these instructions precisely:
+> (1) Rewrite the abstract into a single, cohesive paragraph between 5 and 8 sentences.
+> (2) Start by explaining the core problem the researchers are trying to solve.
+> (3) Clearly describe their unique method or solution.
+> (4) Mention the key result or finding.
+> (5) The final sentence MUST explain the real-world importance or potential impact of this research.
+> (6) Use simple, engaging language. Avoid jargon or explain it in the simplest terms.
+> (7) Do not add any information not present in the original text. Do not use phrases like 'This paper...' or 'The abstract describes...'."
+
+
+### 3. **Generate and Save the Blog Post**
+
+The output includes:
+
+* Paper title and authors
+* Original abstract (cleaned)
+* Rewritten summary
+* A link to the full paper
+* Notes on the model used
+
+The post is saved as a `.qmd` file in my Quarto blog.
+
+### 4. **Publish Automatically**
+
+GitHub Actions runs this pipeline every Friday. It:
+
+* Fetches and simplifies the paper
+* Commits the new post to the blog repo
+* It auto-deploys the blog
+
+## Models & Parameters
+
+I tried the following models:
+
+* t5-small - mostly stays to close to the original text
+* HuggingFaceH4/zephyr-7b-beta - results vary a lot! 🤔
+
+The current parameters I am using:
+
+| **Parameter**         | **What It Does**                                                                 | **Value** | **Why We Chose It**                                                                 |
+|-----------------------|----------------------------------------------------------------------------------|-----------|--------------------------------------------------------------------------------------|
+| `temperature`         | Controls randomness. Lower = more focused/deterministic. Higher = more diverse. | `0.35`    | Helps keep output controlled and factual.                                           |
+| `top_p`               | Nucleus sampling: only sample from top tokens whose cumulative prob ≤ *p*.      | `0.8`     | Allows slight diversity but avoids extreme randomness.                              |
+| `repetition_penalty` | Penalizes repetition of phrases or words.                                        | `1.2`     | Encourages varied wording and avoids repeated structures.                           |
+| `do_sample`           | Whether to sample or pick the most likely next token.                           | `False`   | Disables random sampling for more consistent results.                               |
+| `use_cache`           | Reuse past attention (for faster decoding).                                     | `False`   | Disabled in inference API for fresh generation each time.                           |
+| `max_new_tokens`      | Maximum number of tokens the model can generate in the response.                | `300`     | Keeps summaries concise (~150–200 words max).                                       |
+| `return_full_text`    | Whether to return both prompt + response (`True`) or just the response.         | `False`   | We only want the model’s generated output, not the prompt.                          |
+
+
+## ⚠️ Challenges So Far
+
+I hit over and over these issues:
+
+* 🥱 Summaries are often too close to the original (not real rewrites)
+* 🤐 Occasionally, I get **empty output** or skipped generations
+* 👽 I got a case of **hallucination**
+
+I'm still experimenting with prompt wording, sampling parameters, and maybe switching to more consistent models.
+
+
+## 💬 What’s Next — and How You Can Help
+
+I’d love to:
+
+* Try better models (open to suggestions!)
+* Avoid hallucinations more reliably
+* Add topics beyond AI (NLP, ML, etc.)
+* Get community feedback to improve the summaries
+
+👉 If you’ve tried summarizing scientific research with LLMs — or have tips for better prompting — please reach out!
+
+You can find the pipeline code and one of my (a bit disappointing) attempts here:
+
+* 🔗 [GitHub Repo](https://github.com/Flazoukie/ai-research-summaries)
+* 📰 [Blog Post Archive](https://flazoukie.github.io/data-blog/posts/2025-06-28-ai-summary.html)
+
+Thanks for reading! 🤖✍️

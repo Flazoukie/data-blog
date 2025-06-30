@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2025-06-28">
+<meta name="description" content="My attempt to build a fully automated pipeline to fetch, simplify, and publish weekly summaries of open-access AI research using OpenAlex, Hugging Face, and GitHub Actions — entirely with free tools.">
 
-<title>AI Paper of the Week – Flavia’s Data Blog</title>
+<title>Work in Progress: An Automated Workflow to Summarize and Simplify AI Research with Free Tools – Flavia’s Data Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -40,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c28543352b268ffe19ea899b699f2a9b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,9 +72,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -109,19 +111,40 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#why-i-built-this" id="toc-why-i-built-this" class="nav-link active" data-scroll-target="#why-i-built-this">🧠 Why I Built This</a></li>
+  <li><a href="#tools-i-used" id="toc-tools-i-used" class="nav-link" data-scroll-target="#tools-i-used">🔧 Tools I Used</a></li>
+  <li><a href="#the-pipeline" id="toc-the-pipeline" class="nav-link" data-scroll-target="#the-pipeline">⚙️ The Pipeline</a></li>
+  <li><a href="#models-parameters" id="toc-models-parameters" class="nav-link" data-scroll-target="#models-parameters">Models &amp; Parameters</a></li>
+  <li><a href="#challenges-so-far" id="toc-challenges-so-far" class="nav-link" data-scroll-target="#challenges-so-far">⚠️ Challenges So Far</a></li>
+  <li><a href="#whats-next-and-how-you-can-help" id="toc-whats-next-and-how-you-can-help" class="nav-link" data-scroll-target="#whats-next-and-how-you-can-help">💬 What’s Next — and How You Can Help</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AI Paper of the Week</h1>
-<p class="subtitle lead">Artificial Intelligence in the Military Domain and Military Ethics: Key Challenges and Implications</p>
+<h1 class="title">Work in Progress: An Automated Workflow to Summarize and Simplify AI Research with Free Tools</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Artificial Intelligence</div>
+    <div class="quarto-category">AI</div>
+    <div class="quarto-category">Automation</div>
+    <div class="quarto-category">NLP</div>
+    <div class="quarto-category">LLMs</div>
+    <div class="quarto-category">Open Science</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    <p>My attempt to build a fully automated pipeline to fetch, simplify, and publish weekly summaries of open-access AI research using OpenAlex, Hugging Face, and GitHub Actions — entirely with free tools.</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -142,28 +165,177 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="title-artificial-intelligence-in-the-military-domain-and-military-ethics-key-challenges-and-implications" class="level3">
-<h3 class="anchored" data-anchor-id="title-artificial-intelligence-in-the-military-domain-and-military-ethics-key-challenges-and-implications">Title: Artificial Intelligence in the Military Domain and Military Ethics: Key Challenges and Implications</h3>
-<p>Authors: Dragan Stanar<br>
-Published in journal: 2025-06-27</p>
+<section id="why-i-built-this" class="level2">
+<h2 class="anchored" data-anchor-id="why-i-built-this">🧠 Why I Built This</h2>
+<p>We may be curious about the latest discoveries in AI research, but reading papers may be time consuming, and also a little boring — even for someone having an extensive research background. I wanted to:</p>
+<ul>
+<li>✅ Make new research easier to understand</li>
+<li>🧪 Test the capabilities of free LLMs for science communication</li>
+<li>🤖 Automate end-to-end publishing using GitHub Actions</li>
+</ul>
+<p>So I built a workflow that fetches one open-access AI paper per week, among the most recent publications, and rewrites its abstract in plain English for curious general readers.</p>
 <hr>
 </section>
-<section id="explained-simply" class="level3">
-<h3 class="anchored" data-anchor-id="explained-simply">🪄 Explained Simply</h3>
-<p>Ultimately, the article highlights the need for a new military ethic informed by AI’s unique capabilities and limitations.</p>
+<section id="tools-i-used" class="level2">
+<h2 class="anchored" data-anchor-id="tools-i-used">🔧 Tools I Used</h2>
+<p>This project only uses free resources:</p>
+<ul>
+<li><strong><a href="https://openalex.org">OpenAlex</a></strong> – to fetch recent open-access AI papers</li>
+<li><strong>Hugging Face Inference API</strong> – to generate human-friendly explanations (using models like <code>zephyr-7b-beta</code> and <code>mistral-7b-instruct</code>)</li>
+<li><strong>GitHub Actions</strong> – to automate everything weekly</li>
+<li><strong>Quarto Blog</strong> – to publish the summaries as <code>.qmd</code> posts here</li>
+<li><strong>ChatGPT</strong> - to ease the coding and consult about the project</li>
+</ul>
 <hr>
 </section>
-<section id="original-abstract" class="level3">
-<h3 class="anchored" data-anchor-id="original-abstract">📄 Original Abstract</h3>
-<p>This article explores the current and emerging applications of artificial intelligence (AI) across military domains and examines the critical ethical challenges these developments present. It aims to map and assess the key areas of military ethics that must adapt to an evolving military reality shaped by AI integration at all operational levels. The analysis focuses on two central pillars of military ethics—ethics of war (just war theory) and professional military ethos—and identifies significant tensions and dilemmas arising from AI’s incorporation into military strategy, decision-making, and identity. The study argues that AI technologies are poised to fundamentally transform traditional military culture, identity, and professional norms, while also challenging core principles of just war theory. These shifts necessitate a re-evaluation of ethical frameworks to address accountability, human–machine interaction, and the erosion of conventional moral boundaries in armed conflict.</p>
-<hr>
+<section id="the-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="the-pipeline">⚙️ The Pipeline</h2>
+<section id="fetch-a-paper" class="level3">
+<h3 class="anchored" data-anchor-id="fetch-a-paper">1. <strong>Fetch a Paper</strong></h3>
+<p>Using the OpenAlex API, I query for recent papers in artificial intelligence, limited to those with open-access full text and indexed abstracts. I:</p>
+<ul>
+<li>Decode the <code>abstract_inverted_index</code></li>
+<li>Filter out papers already posted (based on DOI or title)</li>
+<li>Randomly select one paper with a valid abstract</li>
+</ul>
 </section>
-<section id="read-the-full-paper" class="level3">
-<h3 class="anchored" data-anchor-id="read-the-full-paper">🔗 <a href="https://doi.org/https://doi.org/10.3849/1802-7199.25.2025.01.113-127">Read the full paper</a></h3>
+<section id="simplify-the-abstract" class="level3">
+<h3 class="anchored" data-anchor-id="simplify-the-abstract">2. <strong>Simplify the Abstract</strong></h3>
+<p>The chosen abstract is either:</p>
+<ul>
+<li>Used as-is (if short)</li>
+<li>Or summarized first (if &gt;1500 characters) to prevent exceeding token limits and also to provide a shorter input to the LLM which simplifies it, as longer abstracts tended to confuse the model.</li>
+</ul>
+<p>Summarization prompt:</p>
+<blockquote class="blockquote">
+<p>“Summarize the following academic abstract in a concise way, capturing the main points clearly”</p>
+</blockquote>
+<p>Then, a second prompt was used to rewrite it entirely in simple, more engaging engaging language. I tried several prompts, including some suggested by ChatGPT. For instance:</p>
+<blockquote class="blockquote">
+<p>“You are an expert science communicator. Your task is to rewrite the following academic abstract. Rephrase the text in a clear, engaging, and simple way, while staying fully faithful to the original content. Use your own words, avoid jargon, and do not add information that is not explicitly present in the original. Write one paragraph of 5 to 8 sentences, in third person, without using the words ‘abstract’, ‘original’, or meta-commentary. Use a neutral, friendly tone and explain the ideas as if to a curious teenager. Conclude with a sentence explaining why this research matters to society.”</p>
+</blockquote>
+<p>And:</p>
+<blockquote class="blockquote">
+<p>“You are an expert AI communicator. Your goal is to rewrite a complex academic abstract for a tech-savvy but non-expert audience, like a curious student or a journalist. Follow these instructions precisely: (1) Rewrite the abstract into a single, cohesive paragraph between 5 and 8 sentences. (2) Start by explaining the core problem the researchers are trying to solve. (3) Clearly describe their unique method or solution. (4) Mention the key result or finding. (5) The final sentence MUST explain the real-world importance or potential impact of this research. (6) Use simple, engaging language. Avoid jargon or explain it in the simplest terms. (7) Do not add any information not present in the original text. Do not use phrases like ‘This paper…’ or ‘The abstract describes…’.”</p>
+</blockquote>
 </section>
-<section id="model-notes" class="level3">
-<h3 class="anchored" data-anchor-id="model-notes">🧪 Model Notes</h3>
-<p>Simplified using <code>HuggingFaceH4/zephyr-7b-beta</code> via Hugging Face Inference API.</p>
+<section id="generate-and-save-the-blog-post" class="level3">
+<h3 class="anchored" data-anchor-id="generate-and-save-the-blog-post">3. <strong>Generate and Save the Blog Post</strong></h3>
+<p>The output includes:</p>
+<ul>
+<li>Paper title and authors</li>
+<li>Original abstract (cleaned)</li>
+<li>Rewritten summary</li>
+<li>A link to the full paper</li>
+<li>Notes on the model used</li>
+</ul>
+<p>The post is saved as a <code>.qmd</code> file in my Quarto blog.</p>
+</section>
+<section id="publish-automatically" class="level3">
+<h3 class="anchored" data-anchor-id="publish-automatically">4. <strong>Publish Automatically</strong></h3>
+<p>GitHub Actions runs this pipeline every Friday. It:</p>
+<ul>
+<li>Fetches and simplifies the paper</li>
+<li>Commits the new post to the blog repo</li>
+<li>It auto-deploys the blog</li>
+</ul>
+</section>
+</section>
+<section id="models-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="models-parameters">Models &amp; Parameters</h2>
+<p>I tried the following models:</p>
+<ul>
+<li>t5-small - mostly stays to close to the original text</li>
+<li>HuggingFaceH4/zephyr-7b-beta - results vary a lot! 🤔</li>
+</ul>
+<p>The current parameters I am using:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 40%">
+<col style="width: 5%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Parameter</strong></th>
+<th><strong>What It Does</strong></th>
+<th><strong>Value</strong></th>
+<th><strong>Why We Chose It</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>temperature</code></td>
+<td>Controls randomness. Lower = more focused/deterministic. Higher = more diverse.</td>
+<td><code>0.35</code></td>
+<td>Helps keep output controlled and factual.</td>
+</tr>
+<tr class="even">
+<td><code>top_p</code></td>
+<td>Nucleus sampling: only sample from top tokens whose cumulative prob ≤ <em>p</em>.</td>
+<td><code>0.8</code></td>
+<td>Allows slight diversity but avoids extreme randomness.</td>
+</tr>
+<tr class="odd">
+<td><code>repetition_penalty</code></td>
+<td>Penalizes repetition of phrases or words.</td>
+<td><code>1.2</code></td>
+<td>Encourages varied wording and avoids repeated structures.</td>
+</tr>
+<tr class="even">
+<td><code>do_sample</code></td>
+<td>Whether to sample or pick the most likely next token.</td>
+<td><code>False</code></td>
+<td>Disables random sampling for more consistent results.</td>
+</tr>
+<tr class="odd">
+<td><code>use_cache</code></td>
+<td>Reuse past attention (for faster decoding).</td>
+<td><code>False</code></td>
+<td>Disabled in inference API for fresh generation each time.</td>
+</tr>
+<tr class="even">
+<td><code>max_new_tokens</code></td>
+<td>Maximum number of tokens the model can generate in the response.</td>
+<td><code>300</code></td>
+<td>Keeps summaries concise (~150–200 words max).</td>
+</tr>
+<tr class="odd">
+<td><code>return_full_text</code></td>
+<td>Whether to return both prompt + response (<code>True</code>) or just the response.</td>
+<td><code>False</code></td>
+<td>We only want the model’s generated output, not the prompt.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="challenges-so-far" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-so-far">⚠️ Challenges So Far</h2>
+<p>I hit over and over these issues:</p>
+<ul>
+<li>⚖️ Summaries are often too close to the original (not real rewrites)</li>
+<li>🤐 Occasionally, I get <strong>empty output</strong> or skipped generations</li>
+<li>👽 I got a case of <strong>hallucination</strong></li>
+</ul>
+<p>I’m still experimenting with prompt wording, sampling parameters, and maybe switching to more consistent models.</p>
+</section>
+<section id="whats-next-and-how-you-can-help" class="level2">
+<h2 class="anchored" data-anchor-id="whats-next-and-how-you-can-help">💬 What’s Next — and How You Can Help</h2>
+<p>I’d love to:</p>
+<ul>
+<li>Try better models (open to suggestions!)</li>
+<li>Avoid hallucinations more reliably</li>
+<li>Add topics beyond AI (NLP, ML, etc.)</li>
+<li>Get community feedback to improve the summaries</li>
+</ul>
+<p>👉 If you’ve tried summarizing scientific research with LLMs — or have tips for better prompting — please reach out!</p>
+<p>You can find the pipeline code and one of my (a bit disappointing) attempts here:</p>
+<ul>
+<li>🔗 <a href="https://github.com/Flazoukie/ai-research-summaries">GitHub Repo</a></li>
+<li>📰 <a href="https://flazoukie.github.io/data-blog/posts/2025-06-28-ai-summary.html">Blog Post Archive</a></li>
+</ul>
+<p>Thanks for reading! 🤖✍️</p>
 
 
 </section>
