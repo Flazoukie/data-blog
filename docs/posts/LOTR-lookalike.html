@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Flavia Felletti">
-<meta name="dcterms.date" content="2025-07-28">
+<meta name="dcterms.date" content="2025-08-22">
+<meta name="description" content="A playful machine learning experiment: I built a Gradio app that compares your photo to characters from The Lord of the Rings using image embeddings and similarity search. Deployed on Hugging Face with a few battles against security scans along the way!">
 
-<title>Weekly Job Market Analysis - 28/07/2025 – Flavia’s Data Blog</title>
+<title>I built an App to find your LOTR character using image recognition and Gradio – Flavia’s Data Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c28543352b268ffe19ea899b699f2a9b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,9 +72,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -110,30 +111,53 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#which-lord-of-the-rings-character-are-you" id="toc-which-lord-of-the-rings-character-are-you" class="nav-link active" data-scroll-target="#which-lord-of-the-rings-character-are-you">Which Lord of the Rings Character Are You?</a>
+  <ul class="collapse">
+  <li><a href="#the-dataset-gathering-middle-earth-faces" id="toc-the-dataset-gathering-middle-earth-faces" class="nav-link" data-scroll-target="#the-dataset-gathering-middle-earth-faces">The Dataset: Gathering Middle-earth Faces</a></li>
+  <li><a href="#the-machine-learning-workflow" id="toc-the-machine-learning-workflow" class="nav-link" data-scroll-target="#the-machine-learning-workflow">The Machine Learning Workflow</a></li>
+  <li><a href="#building-the-app" id="toc-building-the-app" class="nav-link" data-scroll-target="#building-the-app">Building the App</a></li>
+  <li><a href="#the-challenges" id="toc-the-challenges" class="nav-link" data-scroll-target="#the-challenges">The Challenges</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try It Yourself</a></li>
+  <li><a href="#limitations-funny-results" id="toc-limitations-funny-results" class="nav-link" data-scroll-target="#limitations-funny-results">Limitations &amp; Funny Results</a></li>
+  <li><a href="#future-ideas" id="toc-future-ideas" class="nav-link" data-scroll-target="#future-ideas">Future Ideas</a></li>
+  <li><a href="#now-its-your-turn" id="toc-now-its-your-turn" class="nav-link" data-scroll-target="#now-its-your-turn">Now it’s your turn:</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Weekly Job Market Analysis - 28/07/2025</h1>
-</div>
+<h1 class="title">I built an App to find your LOTR character using image recognition and Gradio</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">AI</div>
+    <div class="quarto-category">Computer Vision</div>
+    <div class="quarto-category">Gradio</div>
+    <div class="quarto-category">Fun Projects</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    <p><span class="description">A playful machine learning experiment: I built a Gradio app that compares your photo to characters from The Lord of the Rings using image embeddings and similarity search. Deployed on Hugging Face with a few battles against security scans along the way!</span></p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Flavia Felletti </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 28, 2025</p>
+      <p class="date">August 22, 2025</p>
     </div>
   </div>
   
@@ -145,40 +169,92 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome to the weekly update of the data science job market in Germany!</p>
-<p>This analysis is based on the latest job postings collected via the <a href="https://developer.adzuna.com/">Adzuna API</a>, a comprehensive job search API that aggregates job offers from multiple sources.</p>
-<p>All the data fetching, cleaning, and analysis code is publicly available on GitHub in my <a href="https://github.com/Flazoukie/adzuna-scraper-cleaned"><code>adzuna-scraper-cleaned</code></a> repository. This project runs automatically every week to provide fresh insights.</p>
-<p>If you are interested in more details, you can check this <a href="https://flazoukie.github.io/data-blog/posts/analyze_jobs.html">post</a> where I published the whole first analysis with detailed explanations.</p>
-<section id="what-youll-find-in-this-post" class="level2">
-<h2 class="anchored" data-anchor-id="what-youll-find-in-this-post">What you’ll find in this post</h2>
+<section id="which-lord-of-the-rings-character-are-you" class="level1">
+<h1>Which Lord of the Rings Character Are You?</h1>
+<p>I wanted to experiment with image recognition and get a confirmation about my true elvish roots, so I decided to build an app which finds the LOTR character that most looks like you.</p>
+<p>👉 <a href="https://huggingface.co/spaces/Flazoukie/lotr-lookalike">Try the app on Hugging Face</a></p>
+<p>You can also have a look at all the scripts in my <a href="https://github.com/Flazoukie/lotr-lookalike">GitHub repo</a>.</p>
+<hr>
+<section id="the-dataset-gathering-middle-earth-faces" class="level2">
+<h2 class="anchored" data-anchor-id="the-dataset-gathering-middle-earth-faces">The Dataset: Gathering Middle-earth Faces</h2>
+<p>Collecting pictures of Legolas reminded me a lot of my teenager years - I still haven’ found my elvish prince, but in case you know one… Anyway, I collected about 20 images per character using Google search, making sure to include different angles, expressions, and lighting conditions. In total, I ended up with <strong>200 images across 10 characters</strong>:</p>
 <ul>
-<li>A bar plot highlighting the <strong>top cities</strong> with the most data science job offers.</li>
-<li>An <strong>interactive company map</strong> showing where employers are located.</li>
-<li>An <strong>interactive job table</strong> that allows you to explore individual job postings.</li>
+<li>Aragorn</li>
+<li>Arwen</li>
+<li>Éowyn</li>
+<li>Frodo</li>
+<li>Galadriel</li>
+<li>Gandalf</li>
+<li>Gimli</li>
+<li>Gollum</li>
+<li>Legolas</li>
+<li>Samwise</li>
+</ul>
+<hr>
+</section>
+<section id="the-machine-learning-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="the-machine-learning-workflow">The Machine Learning Workflow</h2>
+<p>To compare uploaded image with the characters. Here’s what I used:</p>
+<ol type="1">
+<li><p><strong>Feature Extraction (ResNet-50 backbone)</strong> I used a pretrained <a href="https://docs.pytorch.org/vision/main/models/generated/torchvision.models.resnet50.html">ResNet-50</a> (trained on ImageNet) to turn each image into a vector of numbers — an <strong>embedding</strong> that captures visual features.</p></li>
+<li><p><strong>Normalization:</strong> To make comparisons fair, I applied <strong>L2 normalization</strong> so embeddings could be compared with <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a>.</p></li>
+<li><p><strong>Embeddings &amp; Centroids</strong></p>
+<ul>
+<li>Each training image got stored as an embedding.</li>
+<li>I also computed a <strong>centroid per character</strong> (the “average face embedding” for that character).</li>
+</ul></li>
+<li><p><strong>A prediction Pipeline</strong> so that when you upload a photo:</p>
+<ul>
+<li>The app embeds it with the same ResNet-50.</li>
+<li>It compares your embedding to the <strong>character centroids</strong> (which gives the top 3 likely matches).</li>
+<li>It also finds the <strong>nearest neighbor image</strong> — both globally (closest among all characters) and locally (closest among the top predicted character).</li>
+</ul></li>
+</ol>
+<p>So in short: ➡️ <strong>Pretrained model → Embeddings → Similarity search → Fun results!</strong></p>
+<p><img src="..\images/lotr.drawio.png" class="img-fluid"></p>
+<hr>
+</section>
+<section id="building-the-app" class="level2">
+<h2 class="anchored" data-anchor-id="building-the-app">Building the App</h2>
+<p>I built the app using <strong>Gradio</strong>, which makes it super easy to turn Python functions into a web interface. Locally, it runs with a simple script, available in the HF and <a href="https://github.com/Flazoukie/lotr-lookalike">GitHub repo</a> as:</p>
+<p>src/app.py</p>
+<p>And then I deployed it to Hugging Face Spaces, where it runs in the cloud and anyone can try it without setup. 🚀</p>
+</section>
+<section id="the-challenges" class="level2">
+<h2 class="anchored" data-anchor-id="the-challenges">The Challenges</h2>
+<p>I also had to find nasty creatures on the way:</p>
+<ul>
+<li><p><strong>Security scans</strong> on Hugging Face are worse than a troop of orcs… I tried several formats who all got blocked by the HuggingFace Pickle Scanning. I then decided to go for text and csv formats. A big Thank to my loyal allies Claud 4 for its help!</p></li>
+<li><p><strong>GPT 5</strong> acted very weird and suggested me 3 times to create a new repo to solve issues it created, including deleting teh full content of my local repo. For now, I join the community of those who really miss the previous model.</p>
+<p><img src="..\images/aragorn.gif" class="img-fluid" style="width:60.0%"></p></li>
 </ul>
 </section>
-<section id="publishing-cadence" class="level2">
-<h2 class="anchored" data-anchor-id="publishing-cadence">Publishing cadence</h2>
-<p>I publish this job market analysis on my blog every <strong>Monday</strong>, so you can stay up to date with the latest trends and opportunities.</p>
+<section id="try-it-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>
+<p>👉 The app is live <a href="https://huggingface.co/spaces/Flazoukie/lotr-lookalike">here:</a></p>
+<p>Upload a selfie and discover your true elvish or dwarfish nature!</p>
 </section>
-<section id="visualizations" class="level2">
-<h2 class="anchored" data-anchor-id="visualizations">Visualizations</h2>
-<section id="top-cities-for-job-offers" class="level3">
-<h3 class="anchored" data-anchor-id="top-cities-for-job-offers">Top Cities for Job Offers</h3>
-<p><img src="..\results/2025-07-28/top_cities.png" class="img-fluid" style="width:70.0%"></p>
+<section id="limitations-funny-results" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-funny-results">Limitations &amp; Funny Results</h2>
+<p>This app is just for fun, not serious face recognition. Some limitations:</p>
+<ul>
+<li>Small dataset: only ~20 images per character.</li>
+<li>Gender and age don’t matter much — you might get matched to Gimli even if you’re a beautiful Galadriel, don’t let your self esteem be affected.</li>
+<li>Lighting, pose, and quality of your photo can change a lot!</li>
+</ul>
 </section>
-<section id="interactive-company-map" class="level3">
-<h3 class="anchored" data-anchor-id="interactive-company-map">Interactive Company Map</h3>
-<iframe src="../results/2025-07-28/company_map.html" width="100%" height="600px">
-</iframe>
+<section id="future-ideas" class="level2">
+<h2 class="anchored" data-anchor-id="future-ideas">Future Ideas</h2>
+<p>If I had more time, I’d love to:</p>
+<ul>
+<li>Add more characters (Sauron, Gollum, Éowyn, etc.).</li>
+<li>Improve accuracy with a larger, more diverse dataset.</li>
+</ul>
 </section>
-<section id="interactive-job-table" class="level3">
-<h3 class="anchored" data-anchor-id="interactive-job-table">Interactive Job Table</h3>
-<iframe src="../results/2025-07-28/interactive_job_table.html" width="100%" height="600px">
-</iframe>
-<p>You can also <a href="../results/2025-07-28/output.html">visualize the full analysis notebook here</a> to explore the details yourself.</p>
-<hr>
-<p>Thank you for reading! If you want to contribute or ask questions, feel free to reach out.</p>
+<section id="now-its-your-turn" class="level2">
+<h2 class="anchored" data-anchor-id="now-its-your-turn">Now it’s your turn:</h2>
+<p>👉 Try the LOTR Character Matcher <a href="https://huggingface.co/spaces/Flazoukie/lotr-lookalike">here:</a></p>
+<p>And may the light of Eärendil shine upon your selfies. ✨</p>
 
 
 </section>

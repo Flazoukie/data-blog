@@ -1,0 +1,123 @@
+---
+title: I built an App to find your LOTR character using image recognition and Gradio
+date: 2025-08-22
+categories: [AI, Computer Vision, Gradio, Fun Projects]
+description: >
+  <span class="description">A playful machine learning experiment: I built a Gradio app that compares your photo to characters from The Lord of the Rings using image embeddings and similarity search. Deployed on Hugging Face with a few battles against security scans along the way!</span>
+image: /images/legolas_gimli2.jpeg
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-copy: true
+    code-overflow: wrap
+    css: styles.css
+---
+
+# Which Lord of the Rings Character Are You?
+
+I wanted to experiment with image recognition and get a confirmation about my true elvish roots,
+so I decided to build an app which finds the LOTR character that most looks like you.
+
+👉 [Try the app on Hugging Face](https://huggingface.co/spaces/Flazoukie/lotr-lookalike)
+
+You can also have a look at all the scripts in my [GitHub repo](https://github.com/Flazoukie/lotr-lookalike).
+
+---
+
+## The Dataset: Gathering Middle-earth Faces
+
+Collecting pictures of Legolas reminded me a lot of my teenager years - I still haven' found my elvish prince, but in case you know one...
+Anyway, I collected about 20 images per character using Google search, making sure to include different angles, expressions, and lighting conditions.
+In total, I ended up with **200 images across 10 characters**:
+
+* Aragorn
+* Arwen
+* Éowyn
+* Frodo
+* Galadriel
+* Gandalf
+* Gimli
+* Gollum
+* Legolas
+* Samwise
+
+---
+
+## The Machine Learning Workflow
+
+To compare uploaded image with the characters. Here’s what I used:
+
+1. **Feature Extraction (ResNet-50 backbone)**
+   I used a pretrained [ResNet-50](https://docs.pytorch.org/vision/main/models/generated/torchvision.models.resnet50.html) (trained on ImageNet)
+   to turn each image into a vector of numbers — an **embedding** that captures visual features.
+
+2. **Normalization:**
+   To make comparisons fair, I applied **L2 normalization** so embeddings could be compared with [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity).
+
+3. **Embeddings & Centroids**
+   - Each training image got stored as an embedding.
+   - I also computed a **centroid per character** (the "average face embedding" for that character).
+
+4. **A prediction Pipeline**
+   so that when you upload a photo:
+   - The app embeds it with the same ResNet-50.
+   - It compares your embedding to the **character centroids** (which gives the top 3 likely matches).
+   - It also finds the **nearest neighbor image** — both globally (closest among all characters) and locally (closest among the top predicted character).
+
+So in short:
+➡️ **Pretrained model → Embeddings → Similarity search → Fun results!**
+
+![](/images/lotr.drawio.png)
+
+
+---
+
+## Building the App
+
+I built the app using **Gradio**, which makes it super easy to turn Python functions into a web interface. Locally, it runs with a simple script,
+available in the HF and [GitHub repo](https://github.com/Flazoukie/lotr-lookalike) as:
+
+src/app.py
+
+And then I deployed it to Hugging Face Spaces, where it runs in the cloud and anyone can try it without setup. 🚀
+
+## The Challenges
+
+I also had to find nasty creatures on the way:
+
+-  **Security scans** on Hugging Face are worse than a troop of orcs... I tried several formats who all got blocked by the HuggingFace Pickle Scanning.
+I then decided to go for text and csv formats.
+A big Thank to my loyal allies Claud 4 for its help!
+- **GPT 5** acted very weird and suggested me 3 times to create a new repo to solve issues it created, including deleting teh full content of my local repo.
+For now, I join the community of those who really miss the previous model.
+
+    ![](/images/aragorn.gif){width=60%}
+
+## Try It Yourself
+
+👉 The app is live [here:](https://huggingface.co/spaces/Flazoukie/lotr-lookalike)
+
+Upload a selfie and discover your true elvish or dwarfish nature!
+
+## Limitations & Funny Results
+
+This app is just for fun, not serious face recognition. Some limitations:
+
+* Small dataset: only ~20 images per character.
+* Gender and age don’t matter much — you might get matched to Gimli even if you’re a beautiful Galadriel, don't let your self esteem be affected.
+* Lighting, pose, and quality of your photo can change a lot!
+
+## Future Ideas
+
+If I had more time, I’d love to:
+
+- Add more characters (Sauron, Gollum, Éowyn, etc.).
+- Improve accuracy with a larger, more diverse dataset.
+
+
+## Now it’s your turn:
+
+👉 Try the LOTR Character Matcher [here:](https://huggingface.co/spaces/Flazoukie/lotr-lookalike)
+
+And may the light of Eärendil shine upon your selfies. ✨
