@@ -1,0 +1,734 @@
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>Job Offers Interactive Table</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fafafa;
+    padding: 20px;
+  }
+
+  h2 {
+    color: #333;
+  }
+
+  p {
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    color: #555;
+  }
+
+  #cityFilter {
+    margin-bottom: 20px;
+    font-size: 1em;
+  }
+
+  table.dataTable {
+    border-collapse: collapse !important;
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  table.dataTable thead {
+    background-color: #333;
+    color: white;
+  }
+
+  table.dataTable th,
+  table.dataTable td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+    white-space: normal;
+  }
+
+  table.dataTable tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+
+  table.dataTable tbody tr:hover {
+    background-color: #eef2f7;
+    transition: background-color 0.2s ease;
+  }
+
+  a {
+    color: #1a73e8;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<h2>Data Science Job Offers by City and Company</h2>
+<p>Use the dropdown to filter by city or the search box to filter by keywords. Click the 🔗 link to view or apply for a job.</p>
+
+<label for="cityFilter"><strong>Filter by City:</strong></label>
+<select id="cityFilter">
+  <option value="">All Cities</option>
+</select>
+
+<table border="1" class="dataframe display" id="jobTable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>City</th>
+      <th>Company</th>
+      <th>Job Offers</th>
+      <th>SortDate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Augsburg</td>
+      <td>Airbus</td>
+      <td>Duales Studium B.Sc. (d/m/w) Informatik - Data Science und Künstliche Intelligenz<br><a href='https://www.adzuna.de/details/5829014958?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 05-08-2026</em></td>
+      <td>2026-08-05</td>
+    </tr>
+    <tr>
+      <td>Augsburg</td>
+      <td>Airbus Aerostructures GmbH</td>
+      <td>Duales Studium B. Sc. Informatik - Data Science und Künstliche Intelligenz (d/m/w) zum 01.09.2027<br><a href='https://www.adzuna.de/land/ad/5825428693?se=wmwA6L2q8RG03fsEsd1VXA&utm_medium=api&utm_source=a4bcf954&v=6306E28B2BB7096D76D08EC5E978C14164916CD7' target='_blank'>🔗 Link</a><br><em>date: 02-08-2026</em></td>
+      <td>2026-08-02</td>
+    </tr>
+    <tr>
+      <td>Augsburg</td>
+      <td>XITASO</td>
+      <td>Studium mit vertiefter Praxis: Data Science B.Sc.<br><a href='https://www.adzuna.de/details/5727348288?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 12-05-2026</em></td>
+      <td>2026-05-12</td>
+    </tr>
+    <tr>
+      <td>Augsburg</td>
+      <td>XITASO GmbH</td>
+      <td>Studium mit vertiefter Praxis: Data Science B.Sc.<br><a href='https://www.adzuna.de/details/5802896200?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 16-07-2026</em></td>
+      <td>2026-07-16</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>BRL Risk Consulting GmbH & Co. KG</td>
+      <td>Praktikant Data Science / Data Engineering im Bereich Risk Advisory Services<br><a href='https://www.adzuna.de/details/5854883085?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 25-08-2026</em></td>
+      <td>2026-08-25</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>Enpal</td>
+      <td>Team Lead Data Science (f/m/x)<br><a href='https://www.adzuna.de/details/5791478556?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 08-07-2026</em></td>
+      <td>2026-07-08</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>FLEX Capital Management GmbH</td>
+      <td>Werkstudent (w/m/d) Data Science & AI<br><a href='https://www.adzuna.de/details/5839130894?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 13-08-2026</em></td>
+      <td>2026-08-13</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>Global University Systems</td>
+      <td>Professor (m/f/d) of Data Science<br><a href='https://www.adzuna.de/details/5822525972?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 31-07-2026</em></td>
+      <td>2026-07-31</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>JustWatch</td>
+      <td>Working Student - Data Science (Research & Predictive Analytics)<br><a href='https://www.adzuna.de/details/5785928082?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 02-07-2026</em></td>
+      <td>2026-07-02</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>Mercor</td>
+      <td>Enterprise Data Science Specialist<br><a href='https://www.adzuna.de/details/5836581108?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 11-08-2026</em><br><br>Data Science Expert - Fully Remote<br><a href='https://www.adzuna.de/details/5835477251?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 10-08-2026</em><br><br>Data Science Expert - AI Evaluation<br><a href='https://www.adzuna.de/details/5836581118?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 11-08-2026</em><br><br>Data Science Specialist - Fully Remote<br><a href='https://www.adzuna.de/details/5841712586?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 14-08-2026</em><br><br>Data Science Expert - Evaluation Specialist<br><a href='https://www.adzuna.de/details/5862103161?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 30-08-2026</em></td>
+      <td>2026-08-30</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>PAIR Finance GmbH</td>
+      <td>Team Lead (f/m/d) Data Science<br><a href='https://www.adzuna.de/details/5813843229?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 24-07-2026</em></td>
+      <td>2026-07-24</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>Peec AI</td>
+      <td>Engineering Manager (Data Science)<br><a href='https://www.adzuna.de/details/5784246611?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 01-07-2026</em></td>
+      <td>2026-07-01</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>Prior Labs</td>
+      <td>Research Scientist, Foundational Data Science<br><a href='https://www.adzuna.de/details/5788539455?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 05-07-2026</em></td>
+      <td>2026-07-05</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>S Rating und Risikosysteme GmbH</td>
+      <td>Werkstudent (m/w/d) – Risikomanagement | Data Science<br><a href='https://www.adzuna.de/land/ad/5863436495?se=8sPL5b2q8RGO9_HyZZVOKQ&utm_medium=api&utm_source=a4bcf954&v=B2ED37B17438D09CB0E183734EEFB0DFE163B58E' target='_blank'>🔗 Link</a><br><em>date: 01-09-2026</em><br><br>Werkstudent (m/w/d) – Risikomanagement | Data Science<br><a href='https://www.adzuna.de/details/5868097099?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 03-09-2026</em></td>
+      <td>2026-09-03</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>S-Kreditpartner GmbH</td>
+      <td>Referent Data Science & Reporting (m/w/d)<br><a href='https://www.adzuna.de/details/5859422236?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 28-08-2026</em></td>
+      <td>2026-08-28</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>Stark</td>
+      <td>Data Science Intern (all genders)<br><a href='https://www.adzuna.de/details/5798295689?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 13-07-2026</em></td>
+      <td>2026-07-13</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>Statista</td>
+      <td>Consultant Data Science - Healthcare (m/f/d)<br><a href='https://www.adzuna.de/details/5470962686?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 30-10-2025</em></td>
+      <td>2025-10-30</td>
+    </tr>
+    <tr>
+      <td>Berlin</td>
+      <td>Zenjob SE</td>
+      <td>Head of Analytics and Data Science<br><a href='https://www.adzuna.de/land/ad/5769224016?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=0CBE58766F7271E596F1D0041EF7C0033C10DF28' target='_blank'>🔗 Link</a><br><em>date: 19-06-2026</em></td>
+      <td>2026-06-19</td>
+    </tr>
+    <tr>
+      <td>Blaustein</td>
+      <td>HENSOLDT</td>
+      <td>Duales Studium: "Data Science & künstliche Intelligenz" (w/m/d), Ulm, Start 2027<br><a href='https://www.adzuna.de/land/ad/5837379738?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=A6C5585633CBF1CA27E58BB92D7912336373DF76' target='_blank'>🔗 Link</a><br><em>date: 12-08-2026</em></td>
+      <td>2026-08-12</td>
+    </tr>
+    <tr>
+      <td>Blaustein</td>
+      <td>Mercedes-Benz Tech Innovation</td>
+      <td>Duales Studium Wirtschaftsinformatik Schwerpunkt Data Science / Künstliche Intelligenz in Kooperation mit der Dualen Hochschule Baden-Württemberg 2027 (m/w/d/x)<br><a href='https://www.adzuna.de/details/5873247379?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 06-09-2026</em></td>
+      <td>2026-09-06</td>
+    </tr>
+    <tr>
+      <td>Blaustein</td>
+      <td>Seeberger GmbH</td>
+      <td>Duales Studium (B.Sc.) Data Science und Künstliche Intelligenz (m/w/d) Start 2027<br><a href='https://www.adzuna.de/land/ad/5871919933?se=8sPL5b2q8RGO9_HyZZVOKQ&utm_medium=api&utm_source=a4bcf954&v=9ED7A9305A5B920B1D4055F430F22A4C5D9A5B2A' target='_blank'>🔗 Link</a><br><em>date: 05-09-2026</em></td>
+      <td>2026-09-05</td>
+    </tr>
+    <tr>
+      <td>Bonn</td>
+      <td>KFW Konzern</td>
+      <td>Werkstudent (w/m/d) - im Bereich Mittelstandsbank & Private Kunden - Customer Analytics / Data Science<br><a href='https://www.adzuna.de/land/ad/5853271400?se=ppfy5r2q8RGk1YNI7v9OUQ&utm_medium=api&utm_source=a4bcf954&v=33591016B68E53EB592704872A9B56DD4BB22D31' target='_blank'>🔗 Link</a><br><em>date: 23-08-2026</em></td>
+      <td>2026-08-23</td>
+    </tr>
+    <tr>
+      <td>Bonn</td>
+      <td>twomynds</td>
+      <td>Data Science Manager (m/w/d)<br><a href='https://www.adzuna.de/details/5804577884?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 17-07-2026</em><br><br>Data Science Manager (m/w/d)<br><a href='https://www.adzuna.de/details/5803061236?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 16-07-2026</em><br><br>AI & Data Science Consultant (m/w/d)<br><a href='https://www.adzuna.de/details/5804554861?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 17-07-2026</em><br><br>AI & Data Science Consultant (m/w/d)<br><a href='https://www.adzuna.de/details/5802963268?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 16-07-2026</em><br><br>Data Science & Solutions Consultant (m/w/d)<br><a href='https://www.adzuna.de/details/5802960629?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 16-07-2026</em><br><br>Data Science & Solutions Consultant (m/w/d)<br><a href='https://www.adzuna.de/details/5804550589?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 17-07-2026</em></td>
+      <td>2026-07-17</td>
+    </tr>
+    <tr>
+      <td>Cologne</td>
+      <td>AXA Konzern AG</td>
+      <td>Senior Aktuar Finance & Reserving P&C (m/w/d)<br><a href='https://www.adzuna.de/details/5854143700?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 24-08-2026</em></td>
+      <td>2026-08-24</td>
+    </tr>
+    <tr>
+      <td>Cologne</td>
+      <td>Meyerthole Siems Kohlruss Ges. für aktuarielle Beratung mbH</td>
+      <td>Mathematiker/Aktuar (d/m/w) Data Science/Pricing/Risikomanagement/Solvency II<br><a href='https://www.adzuna.de/details/5843314281?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 15-08-2026</em><br><br>Werkstudent oder Praktikant (d/m/w) Versicherungsmathematik<br><a href='https://www.adzuna.de/details/5775011723?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 24-06-2026</em></td>
+      <td>2026-08-15</td>
+    </tr>
+    <tr>
+      <td>Cologne</td>
+      <td>SKOPOS GROUP</td>
+      <td>Initiativbewerbung Data Science / BI<br><a href='https://www.adzuna.de/details/5864483599?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 01-09-2026</em></td>
+      <td>2026-09-01</td>
+    </tr>
+    <tr>
+      <td>Cologne</td>
+      <td>Siemens AG</td>
+      <td>Data Science und Künstliche Intelligenz (B.Sc.) 2027<br><a href='https://www.adzuna.de/details/5809712370?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 21-07-2026</em><br><br>Data Science und Künstliche Intelligenz (B.Sc.) 2027<br><a href='https://www.adzuna.de/land/ad/5785412191?se=kAEk6b2q8RG03fsEsd1VXA&utm_medium=api&utm_source=a4bcf954&v=D0A77CD380C46F611C880989E79CBA2570403C30' target='_blank'>🔗 Link</a><br><em>date: 02-07-2026</em></td>
+      <td>2026-07-21</td>
+    </tr>
+    <tr>
+      <td>Cologne</td>
+      <td>Skopos Group</td>
+      <td>Initiativbewerbung Data Science / BI<br><a href='https://www.adzuna.de/details/5727333234?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 12-05-2026</em></td>
+      <td>2026-05-12</td>
+    </tr>
+    <tr>
+      <td>Darmstadt</td>
+      <td>Hochschule Darmstadt</td>
+      <td>Data Science (Master of Science) (m/w/d) - dual<br><a href='https://www.adzuna.de/details/5829018599?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 05-08-2026</em></td>
+      <td>2026-08-05</td>
+    </tr>
+    <tr>
+      <td>Dortmund</td>
+      <td>Dr. Ausbüttel GmbH & Co. KG</td>
+      <td>Head of AI & Data Science (m/w/d)<br><a href='https://www.adzuna.de/land/ad/5810579233?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=E5CB564F625F7AC343A646D91B42342134CC24FB' target='_blank'>🔗 Link</a><br><em>date: 22-07-2026</em></td>
+      <td>2026-07-22</td>
+    </tr>
+    <tr>
+      <td>Dusseldorf</td>
+      <td>Havas</td>
+      <td>Werkstudent/ in im Data Science (all gender)<br><a href='https://www.adzuna.de/details/5869337422?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 03-09-2026</em></td>
+      <td>2026-09-03</td>
+    </tr>
+    <tr>
+      <td>Dusseldorf</td>
+      <td>IUF - Leibniz Institut für umweltmedizinische Forschung GmbH</td>
+      <td>PhD Data Science (m/f/d)<br><a href='https://www.adzuna.de/details/5840502383?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 13-08-2026</em></td>
+      <td>2026-08-13</td>
+    </tr>
+    <tr>
+      <td>Dusseldorf</td>
+      <td>PwC</td>
+      <td>Duales Studium Data Science & Künstliche Intelligenz (B.S.) 2027<br><a href='https://www.adzuna.de/land/ad/5860303370?se=8sPL5b2q8RGO9_HyZZVOKQ&utm_medium=api&utm_source=a4bcf954&v=069644C8DF01974C76C40DEBEF12C64B38611290' target='_blank'>🔗 Link</a><br><em>date: 29-08-2026</em></td>
+      <td>2026-08-29</td>
+    </tr>
+    <tr>
+      <td>Dusseldorf</td>
+      <td>jobvector</td>
+      <td>Praktikum Data Science / Data Engineering (m/w/d)<br><a href='https://www.adzuna.de/details/5806562856?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 19-07-2026</em></td>
+      <td>2026-07-19</td>
+    </tr>
+    <tr>
+      <td>Essen</td>
+      <td>BRL Risk Consulting GmbH & Co. KG</td>
+      <td>Praktikant Data Science / Data Engineering im Bereich Risk Advisory Services<br><a href='https://www.adzuna.de/details/5854883084?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 25-08-2026</em></td>
+      <td>2026-08-25</td>
+    </tr>
+    <tr>
+      <td>Essen</td>
+      <td>Deichmann SE</td>
+      <td>(Senior) Data Scientist (m/w/d)<br><a href='https://www.adzuna.de/details/5775007656?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 24-06-2026</em></td>
+      <td>2026-06-24</td>
+    </tr>
+    <tr>
+      <td>Frankfurt</td>
+      <td>Deutsche Bahn AG</td>
+      <td>Duales Studium Data Science und Künstliche Intelligenz 2027 (w/m/d)<br><a href='https://www.adzuna.de/land/ad/5866940509?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=0E3436D3214572912C2D26FA119E7248D38C87C1' target='_blank'>🔗 Link</a><br><em>date: 02-09-2026</em></td>
+      <td>2026-09-02</td>
+    </tr>
+    <tr>
+      <td>Frankfurt</td>
+      <td>Siemens AG</td>
+      <td>Data Science und Künstliche Intelligenz (B.Sc.) 2027<br><a href='https://www.adzuna.de/land/ad/5776991573?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=333B251EC63C28872D35E9BBDEE132B1419089E5' target='_blank'>🔗 Link</a><br><em>date: 26-06-2026</em><br><br>Data Science und Künstliche Intelligenz (B.Sc.) 2027<br><a href='https://www.adzuna.de/details/5809710891?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 21-07-2026</em></td>
+      <td>2026-07-21</td>
+    </tr>
+    <tr>
+      <td>Germersheim</td>
+      <td>Mercedes-Benz AG</td>
+      <td>Duales Studium Data Science und Künstliche Intelligenz, Bachelor of Science, Mercedes-Benz AG, Global Logistics Center Germersheim, Studienbeginn 1. Oktober 2027 (m/w/d)<br><a href='https://www.adzuna.de/land/ad/5810552391?se=wmwA6L2q8RG03fsEsd1VXA&utm_medium=api&utm_source=a4bcf954&v=44E8BD146F824A1C17C1E9D9B1CFE1603EE259CA' target='_blank'>🔗 Link</a><br><em>date: 22-07-2026</em></td>
+      <td>2026-07-22</td>
+    </tr>
+    <tr>
+      <td>Hamburg</td>
+      <td>BRL Risk Consulting GmbH & Co. KG</td>
+      <td>Praktikant Data Science / Data Engineering im Bereich Risk Advisory Services<br><a href='https://www.adzuna.de/details/5854883083?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 25-08-2026</em></td>
+      <td>2026-08-25</td>
+    </tr>
+    <tr>
+      <td>Hamburg</td>
+      <td>EDEKA ZENTRALE Stiftung & Co. KG</td>
+      <td>Business Analyst Data Science (m/w/d)<br><a href='https://www.adzuna.de/details/5863612058?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 01-09-2026</em></td>
+      <td>2026-09-01</td>
+    </tr>
+    <tr>
+      <td>Hamburg</td>
+      <td>Highberg</td>
+      <td>Praktikum: Data Science (w/m/d)<br><a href='https://www.adzuna.de/details/5727345404?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 12-05-2026</em></td>
+      <td>2026-05-12</td>
+    </tr>
+    <tr>
+      <td>Hamburg</td>
+      <td>Highberg DACH</td>
+      <td>Praktikum: Data Science (w/m/d)<br><a href='https://www.adzuna.de/details/4352591932?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 05-10-2023</em></td>
+      <td>2023-10-05</td>
+    </tr>
+    <tr>
+      <td>Hamburg</td>
+      <td>ISR Information Products AG</td>
+      <td>Junior Consultant Analytics Data Science (m/w/d)<br><a href='https://www.adzuna.de/land/ad/5822331855?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=0D662482257D087C0714CA099C14F8FD19CDE9B9' target='_blank'>🔗 Link</a><br><em>date: 31-07-2026</em></td>
+      <td>2026-07-31</td>
+    </tr>
+    <tr>
+      <td>Hamburg</td>
+      <td>adjoe</td>
+      <td>Data Science Director (f/m/d)<br><a href='https://www.adzuna.de/details/5833704156?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 08-08-2026</em></td>
+      <td>2026-08-08</td>
+    </tr>
+    <tr>
+      <td>Herzogenaurach</td>
+      <td>Schaeffler Technologies AG & Co. KG</td>
+      <td>Duales Studium (DHBW) - Data Science und künstliche Intelligenz (d/m/w) 2027<br><a href='https://www.adzuna.de/details/5829026023?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 05-08-2026</em></td>
+      <td>2026-08-05</td>
+    </tr>
+    <tr>
+      <td>Herzogenaurach</td>
+      <td>Schaeffler Technologies AG&Co. KG</td>
+      <td>Duales Studium (DHBW) - Data Science und künstliche Intelligenz (d/m/w) 2027<br><a href='https://www.adzuna.de/land/ad/5799243414?se=8sPL5b2q8RGO9_HyZZVOKQ&utm_medium=api&utm_source=a4bcf954&v=31FD5B2497C9352AD9EC7826D671B164F8108EE9' target='_blank'>🔗 Link</a><br><em>date: 14-07-2026</em></td>
+      <td>2026-07-14</td>
+    </tr>
+    <tr>
+      <td>Herzogenaurach</td>
+      <td>Siemens Healthineers AG</td>
+      <td>Duales Studium: Data Science in Technik und Wirtschaft (B.Eng.) (w/m/d) - Erlangen/Forchheim<br><a href='https://www.adzuna.de/details/5829017526?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 05-08-2026</em></td>
+      <td>2026-08-05</td>
+    </tr>
+    <tr>
+      <td>Karlsruhe</td>
+      <td>Atruvia AG</td>
+      <td>Duales Studium Data Science & Künstliche Intelligenz B.Sc.<br><a href='https://www.adzuna.de/details/5843126998?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 15-08-2026</em><br><br>Duales Studium Data Science & Künstliche Intelligenz B.Sc. (m/w/d), Karlsruhe 2027<br><a href='https://www.adzuna.de/details/5829025894?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 05-08-2026</em><br><br>Duales Studium Data Science&Künstliche Intelligenz B.Sc. (m/w/d), Karlsruhe 2027<br><a href='https://www.adzuna.de/land/ad/5793494282?se=ppfy5r2q8RGk1YNI7v9OUQ&utm_medium=api&utm_source=a4bcf954&v=55D0F7DC6645ECDA1D2B9247D973D80AD7DF0682' target='_blank'>🔗 Link</a><br><em>date: 09-07-2026</em><br><br>Duales Studium Data Science&Künstliche Intelligenz B.Sc. (m/w/d), Karlsruhe 2027<br><a href='https://www.adzuna.de/details/5809716291?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 21-07-2026</em></td>
+      <td>2026-08-15</td>
+    </tr>
+    <tr>
+      <td>Karlsruhe</td>
+      <td>BBBank eG</td>
+      <td>Duales Studium Bachelor of Science (B.Sc.) Data Science und künstliche Intelligenz (m/w/d) 2027<br><a href='https://www.adzuna.de/details/5809699626?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 21-07-2026</em></td>
+      <td>2026-07-21</td>
+    </tr>
+    <tr>
+      <td>Karlsruhe</td>
+      <td>Blue Yonder</td>
+      <td>Data Science Consultant<br><a href='https://www.adzuna.de/details/5805425948?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 18-07-2026</em></td>
+      <td>2026-07-18</td>
+    </tr>
+    <tr>
+      <td>Karlsruhe</td>
+      <td>Chrono24</td>
+      <td>Werkstudent Data Science (m/w/d)<br><a href='https://www.adzuna.de/details/5727322915?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 12-05-2026</em></td>
+      <td>2026-05-12</td>
+    </tr>
+    <tr>
+      <td>Karlsruhe</td>
+      <td>Deutsche Telekom AG, Telekom Ausbildung</td>
+      <td>Duales Studium Data Science und Künstliche Intelligenz (m/w/d)<br><a href='https://www.adzuna.de/land/ad/5838304605?se=8sPL5b2q8RGO9_HyZZVOKQ&utm_medium=api&utm_source=a4bcf954&v=7D45829D5380036F0AEE8FD8AA5DBE151443C309' target='_blank'>🔗 Link</a><br><em>date: 12-08-2026</em></td>
+      <td>2026-08-12</td>
+    </tr>
+    <tr>
+      <td>Karlsruhe</td>
+      <td>Siemens AG</td>
+      <td>Data Science und Künstliche Intelligenz (B.Sc.) 2027<br><a href='https://www.adzuna.de/details/5809709204?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 21-07-2026</em><br><br>Data Science und Künstliche Intelligenz (B.Sc.) 2027<br><a href='https://www.adzuna.de/land/ad/5767328897?se=kAEk6b2q8RG03fsEsd1VXA&utm_medium=api&utm_source=a4bcf954&v=035D23A311258786BF2486F5AFEF4CF66CBAE58C' target='_blank'>🔗 Link</a><br><em>date: 18-06-2026</em></td>
+      <td>2026-07-21</td>
+    </tr>
+    <tr>
+      <td>Karlsruhe</td>
+      <td>TRUUCO</td>
+      <td>Werkstudierende Data Science (m/w/d)<br><a href='https://www.adzuna.de/details/5849747855?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 20-08-2026</em></td>
+      <td>2026-08-20</td>
+    </tr>
+    <tr>
+      <td>Karlsruhe</td>
+      <td>VBL. Versorgungsanstalt des Bundes und der Länder</td>
+      <td>Duales Studium (B.Sc.) – Data Science und Künstliche Intelligenz (m/w/d)<br><a href='https://www.adzuna.de/land/ad/5869355103?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=C58CDCA1B5F155E8684AEA3AAF6FD9F630DA7A68' target='_blank'>🔗 Link</a><br><em>date: 03-09-2026</em><br><br>Duales Studium (B.Sc.) – Data Science und Künstliche Intelligenz (m/w/d)<br><a href='https://www.adzuna.de/land/ad/5855308446?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=55F206BF27204AB65AB05644F9F1D4FC8E8421F5' target='_blank'>🔗 Link</a><br><em>date: 25-08-2026</em><br><br>Duales Studium (B.Sc.) - Data Science und Künstliche Intelligenz (m/w/d)<br><a href='https://www.adzuna.de/land/ad/5864104284?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=322928706CF13F848E9467C6CBF4DAF638DE5EA6' target='_blank'>🔗 Link</a><br><em>date: 01-09-2026</em><br><br>Duales Studium BWL – Risk and Insurance Management (m/w/d)<br><a href='https://www.adzuna.de/details/5860734162?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 29-08-2026</em></td>
+      <td>2026-09-03</td>
+    </tr>
+    <tr>
+      <td>Karlsruhe</td>
+      <td>dm-drogerie markt GmbH + Co. KG</td>
+      <td>StudiumPLUS Praxis Data Science (B.Sc.) (w/m/d)<br><a href='https://www.adzuna.de/details/5831199246?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 07-08-2026</em><br><br>Duales Studium Data Science und Künstliche Intelligenz (B. Sc.) 2027<br><a href='https://www.adzuna.de/details/5867803890?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 03-09-2026</em><br><br>Duales Studium Data Science und Künstliche Intelligenz (B. Sc.) 2027<br><a href='https://www.adzuna.de/details/5809709303?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 21-07-2026</em></td>
+      <td>2026-09-03</td>
+    </tr>
+    <tr>
+      <td>Kiel</td>
+      <td>GEOMAR Helmholtz-Zentrum für Ozeanforschung Kiel</td>
+      <td>PhD Data Science (m/f/d)<br><a href='https://www.adzuna.de/details/5849842717?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 20-08-2026</em></td>
+      <td>2026-08-20</td>
+    </tr>
+    <tr>
+      <td>Kiel</td>
+      <td>HAW Kiel Hochschule für Angewandte Wissenschaften</td>
+      <td>Duales Studium Data Science (M.Sc.) (m/w/d)<br><a href='https://www.adzuna.de/details/5829017676?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 05-08-2026</em></td>
+      <td>2026-08-05</td>
+    </tr>
+    <tr>
+      <td>Lübeck</td>
+      <td>Drägerwerk AG & Co. KGaA</td>
+      <td>Praktikum Künstliche Intelligenz / Data Science Medizintechnik<br><a href='https://www.adzuna.de/details/5856675348?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 26-08-2026</em></td>
+      <td>2026-08-26</td>
+    </tr>
+    <tr>
+      <td>Mannheim</td>
+      <td>BAUHAUS</td>
+      <td>Tech Lead Project Enablement (m/w/d)<br><a href='https://www.adzuna.de/details/5860930242?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 29-08-2026</em></td>
+      <td>2026-08-29</td>
+    </tr>
+    <tr>
+      <td>Mannheim</td>
+      <td>Danaher Corporation</td>
+      <td>Master Thesis Student Data Science Preventative Service<br><a href='https://www.adzuna.de/details/5783000745?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 01-07-2026</em></td>
+      <td>2026-07-01</td>
+    </tr>
+    <tr>
+      <td>Mannheim</td>
+      <td>Stadt Mannheim</td>
+      <td>Bachelor of Science Data Science&künstliche Intelligenz (m/w/d)<br><a href='https://www.adzuna.de/details/5809720185?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 21-07-2026</em></td>
+      <td>2026-07-21</td>
+    </tr>
+    <tr>
+      <td>Munich</td>
+      <td>Actana Consulting Services GmbH</td>
+      <td>Projektmanager Data analytics / Data science (all gender)<br><a href='https://www.adzuna.de/details/5804565017?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 17-07-2026</em><br><br>Projektmanager Data analytics / Data science (all gender)<br><a href='https://www.adzuna.de/details/5802975838?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 16-07-2026</em></td>
+      <td>2026-07-17</td>
+    </tr>
+    <tr>
+      <td>Munich</td>
+      <td>BRL Risk Consulting GmbH & Co. KG</td>
+      <td>Praktikant Data Science / Data Engineering im Bereich Risk Advisory Services<br><a href='https://www.adzuna.de/details/5854883082?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 25-08-2026</em></td>
+      <td>2026-08-25</td>
+    </tr>
+    <tr>
+      <td>Munich</td>
+      <td>Bayerische Landesbank</td>
+      <td>Hochschule München: Duales Studium Data Science und Scientific Computing (B.Sc.) 2027<br><a href='https://www.adzuna.de/details/5809663975?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 21-07-2026</em></td>
+      <td>2026-07-21</td>
+    </tr>
+    <tr>
+      <td>Munich</td>
+      <td>BayernLB</td>
+      <td>Duales Studium Data Science und Scientific Computing (B.Sc.) (m/w/d) 2027<br><a href='https://www.adzuna.de/details/5829013829?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 05-08-2026</em></td>
+      <td>2026-08-05</td>
+    </tr>
+    <tr>
+      <td>Munich</td>
+      <td>E Airbus Defence and Space GmbH</td>
+      <td>Duales Studium B.Sc. Data Science und Künstliche Intelligenz (d/m/w) zum 01.09.2027<br><a href='https://www.adzuna.de/land/ad/5769550193?se=ppfy5r2q8RGk1YNI7v9OUQ&utm_medium=api&utm_source=a4bcf954&v=2B795DD5507610ECAA394CEAFB4904F7433789FF' target='_blank'>🔗 Link</a><br><em>date: 19-06-2026</em></td>
+      <td>2026-06-19</td>
+    </tr>
+    <tr>
+      <td>Munich</td>
+      <td>Enforto</td>
+      <td>Werkstudent/in - Data Science und Softwareentwicklung (m/w/d)<br><a href='https://www.adzuna.de/details/5727284102?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 12-05-2026</em></td>
+      <td>2026-05-12</td>
+    </tr>
+    <tr>
+      <td>Munich</td>
+      <td>Guldberg</td>
+      <td>Projektmanager – Data Analytics / Data Science<br><a href='https://www.adzuna.de/details/5778269339?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 26-06-2026</em></td>
+      <td>2026-06-26</td>
+    </tr>
+    <tr>
+      <td>Munich</td>
+      <td>INVENSITY GmbH</td>
+      <td>Data Science Consultant (m/w/d)<br><a href='https://www.adzuna.de/details/5821791948?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 31-07-2026</em></td>
+      <td>2026-07-31</td>
+    </tr>
+    <tr>
+      <td>Munich</td>
+      <td>International School of Management</td>
+      <td>Professur für Data, AI & Transformation Management<br><a href='https://www.adzuna.de/land/ad/5845317774?se=ppfy5r2q8RGk1YNI7v9OUQ&utm_medium=api&utm_source=a4bcf954&v=B84A431088CBD2926979CE19676A5DF5539B8D85' target='_blank'>🔗 Link</a><br><em>date: 17-08-2026</em></td>
+      <td>2026-08-17</td>
+    </tr>
+    <tr>
+      <td>Munich</td>
+      <td>Ludwig-Maximilians-Universität München</td>
+      <td>Professur für Statistik und Data Science in der Amtlichen Statistik (Thüringer Modell) verbunden mit der Leitung einer Organisationseinheit (ab Referatsleitung aufwärts) am Statistischen Bundesamt<br><a href='https://www.adzuna.de/land/ad/5869555631?se=8sPL5b2q8RGO9_HyZZVOKQ&utm_medium=api&utm_source=a4bcf954&v=E78F25C974130A4E4C30EFC7428159D4E907D93B' target='_blank'>🔗 Link</a><br><em>date: 03-09-2026</em></td>
+      <td>2026-09-03</td>
+    </tr>
+    <tr>
+      <td>Munich</td>
+      <td>smartvillage</td>
+      <td>Data Science Engineer (m/w/d)<br><a href='https://www.adzuna.de/details/5727321876?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 12-05-2026</em></td>
+      <td>2026-05-12</td>
+    </tr>
+    <tr>
+      <td>Neckarsulm</td>
+      <td>Lidl Stiftung & Co. KG</td>
+      <td>Duales Studium Wirtschaftsinformatik - Data Science 2027<br><a href='https://www.adzuna.de/land/ad/5867156926?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=57538349D517A874951EE6D4F43A60A107187C1F' target='_blank'>🔗 Link</a><br><em>date: 02-09-2026</em><br><br>Duales Studium Data Science und KI - Smart Operations Management 2027<br><a href='https://www.adzuna.de/land/ad/5867748095?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=6CCA5DCD457AACFE0589896DE157FC35B303CC21' target='_blank'>🔗 Link</a><br><em>date: 03-09-2026</em></td>
+      <td>2026-09-03</td>
+    </tr>
+    <tr>
+      <td>Neckarsulm</td>
+      <td>Schwarz Corporate Solutions</td>
+      <td>Audit Specialist - Artificial Intelligence (m/w/d)<br><a href='https://www.adzuna.de/land/ad/5871176498?se=ppfy5r2q8RGk1YNI7v9OUQ&utm_medium=api&utm_source=a4bcf954&v=4D055F73F7581D381DBB52E394951600DE035B15' target='_blank'>🔗 Link</a><br><em>date: 05-09-2026</em></td>
+      <td>2026-09-05</td>
+    </tr>
+    <tr>
+      <td>Neckarsulm</td>
+      <td>Schwarz Digits</td>
+      <td>Duales Studium Data Science und Künstliche Intelligenz 2027 (m/w/d)<br><a href='https://www.adzuna.de/details/5867805253?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 03-09-2026</em><br><br>Duales Studium Wirtschaftsinformatik 2027 Neckarsulm (m/w/d)<br><a href='https://www.adzuna.de/details/5785691611?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 02-07-2026</em></td>
+      <td>2026-09-03</td>
+    </tr>
+    <tr>
+      <td>Nuremberg</td>
+      <td>Career @ Symanto</td>
+      <td>Data Science Consultant (m/f/x/d)<br><a href='https://www.adzuna.de/details/5776860396?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 25-06-2026</em></td>
+      <td>2026-06-25</td>
+    </tr>
+    <tr>
+      <td>Nuremberg</td>
+      <td>DATEV eG</td>
+      <td>Duales Studium Bachelor of Science in Data Science und Künstlicher Intelligenz (m/w/d), ab 09/2027<br><a href='https://www.adzuna.de/details/5829016735?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 05-08-2026</em></td>
+      <td>2026-08-05</td>
+    </tr>
+    <tr>
+      <td>Nuremberg</td>
+      <td>WhyBrilliant GmbH</td>
+      <td>Data Science Consultant (m/f/x/d)<br><a href='https://www.adzuna.de/details/5849254835?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 20-08-2026</em></td>
+      <td>2026-08-20</td>
+    </tr>
+    <tr>
+      <td>Oberkochen</td>
+      <td>FERCHAU GmbH</td>
+      <td>AI Data Science Engineer (m/w/d)<br><a href='https://www.adzuna.de/details/5839580885?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 13-08-2026</em></td>
+      <td>2026-08-13</td>
+    </tr>
+    <tr>
+      <td>Oberkochen</td>
+      <td>Jenpersonal</td>
+      <td>AI & Data Science Engineer (m/w/d)<br><a href='https://www.adzuna.de/details/5837015735?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 11-08-2026</em></td>
+      <td>2026-08-11</td>
+    </tr>
+    <tr>
+      <td>Oberkochen</td>
+      <td>Jenpersonal GmbH</td>
+      <td>AI & Data Science Engineer (m/w/d)<br><a href='https://www.adzuna.de/details/5844148317?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 16-08-2026</em></td>
+      <td>2026-08-16</td>
+    </tr>
+    <tr>
+      <td>Oberkochen</td>
+      <td>ZEISS</td>
+      <td>Abschlussarbeit Data Science / Mechanikdesign (m/w/x)<br><a href='https://www.adzuna.de/land/ad/5810550889?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=1FEF4813105946798F9B4DCA0FC26772816D4906' target='_blank'>🔗 Link</a><br><em>date: 22-07-2026</em></td>
+      <td>2026-07-22</td>
+    </tr>
+    <tr>
+      <td>Oberkochen</td>
+      <td>cigus GmbH</td>
+      <td>AI & Data Science Engineer (m/w/d)<br><a href='https://www.adzuna.de/details/5836271385?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 11-08-2026</em></td>
+      <td>2026-08-11</td>
+    </tr>
+    <tr>
+      <td>Oberkochen</td>
+      <td>encontec GmbH</td>
+      <td>AI & Data Science Manager (m/w/d)<br><a href='https://www.adzuna.de/details/5836271332?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 11-08-2026</em></td>
+      <td>2026-08-11</td>
+    </tr>
+    <tr>
+      <td>Offenburg</td>
+      <td>EDEKA Südwest Stiftung & Co.KG</td>
+      <td>Duales Studium: Data Science und Künstliche Intelligenz (m/w/d) - 2027<br><a href='https://www.adzuna.de/details/5829024571?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 05-08-2026</em></td>
+      <td>2026-08-05</td>
+    </tr>
+    <tr>
+      <td>Offenburg</td>
+      <td>EDEKA Südwest Stiftung&Co. KG</td>
+      <td>Duales Studium: Data Science und Künstliche Intelligenz (m/w/d) - 2027<br><a href='https://www.adzuna.de/land/ad/5784624030?se=8sPL5b2q8RGO9_HyZZVOKQ&utm_medium=api&utm_source=a4bcf954&v=CDF8A0C90450F82B412FB51139BC443F839DB477' target='_blank'>🔗 Link</a><br><em>date: 02-07-2026</em></td>
+      <td>2026-07-02</td>
+    </tr>
+    <tr>
+      <td>Paderborn</td>
+      <td>Westfalen Weser Netz GmbH</td>
+      <td>Duales Studium Bachelor of Science Wirtschaftsinformatik - KI&Data Science (m/w/d) 2026<br><a href='https://www.adzuna.de/land/ad/5750396620?se=ppfy5r2q8RGk1YNI7v9OUQ&utm_medium=api&utm_source=a4bcf954&v=D056E22E56F35755F5E799EB89C67A14F64D0834' target='_blank'>🔗 Link</a><br><em>date: 03-06-2026</em></td>
+      <td>2026-06-03</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>Creditplus Bank AG</td>
+      <td>(Senior) Risk Manager (m/w/d) Modeling & Data Science - Fokus Retail Credit Risk<br><a href='https://www.adzuna.de/land/ad/5811453477?se=wmwA6L2q8RG03fsEsd1VXA&utm_medium=api&utm_source=a4bcf954&v=A941201519F735C9B8A3B22DA1F7FE671E964088' target='_blank'>🔗 Link</a><br><em>date: 23-07-2026</em></td>
+      <td>2026-07-23</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>Deutsche Telekom AG, Telekom Ausbildung</td>
+      <td>Duales Studium Data Science und Künstliche Intelligenz (m/w/d)<br><a href='https://www.adzuna.de/land/ad/5796938261?se=8sPL5b2q8RGO9_HyZZVOKQ&utm_medium=api&utm_source=a4bcf954&v=089EA4546C4AF9A0E531A797F84B8055EF6B43A5' target='_blank'>🔗 Link</a><br><em>date: 11-07-2026</em></td>
+      <td>2026-07-11</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>Festool Group</td>
+      <td>Duales Studium - Wirtschaftsinformatik Data Science (B. Sc. m/w/d) 2027<br><a href='https://www.adzuna.de/land/ad/5767328953?se=8sPL5b2q8RGO9_HyZZVOKQ&utm_medium=api&utm_source=a4bcf954&v=958EB314919057C73F9E1CF6996FB866EE6E6089' target='_blank'>🔗 Link</a><br><em>date: 18-06-2026</em></td>
+      <td>2026-06-18</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>Hallesche Krankenversicherung</td>
+      <td>Duales Studium (m/w/d) Wirtschaftsinformatik (B.Sc.) Data Science<br><a href='https://www.adzuna.de/details/5831198350?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 07-08-2026</em></td>
+      <td>2026-08-07</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>Hallesche Krankenversicherung a. G.</td>
+      <td>Duales Studium (m/w/d) Wirtschaftsinformatik – Data Science (B.Sc.)<br><a href='https://www.adzuna.de/details/5830893984?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 06-08-2026</em></td>
+      <td>2026-08-06</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>INVENSITY Stellenportal</td>
+      <td>Data Science Consultant (m/w/d)<br><a href='https://www.adzuna.de/details/5824132624?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 01-08-2026</em></td>
+      <td>2026-08-01</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>MWAY DIGITAL</td>
+      <td>DHBW Data Science & Künstliche Intelligenz – 2027<br><a href='https://www.adzuna.de/details/5727301322?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 12-05-2026</em></td>
+      <td>2026-05-12</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>MWAY DIGITAL GmbH</td>
+      <td>DHBW Data Science & Künstliche Intelligenz – 2027<br><a href='https://www.adzuna.de/details/5593655402?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 21-01-2026</em></td>
+      <td>2026-01-21</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>Mercedes-Benz AG</td>
+      <td>Praktikant*in KI-gestützte Qualitätsüberwachung von Schweißnahtbildern (Pflicht-Praktikum)<br><a href='https://www.adzuna.de/land/ad/5864580130?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=24765DAAAB5C4C995E01E2E0E0A8D2FCE7427866' target='_blank'>🔗 Link</a><br><em>date: 01-09-2026</em><br><br>Praktikant*in Sales Vans: Funnel Intelligence & Digitalization (Pflicht-Praktikum)<br><a href='https://www.adzuna.de/details/5854068905?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 24-08-2026</em></td>
+      <td>2026-09-01</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>Mercedes-Benz Group AG</td>
+      <td>Duales Studium Wirtschaftsinformatik/Data Science (B.Sc.), Mercedes-Benz Group AG, Stuttgart, 01.10.2027 (m/w/d)<br><a href='https://www.adzuna.de/land/ad/5830076207?se=oNOg5L2q8RGS9tX3gPU9Ng&utm_medium=api&utm_source=a4bcf954&v=0412ABA7A2033C8C900FE4386182E7F5E1AE3D12' target='_blank'>🔗 Link</a><br><em>date: 06-08-2026</em></td>
+      <td>2026-08-06</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>WGV - Württembergische Gemeinde-Versicherung a.G.</td>
+      <td>DHBW-Studium Bachelor of Science – Wirtschaftsinformatik Data Science<br><a href='https://www.adzuna.de/details/5869335369?utm_medium=api&utm_source=a4bcf954' target='_blank'>🔗 Link</a><br><em>date: 03-09-2026</em></td>
+      <td>2026-09-03</td>
+    </tr>
+    <tr>
+      <td>Stuttgart</td>
+      <td>Wüstenrot&Württembergische-Gruppe</td>
+      <td>Bachelor of Science (m/w/d) - Wirtschaftsinformatik - Studiengang Data Science<br><a href='https://www.adzuna.de/land/ad/5832776687?se=8sPL5b2q8RGO9_HyZZVOKQ&utm_medium=api&utm_source=a4bcf954&v=B048BAB14F2B599EF6B19CE9D6FA57163346BE2E' target='_blank'>🔗 Link</a><br><em>date: 08-08-2026</em></td>
+      <td>2026-08-08</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+$(document).ready(function() {
+    var table = $('#jobTable').DataTable({
+        "pageLength": 10,
+        "lengthMenu": [5, 10, 20, 50],
+        "order": [[3, 'desc']],
+        "columnDefs": [
+            {
+                "targets": 3,
+                "visible": false,
+                "searchable": false
+            }
+        ]
+    });
+
+    // Populate City filter dropdown
+    var uniqueCities = table.column(0).data().unique().sort();
+    uniqueCities.toArray().forEach(function(city) {
+        $('#cityFilter').append(`<option value="${city}">${city}</option>`);
+    });
+
+    // Filter table by selected city
+    $('#cityFilter').on('change', function() {
+        var selected = $(this).val();
+        if (selected) {
+            table.column(0).search('^' + selected + '$', true, false).draw();
+        } else {
+            table.column(0).search('').draw();
+        }
+    });
+});
+</script>
+
+</body>
+</html>
